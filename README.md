@@ -7,7 +7,7 @@
 
 ###技术
 
-服务端：CodeIgnite3 PHP框架 + MySQL数据库
+服务端：PHP CodeIgnite3 + MySQL
 
 客户端：RequireJs + AngluarJs + Boostrap + jQuery
 
