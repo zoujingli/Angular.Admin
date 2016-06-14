@@ -2,7 +2,6 @@
 
 define(['jquery', "angular", 'angularRoute', 'angularCookies'], function ($, angular) {
     return angular.module('Admin', ['ngRoute', 'ngCookies']).controller('Home', function ($scope, $cookies, $http) {
-        $scope.ptitle = '后台首页';
         $scope.menu = {
             showLeft: function (node) {
                 $('[data-menu-box]').not($('[data-menu-box="' + node + '"]').show()).hide();
@@ -28,6 +27,7 @@ define(['jquery', "angular", 'angularRoute', 'angularCookies'], function ($, ang
             redirectTo: '/main'
         });
     }).run(function ($cookies, $rootScope) {
+        $rootScope.ptitle = '后台首页';
         function check_login() {
             if (!($cookies.get('username') && $cookies.get('password'))) {
                 window.location.href = './login.html';
