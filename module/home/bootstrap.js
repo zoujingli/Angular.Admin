@@ -19,6 +19,7 @@ require.config({
                 'jquery',
                 'css!//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css',
                 'css!//basic.demo.cuci.cc/static/theme/css/console.css',
+                'css!//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css',
             ],
         },
         jquery: {
@@ -36,7 +37,7 @@ require.config({
             exports: 'angularCookies'
         }
     },
-    deps: ['admin', 'css!//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css'],
+    deps: ['admin'],
     urlArgs: "t=" + (new Date()).getTime()
 });
 /**
