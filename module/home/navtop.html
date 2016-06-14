@@ -1,0 +1,43 @@
+<div class="topbar-wrap topbar-clearfix">
+    <div class="topbar-head topbar-left">
+        <a href="http://basic.demo.cuci.cc/index.php" class="topbar-logo topbar-left">
+            <span class="icon-logo">广州楚才CI基线平台 </span>
+        </a>
+        <a ng-click='menu.showLeft("m-10011")' class="topbar-home-link topbar-btn topbar-left">
+            <span> 商城管理</span>
+        </a>
+        <a ng-click='menu.showLeft("m-m-10107")' class="topbar-home-link topbar-btn topbar-left">
+            <span> 应用管理</span>
+        </a>
+        <a ng-click='menu.showLeft("m-11")' class="topbar-home-link topbar-btn topbar-left">
+            <span> 微信管理</span>
+        </a>
+        <a ng-click='menu.showLeft("m-3")' class="topbar-home-link topbar-btn topbar-left">
+            <span> 系统管理</span>
+        </a>
+    </div>
+    <div class="topbar-info topbar-right">
+        <a data-reload data-tips-text='刷新' class=" topbar-btn topbar-left topbar-info-item text-center" style='width:50px;'>
+            <span class='glyphicon glyphicon-refresh'></span>
+        </a>
+        <div class="topbar-left topbar-user">
+            <div class="dropdown topbar-info-item">
+                <a href="#" class="dropdown-toggle topbar-btn text-center" data-toggle="dropdown">
+                    <span><span class='glyphicon glyphicon-user'></span> <b ng-bind="username"></b></span>
+                    <span class="glyphicon glyphicon glyphicon-menu-up transition-min" style="font-size:12px"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="topbar-info-btn">
+                        <a data-title=" " data-iframe="http://basic.demo.cuci.cc/index.php/admin/main/password.html"><span><span class='glyphicon glyphicon-edit'></span> 修改密码</span></a>
+                    </li>
+                    <li class="topbar-info-btn">
+                        <a data-title=" " data-iframe="http://basic.demo.cuci.cc/index.php/admin/main/myinfo.html"><span><span class='glyphicon glyphicon-edit'></span> 修改资料</span></a>
+                    </li>
+                    <li class="topbar-info-btn">
+                        <a ng-click='logout()' data-load="http://basic.demo.cuci.cc/index.php/admin/login/out.html"><span><span class="glyphicon glyphicon-log-out"></span> 退出登录</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
