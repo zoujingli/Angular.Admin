@@ -1,6 +1,6 @@
 #Angular.Admin
 
-基于RequireJs+AngluarJs+Bootstap的后台平台
+基于RequireJs+AngluarJs+Bootstap的管理平台
 
 ###目标
 完善整套REST方案
