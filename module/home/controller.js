@@ -1,8 +1,8 @@
 /* global angular */
 
 define(['jquery', "angular", 'angularRoute', 'angularCookies'], function ($, angular) {
-    return angular.module('Admin', ['ngRoute', 'ngCookies']).controller('main', function ($scope, $cookies, $http) {
-        $scope.menu = {
+    return angular.module('Admin', ['ngRoute', 'ngCookies']).controller('main', function ($scope, $cookies, $rootScope) {
+        $rootScope.menu = {
             showLeft: function (node) {
                 $('[data-menu-box]').not($('[data-menu-box="' + node + '"]').show()).hide();
             },
@@ -10,9 +10,9 @@ define(['jquery', "angular", 'angularRoute', 'angularCookies'], function ($, ang
                 $('.framework-body').toggleClass('framework-sidebar-mini framework-sidebar-full')
             }
         };
-        $scope.username = $cookies.get('username');
-        $scope.password = $cookies.get('password');
-        $scope.logout = function () {
+        $rootScope.username = $cookies.get('username');
+        $rootScope.password = $cookies.get('password');
+        $rootScope.logout = function () {
             if (window.confirm('确定要退出登录吗？')) {
                 $cookies.remove('username');
                 $cookies.remove('password');

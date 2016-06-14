@@ -1,4 +1,4 @@
-define(["angular", 'jquery', 'jquerySupersized', 'angularCookies'], function (angular, $) {
+define(["angular", 'jquery', 'jquerySupersized', 'angularRoute', 'angularCookies'], function (angular, $) {
     $('.page-container form .username, .page-container form .password').keyup(function () {
         $(this).parent().find('.error').fadeOut('fast');
     });
@@ -24,7 +24,7 @@ define(["angular", 'jquery', 'jquerySupersized', 'angularCookies'], function (an
             {image: 'module/login/img/backgrounds/3.jpg'}
         ]
     });
-    return angular.module('Login', ['ngCookies']).controller('app', function ($scope, $cookies) {
+    return angular.module('Login', ['ngCookies', 'ngRoute']).controller('app', function ($scope, $cookies) {
         $scope.ptitle = '后台登录';
         $scope.username = $cookies.get('username') || '';
         $scope.password = $cookies.get('password') || '';
@@ -56,5 +56,12 @@ define(["angular", 'jquery', 'jquerySupersized', 'angularCookies'], function (an
                 return;
             }
         };
+    }).config(function ($routeProvider) {
+        $routeProvider.when('/', {
+            templateUrl: 'module/login/template/index.html',
+            controller: 'app'
+        }).otherwise({
+            redirectTo: '/'
+        });
     });
 });
