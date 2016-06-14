@@ -1,7 +1,7 @@
 /* global angular */
 
 define(['jquery', "angular", 'angularRoute', 'angularCookies'], function ($, angular) {
-    return angular.module('Admin', ['ngRoute', 'ngCookies']).controller('Home', function ($scope, $cookies, $http) {
+    return angular.module('Admin', ['ngRoute', 'ngCookies']).controller('main', function ($scope, $cookies, $http) {
         $scope.menu = {
             showLeft: function (node) {
                 $('[data-menu-box]').not($('[data-menu-box="' + node + '"]').show()).hide();
@@ -22,7 +22,7 @@ define(['jquery', "angular", 'angularRoute', 'angularCookies'], function ($, ang
     }).config(function ($routeProvider) {
         $routeProvider.when('/main', {
             templateUrl: 'module/home/index.html',
-            controller: 'Home'
+            controller: 'main'
         }).otherwise({
             redirectTo: '/main'
         });
