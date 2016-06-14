@@ -1,5 +1,5 @@
 define(["angular", 'jquery', 'jquerySupersized', 'angularRoute', 'angularCookies'], function (angular, $) {
-    $('.page-container form .username, .page-container form .password').keyup(function () {
+    $('form .username, .page-container form .password').keyup(function () {
         $(this).parent().find('.error').fadeOut('fast');
     });
     $.supersized({
@@ -56,6 +56,7 @@ define(["angular", 'jquery', 'jquerySupersized', 'angularRoute', 'angularCookies
                 return;
             }
         };
+
     }).config(function ($routeProvider) {
         $routeProvider.when('/', {
             templateUrl: 'module/login/template/index.html',
