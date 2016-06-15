@@ -3,11 +3,11 @@
  * @param {type} param
  */
 require.config({
-    baseUrl: 'module/login',
+    baseUrl: 'module/admin',
     map: {'*': {css: '../../vendor/require/require.css.min'}},
     paths: {
+        admin: ['//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min'],
         jquery: ['//cdn.bootcss.com/jquery/1.12.4/jquery.min', '../../vendor/jquery/jquery.min'],
-        jquerySupersized: ['js/supersized.3.2.7.min'],
         angular: ['//cdn.bootcss.com/angular.js/1.5.6/angular.min'],
         angularRoute: ['//cdn.bootcss.com/angular.js/1.5.6/angular-route.min'],
         angularCookies: ['//cdn.bootcss.com/angular.js/1.5.6/angular-cookies.min'],
@@ -16,9 +16,14 @@ require.config({
         jquery: {
             exports: 'jquery',
         },
-        jquerySupersized: {
-            deps: ['jquery'],
-            exports: 'jquerySupersized'
+        admin: {
+            exports: 'admin',
+            deps: [
+                'jquery',
+                'css!//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css',
+                'css!//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css',
+                'css!//basic.demo.cuci.cc/static/theme/css/console.css',
+            ],
         },
         angular: {
             exports: 'angular'
@@ -32,7 +37,7 @@ require.config({
             exports: 'angularCookies'
         }
     },
-    deps: ['css!//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css'],
+    deps: ['admin'],
     urlArgs: "t=" + (new Date()).getTime()
 });
 /**
@@ -44,6 +49,6 @@ require.config({
 define(['require', 'angular', 'controller'], function (require, angular) {
     'use strict';
     require(['controller'], function () {
-        angular.bootstrap(document, ['Login']);
+        angular.bootstrap(document, ['Admin']);
     });
 });

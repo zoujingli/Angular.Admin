@@ -29,13 +29,13 @@ define(["angular", 'jquery', 'jquerySupersized', 'angularRoute', 'angularCookies
         $scope.username = $cookies.get('username') || '';
         $scope.password = $cookies.get('password') || '';
         if ($scope.username && $scope.password) {
-            window.location.href = './index.html';
+            window.location.href = './admin.html';
         }
         $scope.dologin = function () {
             if ($scope.username && $scope.password) {
                 $cookies.put('username', $scope.username);
                 $cookies.put('password', $scope.password);
-                window.location.href = './index.html';
+                window.location.href = './admin.html';
             }
             if (!$scope.username) {
                 $('.page-container form').find('.error').fadeOut('fast', function () {
