@@ -10,13 +10,5 @@
         <![endif]-->
         <script src="vendor/require/require.min.js" data-main='module/admin/bootstrap.js'></script>
     </head>
-    <body>
-        <div class="framework-topbar">
-            <div class="console-topbar" ng-include="'module/admin/template/navtop.html'"></div>
-            <div class="framework-body framework-sidebar-mini">
-                <div class="framework-sidebar" ng-include="'module/admin/template/navleft.html'"></div>
-                <div class="framework-container layer-main-container" ng-view></div>
-            </div>
-        </div>
-    </body>
+    <body ng-include="body"></body>
 </html>

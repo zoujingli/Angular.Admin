@@ -24,7 +24,7 @@ define(["angular", 'jquery', 'jquerySupersized', 'angularRoute', 'angularCookies
             {image: 'module/login/img/backgrounds/3.jpg'}
         ]
     });
-    return angular.module('Login', ['ngCookies', 'ngRoute']).controller('app', function ($scope, $cookies) {
+    return angular.module('admin', ['ngCookies', 'ngRoute']).controller('admin.login', function ($scope, $cookies) {
         $scope.ptitle = '后台登录';
         $scope.username = $cookies.get('username') || '';
         $scope.password = $cookies.get('password') || '';
@@ -58,11 +58,11 @@ define(["angular", 'jquery', 'jquerySupersized', 'angularRoute', 'angularCookies
         };
 
     }).config(function ($routeProvider) {
-        $routeProvider.when('/', {
+        $routeProvider.when('/login', {
             templateUrl: 'module/login/template/index.html',
-            controller: 'app'
+            controller: 'admin.login'
         }).otherwise({
-            redirectTo: '/'
+            redirectTo: '/login'
         });
     });
 });

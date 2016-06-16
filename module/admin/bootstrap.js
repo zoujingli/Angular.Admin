@@ -46,9 +46,12 @@ require.config({
  * @param {type} angular
  * @returns {undefined}
  */
-define(['require', 'angular', 'controller'], function (require, angular) {
+define(['require', 'angular', 'angularCookies', 'main', 'controller'], function (require, angular) {
     'use strict';
+    require(['main'], function () {
+        angular.bootstrap(document, ['root']);
+    });
     require(['controller'], function () {
-        angular.bootstrap(document, ['Admin']);
+        angular.bootstrap(document.body, ['admin']);
     });
 });

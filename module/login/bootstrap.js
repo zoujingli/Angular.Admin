@@ -44,6 +44,6 @@ require.config({
 define(['require', 'angular', 'controller'], function (require, angular) {
     'use strict';
     require(['controller'], function () {
-        angular.bootstrap(document, ['Login']);
+        angular.bootstrap(document, ['admin']);
     });
 });

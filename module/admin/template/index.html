@@ -1,0 +1,52 @@
+<div class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>网站配置<span>&nbsp&nbsp&nbsp&nbsp</span><font color="red" style="font-size:20px;">(系统配置请勿随意更改！)</font></h5>
+                </div>
+            </div>
+            <form onsubmit="return false;" data-auto method="POST" action="http://basic.demo.cuci.cc/index.php/admin/conf/site.html" class='form-horizontal' style='padding-top:20px'>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">网站名称</label>
+                    <div class="col-sm-8">
+                        <input type='text' required  title="网站名称不能为空" name='site_name' value='CI基线平台2.0' class="form-control input-sm">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">网站域名</label>
+                    <div class="col-sm-8">
+                        <input type='text' required  title="网站域名不能为空" name='site_domain' value='basic.demo.cuci.cc' class="form-control input-sm">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">公司名称</label>
+                    <div class="col-sm-8">
+                        <input type='text' required  title="请输入公司名称" name='site_company' value='广州楚才信息科技有限公司' class="form-control input-sm">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">网站图标</label>
+                    <div class="col-sm-8">
+
+                        <img data-tips-image style="width:112px;height:auto;" data-field="site_icon" src='http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico' />
+                        <a class='btn btn-link' data-file data-one="true" data-type="ico,png" data-field="site_icon">上传图片</a>
+                        <div class="hr-line-dashed"></div>
+                        <input onchange="$(this).prevAll('img').attr('src', this.value || 'http://basic.demo.cuci.cc/static/plugs/uploader/theme/image.png')" class='form-control input-sm' type="text" required  title="请上传网站图标文件" name='site_icon' value='http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico'/>
+                        <p class="help-block m-b-none">建议上传ICO图标的尺寸为128x128px，此LOGO图片用于网站标题前，<a href="http://www.favicon-icon-generator.com/" target="_blank">ICON在线制作</a></p>                           
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <div class="col-sm-10 text-center">
+                        <button class="btn btn-primary" type="submit">保存参数</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
