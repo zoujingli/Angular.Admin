@@ -25,7 +25,7 @@ define(['require', "angular", 'angularRoute', 'angularCookies'], function (requi
             if (window.confirm('确定要退出登录吗？')) {
                 $cookies.remove('username');
                 $cookies.remove('password');
-                window.location.href = './login.html';
+                window.location.href = './index.html';
             }
         };
         // 检查登录
