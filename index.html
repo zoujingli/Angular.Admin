@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" data-ng-app="admin">
     <head>
         <meta charset="utf-8">
-        <title ng-bind="ptitle">页面加载中...</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="module/login/css/style.css">
-        <!--[if lt IE 9]>
-          <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <script src="vendor/require/require.min.js" data-main='module/login/bootstrap.js'></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="{{app.description}}">
+        <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+        <title data-ng-bind="::pageTitle()">Admin - Angular.Admin</title>
+        <!-- Bootstrap styles-->
+        <link rel="stylesheet" href="app/css/bootstrap.css" data-ng-if="!app.layout.isRTL">
+        <link rel="stylesheet" href="app/css/bootstrap-rtl.css" data-ng-if="app.layout.isRTL">
+        <!-- Application styles-->
+        <link rel="stylesheet" href="app/css/app.css" data-ng-if="!app.layout.isRTL">
+        <link rel="stylesheet" href="app/css/app-rtl.css" data-ng-if="app.layout.isRTL">
+        <!-- Themes-->
+        <link rel="stylesheet" ng-href="{{app.layout.theme}}" data-ng-if="app.layout.theme">
     </head>
-    <body>
-        <div class="page-container" ng-view></div>
+
+    <body data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'offsidebar-open': app.offsidebarOpen, 'aside-toggled': app.asideToggled}">
+        <div data-preloader></div>
+        <div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
+        <script src="app/js/base.js"></script>
+        <script src="app/js/app.js"></script>
     </body>
 </html>
-

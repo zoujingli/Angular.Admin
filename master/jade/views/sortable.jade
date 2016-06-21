@@ -1,0 +1,11 @@
+h3 Sortable
+  small Lightweight jQuery plugin to create sortable lists and grids using native HTML5 drag and drop API.
+
+.container-fluid(ng-controller="SortableController")
+  // doesn't support controllerAs syntax https://github.com/voidberg/html5sortable/issues/86
+  ul.list-group(html-sortable='sortableOptions', html-sortable-callback='sortableCallback', ng-model='data1')
+    li.list-group-item(ng-repeat='itm in data1') 
+      em.fa.fa-reorder.fa-fw.text-muted.mr-lg
+      | {{itm.name}}
+
+  button.btn.btn-info(ng-click="add()") Add another
