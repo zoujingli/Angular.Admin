@@ -2,20 +2,20 @@
 
 基于 RequireJs+AngluarJs+Bootstap 的管理平台
 
-### 截图
+### 界面截图
 ![image](http://angular.html.ctolog.com/screen/1.png)
 ![image](http://angular.html.ctolog.com/screen/2.png)
 
-###目标
+###最终目标
 完善整套REST方案
 
-###技术
+###技术工具
 
 服务端：PHP CodeIgnite3 + MySQL
 
 客户端：RequireJs + AngluarJs + Boostrap + jQuery
 
-###里程碑
+###阶段里程碑
 
 一. 前端UI构建
 
