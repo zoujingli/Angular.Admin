@@ -1,11 +1,27 @@
 {
-    "name": "Angular.Admin",
-    "description": "基于AngluarJs+Bootstap的管理平台",
-    "main": "index.html",
-    "authors": ["Anyon <zoujingli@qq.com> (https://www.ctolog.com)"],
-    "license": "MIT",
-    "keywords": ["angluar", "bootstrap", "require", "angular.admin"],
-    "homepage": "http://angular.html.ctolog.com",
-    "private": true,
-    "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"]
+  "name": "Angular.Admin",
+  "description": "基于AngluarJs+Bootstap的管理平台",
+  "main": "index.html",
+  "authors": [
+    "Anyon <zoujingli@qq.com> (https://www.ctolog.com)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angluar",
+    "bootstrap",
+    "require",
+    "angular.admin"
+  ],
+  "homepage": "http://angular.html.ctolog.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7"
+  }
 }
