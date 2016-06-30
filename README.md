@@ -2,10 +2,6 @@
 
 基于 RequireJs+AngluarJs+Bootstap 的管理平台
 
-### 界面截图
-![image](http://angular.html.ctolog.com/screen/1.png)
-![image](http://angular.html.ctolog.com/screen/2.png)
-
 ###最终目标
 完善整套REST方案
 
