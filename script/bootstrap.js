@@ -3,7 +3,8 @@
 require.config({
     baseUrl: './',
     paths: {
-        'app': 'app',
+        'app': 'script/app',
+        'app.router': 'script/routes',
         'angular': 'node_modules/angular/angular.min',
         'angular-ui-router': 'node_modules/angular-ui-router/release/angular-ui-router.min',
         'angular-async-loader': 'node_modules/angular-async-loader/angular-async-loader.min',
@@ -17,7 +18,7 @@ require.config({
     }
 });
 
-require(['angular', 'routes'], function (angular) {
+require(['angular', 'app.router'], function (angular) {
     angular.element(document).ready(function () {
         angular.bootstrap(document, ['app']);
         angular.element(document).find('html').addClass('ng-app');
