@@ -6,7 +6,7 @@ define(function (require) {
     app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/index');
             $stateProvider.state('root', {
-                template: '别着急嘛 ... ^_^ ... Angluar.Admin 正在工厂加班加点进行拼装...',
+                templateUrl: 'pages/welcome.html',
 //                templateUrl: function () {
 //                    return 'pages' + app.$location.$$path + '.html';
 //                },
