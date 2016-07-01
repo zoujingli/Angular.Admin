@@ -4,8 +4,13 @@
         <meta charset="utf-8">
         <title ng-bind="ptitle"></title>
         <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="theme/default/console.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body data-ui-view>
+    <body>
+        <div class="framework-topbar" data-ui-view="menu.top">
+
+        </div>
+        <div class="framework-body framework-sidebar-full" data-ui-view="main"></div>
         <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </body>
 </html>
