@@ -13,7 +13,8 @@ require.config({
         'angular-i18n': {deps: ['angular']},
         'angular-ui-router': {deps: ['angular']},
         'angular-ui-bootstrap': {deps: ['angular']},
-    }
+    },
+    deps: ['app']
 });
 
 /**

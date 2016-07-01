@@ -2,8 +2,8 @@
 
 define(function (require) {
     var app = require('app');
-
-    app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', function ($stateProvider, $urlRouterProvider, $controllerProvider) {
+            app.$controllerProvider = $controllerProvider;
             $urlRouterProvider.rule(function ($injector, $location) {
                 if (!$location.path()) {
                     return 'welcome';
@@ -13,10 +13,15 @@ define(function (require) {
                 templateUrl: function () {
                     return 'pages' + app.$location.$$path + '.html';
                 },
-                controller: function ($scope, $injector) {
-                    require(['pages' + app.$location.$$path + '.js'], function (module) {
-                        $injector.invoke(module, this, {'$scope': $scope});
-                    });
+                controller: 'OtherCtrl',
+                resolve: {
+                    loadOtherCtrl: ["$q", function ($q) {
+                            var deferred = $q.defer();
+                            require(['pages' + app.$location.$$path + '.js'], function () {
+                                deferred.resolve();
+                            });
+                            return deferred.promise;
+                        }],
                 }
             });
         }]).run(['$state', '$stateParams', '$rootScope', '$location', function ($state, $stateParams, $rootScope, $location) {
