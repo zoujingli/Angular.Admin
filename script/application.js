@@ -58,13 +58,16 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
         }]);
 
     app.run(['$state', '$stateParams', '$rootScope', '$location', function ($state, $stateParams, $rootScope, $location) {
+            // 默认状态
+            $state.go('root', $stateParams);
+            // 地址变化处理
             $rootScope.$on('$locationChangeSuccess', function () {
                 $state.current.name && $state.reload($state.current);
             });
+            // 变量全局绑定
             app.$location = $location;
             app.$state = $state;
             app.$stateParams = $stateParams;
-            $state.go('root', $stateParams);
             $rootScope.ptitle = 'Angular.Admin';
         }]);
 
