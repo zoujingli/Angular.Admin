@@ -65,11 +65,6 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
             $rootScope.$on('$locationChangeSuccess', function () {
                 $state.current.name && $state.reload($state.current);
             });
-            $rootScope.app = {};
-            $rootScope.app.loyout = false;
-            $timeout(function () {
-                $rootScope.app.loyout = true;
-            }, 2000);
 
             // 变量全局绑定
             app.$location = $location;
