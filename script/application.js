@@ -24,13 +24,11 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
                         templateUrl: function () {
                             return helper.loadTemplate('/menu/top');
                         },
-//                        resolve: {
-//                            load: function ($ocLazyLoad) {
-//                                return $ocLazyLoad.load({
-//                                    files: [helper.loadScript(app.$location.$$path)]
-//                                });
-//                            }
-//                        }
+                        resolve: {
+                            load: function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(helper.loadScript('/menu/top'));
+                            }
+                        }
                     },
                     "main": {
                         templateUrl: function () {

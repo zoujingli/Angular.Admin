@@ -2,19 +2,11 @@
     <div class="topbar-wrap topbar-clearfix">
         <div class="topbar-head topbar-left">
             <a href="javascript:void(0)" class="topbar-logo topbar-left">
-                <span class="icon-logo">Angular.Admin </span>
+                <span class="icon-logo">{{appInfo.appName}} <sup ng-bind="appInfo.appVers"></sup></span>
             </a>
-            <a data-menu-target="m-10011" class="topbar-home-link topbar-btn topbar-left active">
-                <span> 商城管理</span>
-            </a>
-            <a data-menu-target="m-10107" class="topbar-home-link topbar-btn topbar-left">
-                <span> 应用管理</span>
-            </a>
-            <a data-menu-target="m-11" class="topbar-home-link topbar-btn topbar-left">
-                <span> 微信管理</span>
-            </a>
-            <a data-menu-target="m-3" class="topbar-home-link topbar-btn topbar-left">
-                <span> 系统管理</span>
+
+            <a ng-repeat="menu in menuTopInfo" data-ng-click="showLeftMenu($index)"  class="topbar-home-link topbar-btn topbar-left">
+                <span data-ng-bind="menu"> </span>
             </a>
         </div>
         <div class="topbar-info topbar-right">
@@ -24,18 +16,18 @@
             <div class="topbar-left topbar-user">
                 <div class="dropdown topbar-info-item">
                     <a href="#" class="dropdown-toggle topbar-btn text-center" data-toggle="dropdown">
-                        <span><span class="glyphicon glyphicon-user"></span> admin</span>
+                        <span><span class="glyphicon glyphicon-user"></span> {{userInfo.username}}</span>
                         <span class="glyphicon glyphicon glyphicon-menu-up transition-min" style="font-size:12px"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="topbar-info-btn">
-                            <a data-title=" " data-iframe="http://basic.demo.cuci.cc/index.php/admin/main/password.html"><span><span class="glyphicon glyphicon-edit"></span> 修改密码</span></a>
+                            <a><span><span class="glyphicon glyphicon-edit"></span> 修改密码</span></a>
                         </li>
                         <li class="topbar-info-btn">
-                            <a data-title=" " data-iframe="http://basic.demo.cuci.cc/index.php/admin/main/myinfo.html"><span><span class="glyphicon glyphicon-edit"></span> 修改资料</span></a>
+                            <a><span><span class="glyphicon glyphicon-edit"></span> 修改资料</span></a>
                         </li>
                         <li class="topbar-info-btn">
-                            <a data-load="http://basic.demo.cuci.cc/index.php/admin/login/out.html"><span><span class="glyphicon glyphicon-log-out"></span> 退出登录</span></a>
+                            <a><span><span class="glyphicon glyphicon-log-out"></span> 退出登录</span></a>
                         </li>
                     </ul>
                 </div>
