@@ -5,6 +5,11 @@
 ###最终目标
 完善整套REST方案
 
+### 安装使用
+```shell
+npm install
+```
+
 ###技术工具
 
 服务端：PHP CodeIgnite3 + MySQL
