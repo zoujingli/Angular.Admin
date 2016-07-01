@@ -149,7 +149,7 @@ a{color:#06C;cursor:pointer}a:hover{color:#039}label{font-size:100%;font-weight:
 .framework-container-body{position:absolute;width:auto;top:0px;bottom:0px;left:0px;right:0px;overflow:hidden;overflow-y:auto}
 
 /** 顶部菜单 */
-.console-topbar{position:relative;z-index:100;clear:both;height:50px;background:#09C;font-size:12px;min-width:990px;-webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}
+.console-topbar{position:relative;z-index:100;clear:both;height:50px;background:#09C;font-size:12px;-webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}
 .console-topbar a{text-decoration:none}
 .console-topbar a:focus{outline:none}
 .console-topbar .icon-arrow-down{display:inline-block;width:18px;text-align:center;vertical-align:middle}
