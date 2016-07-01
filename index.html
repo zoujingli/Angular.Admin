@@ -7,10 +7,11 @@
         <link href="theme/default/console.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div class="framework-topbar" data-ui-view="menu.top">
-
+        <div class="framework-topbar" data-ui-view="menu.top"> </div>
+        <div class="framework-body framework-sidebar-full" data-ui-view="">
+            <div class="framework-sidebar" data-ui-view="menu.left"></div>
+            <div class="framework-container layer-main-container" data-ui-view="main"></div>
         </div>
-        <div class="framework-body framework-sidebar-full" data-ui-view="main"></div>
         <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </body>
 </html>
