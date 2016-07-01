@@ -1,5 +1,8 @@
 define(['angular'], function (angular) {
     return angular.module('app.menu.top', ['ui.bootstrap']).run(function ($rootScope, $http) {
+        $rootScope.reload = function () {
+            window.location.reload();
+        };
         $http.get('server/app.json').success(function (ret) {
             $rootScope.appInfo = ret;
         });
