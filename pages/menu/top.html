@@ -5,10 +5,10 @@
                 <span class="icon-logo">{{appInfo.appName}} <sup ng-bind="appInfo.appVers"></sup></span>
             </a>
             <span ng-repeat="menu in menuTopInfo">
-                <a ng-if="menu.uri" href="#{{menu.uri}}"  class="topbar-home-link topbar-btn topbar-left">
+                <a ng-if="menu.uri" ui-sref-active="active" data-ng-href="#{{menu.uri}}"  class="topbar-home-link topbar-btn topbar-left">
                     <span data-ng-bind="menu.name"> </span>
                 </a>
-                <a  data-ng-click="showLeftMenu($index)" ng-if="menu.sub"  class="topbar-home-link topbar-btn topbar-left">
+                <a ui-sref-active="active" data-ng-click="showLeftMenu($index)" ng-if="menu.sub"  class="topbar-home-link topbar-btn topbar-left">
                     <span data-ng-bind="menu.name"> </span>
                 </a>
             </span>

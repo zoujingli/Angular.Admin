@@ -1,9 +1,9 @@
-define(['angular'], function (angular) {
+define(['angular', 'application'], function (angular, app) {
 
-    angular.module('app.menu.top', ['ui.bootstrap']).run(function ($rootScope, $http) {
+    angular.module('app.menu.top', ['ui.bootstrap', 'ui.router']).run(function ($rootScope, $http) {
         // 页面刷新
         $rootScope.reload = function () {
-            window.location.reload();
+            app.$state.reload();
         };
         // 加载应用数据
         $http.get('server/app.json').success(function (ret) {

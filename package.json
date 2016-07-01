@@ -7,12 +7,14 @@
     "angular": "^1.5.7",
     "angular-ui-bootstrap": "^1.3.3",
     "angular-ui-router": "^0.3.1",
+    "ng-tags-input": "^3.1.1",
     "oclazyload": "^1.0.9",
     "requirejs": "^2.2.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "npm run test"
+     "build-js":"jssdfasf ffasd.js | zip min.js",
+    "build": "npm run build"
   },
   "repository": {
     "type": "git",

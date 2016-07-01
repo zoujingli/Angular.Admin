@@ -16,8 +16,9 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
 
     });
 
-    app.config(['$ocLazyLoadProvider', '$stateProvider', 'RouterHelperProvider', function ($ocLazyLoadProvider, $stateProvider, helper) {
+    app.config(['$ocLazyLoadProvider', '$stateProvider', 'RouterHelperProvider', '$urlRouterProvider', function ($ocLazyLoadProvider, $stateProvider, helper, $urlRouterProvider) {
             $ocLazyLoadProvider.config({asyncLoader: require});
+            $urlRouterProvider.deferIntercept(true);
             $stateProvider.state('root', {
                 views: {
                     'menu.top': {
@@ -57,11 +58,14 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
         }]);
 
     app.run(['$state', '$stateParams', '$rootScope', '$location', function ($state, $stateParams, $rootScope, $location) {
-            $rootScope.ptitle = 'Angular.Admin';
+            $rootScope.$on('$locationChangeSuccess', function () {
+                $state.current.name && $state.reload($state.current);
+            });
             app.$location = $location;
             app.$state = $state;
             app.$stateParams = $stateParams;
             $state.go('root', $stateParams);
+            $rootScope.ptitle = 'Angular.Admin';
         }]);
 
     return app;

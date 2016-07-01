@@ -7,6 +7,12 @@
     },
     {
         "node": "m-2",
+        "name": "表格样式",
+        "icon": "",
+        "uri": "/table/default"
+    },
+    {
+        "node": "m-3",
         "name": "商城管理",
         "sub": [
             {
