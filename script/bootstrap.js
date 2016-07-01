@@ -5,8 +5,6 @@ require.config({
     paths: {
         'app.router': 'script/routes',
         'angular': ['//cdn.bootcss.com/angular.js/1.5.7/angular.min', 'node_modules/angular/angular.min'],
-        'angular-i18n': ['//cdn.bootcss.com/angular.js/1.5.7/i18n/angular-locale_zh-cn'],
-        'angular-async-loader': 'node_modules/angular-async-loader/angular-async-loader.min',
         'angular-ui-router': ['//cdn.bootcss.com/angular-ui-router/0.3.1/angular-ui-router.min', 'node_modules/angular-ui-router/release/angular-ui-router.min'],
         'angular-ui-bootstrap': ['//cdn.bootcss.com/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min', 'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls'],
     },
@@ -23,21 +21,9 @@ require.config({
  * @param {type} require
  * @returns {unresolved}
  */
-define('app',
-        [
-            'require',
-            'angular',
-            'angular-i18n',
-            'angular-async-loader',
-            'angular-ui-router',
-            'angular-ui-bootstrap'
-        ],
-        function (require, angular) {
-            var app = angular.module('app', ['ngLocale', 'ui.router', 'ui.bootstrap']);
-            require('angular-async-loader').configure(app);
-            return app;
-        }
-);
+define('app', ['angular', 'angular-ui-router', 'angular-ui-bootstrap'], function (angular) {
+    return angular.module('app', ['ui.router', 'ui.bootstrap']);
+});
 
 /**
  * 启用 Angluar 模块
