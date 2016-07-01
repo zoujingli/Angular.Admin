@@ -1,0 +1,32 @@
+[
+    {
+        "node": "m-1",
+        "name": "后台首页",
+        "icon": "",
+        "uri": "/welcome/hello"
+    },
+    {
+        "node": "m-2",
+        "name": "商城管理",
+        "sub": [
+            {
+                "node": "m-21",
+                "name": "商品中心",
+                "icon": "",
+                "sub": [
+                    {
+                        "node": "m-211",
+                        "name": "商品管理",
+                        "uri": "/shop/goods"
+                    },
+                    {
+                        "node": "m-212",
+                        "name": "规格管理",
+                        "uri": "/shop/spec"
+                    }
+                ]
+            }
+        ]
+    }
+]
+

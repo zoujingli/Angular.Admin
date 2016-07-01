@@ -30,6 +30,16 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
                             }
                         }
                     },
+                    'menu.left': {
+                        templateUrl: function () {
+                            return helper.loadTemplate('/menu/left');
+                        },
+                        resolve: {
+                            load: function ($ocLazyLoad) {
+                                return $ocLazyLoad.load(helper.loadScript('/menu/left'));
+                            }
+                        }
+                    },
                     "main": {
                         templateUrl: function () {
                             return helper.loadTemplate(app.$location.$$path);
@@ -47,6 +57,7 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
         }]);
 
     app.run(['$state', '$stateParams', '$rootScope', '$location', function ($state, $stateParams, $rootScope, $location) {
+            $rootScope.ptitle = 'Angular.Admin';
             app.$location = $location;
             app.$state = $state;
             app.$stateParams = $stateParams;

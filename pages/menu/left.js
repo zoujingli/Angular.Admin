@@ -1,5 +1,5 @@
 define(['angular'], function (angular) {
-    return angular.module('app.menu.top', ['ui.bootstrap']).run(function ($rootScope, $http) {
+    return angular.module('app.menu.left', ['ui.bootstrap']).run(function ($rootScope, $http) {
         $http.get('server/app.json').success(function (ret) {
             $rootScope.appInfo = ret;
         });

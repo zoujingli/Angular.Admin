@@ -23,8 +23,8 @@
 select.form-control.input-sm{padding:0 0 0 10px}
 .form-control.input-sm{line-height:1em}
 .pointer{cursor:pointer}
-.wrapper {padding:10px 15px;min-width:900px}
-.framework-sidebar-mini .wrapper{min-width:950px}
+/*.wrapper {padding:10px 15px;min-width:900px}
+.framework-sidebar-mini .wrapper{min-width:950px}*/
 .help-block{margin-bottom:0}
 .text-center{text-align:center}
 .block{display:block}
