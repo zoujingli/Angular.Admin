@@ -58,6 +58,7 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
         }]);
 
     app.run(['$state', '$stateParams', '$rootScope', '$location', function ($state, $stateParams, $rootScope, $location) {
+            $rootScope.ptitle = 'Angular.Admin';
             // 默认状态
             $state.go('root', $stateParams);
             // 地址变化处理
@@ -68,7 +69,6 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
             app.$location = $location;
             app.$state = $state;
             app.$stateParams = $stateParams;
-            $rootScope.ptitle = 'Angular.Admin';
         }]);
 
     return app;
