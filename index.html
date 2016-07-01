@@ -3,16 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title ng-bind="ptitle"></title>
-        <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-        <link href="theme/default/console.css" rel="stylesheet" type="text/css"/>
+        <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" data-ng-if="app.loyout" rel="stylesheet">
+        <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" data-ng-if="app.loyout" rel="stylesheet">
+        <link href="theme/default/console.css" rel="stylesheet" data-ng-if="app.loyout" type="text/css"/>
+        <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </head>
     <body>
-        <div class="framework-topbar" data-ui-view="menu.top"> </div>
-        <div class="framework-body framework-sidebar-full" data-ui-view="">
+        <div class="framework-topbar" data-ui-view="menu.top" data-ng-if="app.loyout"> </div>
+        <div class="framework-body framework-sidebar-full" data-ng-if="app.loyout">
             <div class="framework-sidebar" data-ui-view="menu.left"></div>
             <div class="framework-container layer-main-container" data-ui-view="main"></div>
         </div>
-        <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
+        <div class="framework-loading" data-ng-if="!app.loyout">加载中...</div>
     </body>
 </html>
