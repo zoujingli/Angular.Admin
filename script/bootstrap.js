@@ -17,20 +17,11 @@ require.config({
         'angular-ui-router': {deps: ['angular']},
         'angular-ui-bootstrap': {deps: ['angular']},
     },
-    deps: ['app']
+    deps: ['application']
 });
 
 /**
- * 定义基础模块
- * @param {type} require
- * @returns {unresolved}
- */
-define('app', ['angular', 'oclazyload', 'angular-ui-router', 'angular-ui-bootstrap'], function (angular) {
-    return angular.module('app', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad']);
-});
-
-/**
- * 启用 Angluar 模块
+ * 载入并 Angluar 模块
  * @param {type} angular
  * @returns {undefined}
  */

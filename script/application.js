@@ -1,19 +1,32 @@
-define(['app', 'require', 'angular'], function (app, require) {
+define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-bootstrap'], function (require, angular) {
+    /**
+     * 定义应用模块
+     * @type @exp;angular@call;module
+     */
+    var app = angular.module('app', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad']);
 
+    /**
+     * 创建文件加载器
+     */
     app.provider('RouterHelper', function () {
         this.filter = function (uri) {
             if (uri === '' || uri === '/')
                 return '/welcome/hello';
         };
+        
         this.loadTemplate = function (uri) {
             return  'pages' + this.filter(uri) + '.html'
         };
         this.loadScript = function (uri) {
             return 'pages' + this.filter(uri) + '.js';
         };
-        this.$get = [];
+
+        this.$get = [''];
     });
 
+    /**
+     * 应用路由配置
+     */
     app.config(['$ocLazyLoadProvider', '$stateProvider', 'RouterHelperProvider', function ($ocLazyLoadProvider, $stateProvider, helper) {
             $ocLazyLoadProvider.config({asyncLoader: require});
             $stateProvider.state('root', {
