@@ -17,7 +17,7 @@ require.config({
         'angular-ui-router': {deps: ['angular']},
         'angular-ui-bootstrap': {deps: ['angular']},
     },
-    deps: ['application']
+    deps: ['angular', 'application']
 });
 
 /**
