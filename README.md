@@ -1,6 +1,6 @@
 #Angular.Admin
 
-基于 RequireJs+AngluarJs+Bootstap 的管理平台界面
+基于 RequireJs+AngluarJs+Bootstrap 的管理平台界面
 
 ## 开发日志
 
