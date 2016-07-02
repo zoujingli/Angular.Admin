@@ -124,11 +124,6 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 return app;
             };
 
-            /**
-             * 在模块范围内获取一个 angular injector 对象
-             * @param {String} name
-             * @returns {unresolved} the injected object
-             */
             app.get = function (name) {
                 return $injector.get(name);
             };
@@ -169,9 +164,6 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 return app;
             };
 
-
-
-
             // 样式显示
             $rootScope.app = {
                 layout: {
@@ -186,16 +178,10 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
             $rootScope.$location = $location;
             // URI访问处理
             app.path = $location.$$path;
-
-            $rootScope.$on('$locationChangeStart', function () {
-//                $location.spm && $location.search('spm', $location.spm);
-            });
-
             $rootScope.$on('$locationChangeSuccess', function () {
                 app.path = $location.$$path;
                 $state.current.name && $state.reload($state.current);
-                 $location.spm && $location.search('spm', $location.spm);
-                
+                $location.spm && $location.search('spm', $location.spm);
             });
             // 启用默认路由
             $state.go('root', $stateParams);

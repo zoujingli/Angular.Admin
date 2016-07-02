@@ -4,8 +4,10 @@ define(['app', 'angular-cookies'], function (app) {
 
     app.controller('app.menu', function ($rootScope, $scope, $cookies) {
 
-        var spm = $rootScope.$location.search().spm;
-
+        // 初始左侧菜单的模式
+        var layoutMainClass = $cookies.get('layout-main-class');
+        layoutMainClass && ($rootScope.app.layout.class.main = layoutMainClass);
+        // 切换左侧菜单的模式
         $rootScope.toggleLeftNav = function () {
             console.log('toggleLeftNav');
             var menuClass = $rootScope.app.layout.class.main;
@@ -14,13 +16,15 @@ define(['app', 'angular-cookies'], function (app) {
             } else {
                 $rootScope.app.layout.class.main = menuClass.replace(' framework-sidebar-mini', ' framework-sidebar-full');
             }
+            $cookies.put('layout-main-class', $rootScope.app.layout.class.main);
         };
         $scope.toggleLeftItemNav = function (menu) {
             console.log('toggleLeftItemNav : ' + menu.name);
             $cookies.put('menu-open-' + menu.node, menu.open = !menu.open);
         };
-        $scope.openMenuUri = function (menu) {
-
+        $scope.openMenu = function (menu) {
+            console.log('openMenu : ' + menu.name);
+            $rootScope.$location.spm = menu.node;
         };
     });
 
