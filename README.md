@@ -18,16 +18,16 @@
 
 
 ### 使用方法
-##### 下载项目代码到你的WEB目录中
+##### 1. 下载项目代码到你的WEB目录中
 ```shell
 git clone http://git.oschina.net/zoujingli/Angular.Admin.git
 cd Angular.Admin
 ```
-##### 运行NPM命令安装相关依赖组件
+##### 2. 运行NPM命令安装相关依赖组件
 ```shell
 npm install
 ```
-##### 使用HTTP访问项目中的index.html
+##### 3. 使用HTTP访问项目中的index.html
 ```link
 http://angular.html.ctolog.com/index.html
 ```
