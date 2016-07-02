@@ -1,13 +1,15 @@
 define(['app', 'ng-tags-input'], function (app) {
 
-    app.controller('app.welcome', function ($rootScope, $http) {
+    app.useModule('ngTagsInput')
 
-        $rootScope.message = '别着急嘛 ... ^_^ ... Angluar.Admin 正在工厂加班加点进行拼装...';
+    app.controller('app.welcome', function ($scope, $http) {
 
-        $rootScope.name = 'UI Components';
+        $scope.message = '别着急嘛 ... ^_^ ... Angluar.Admin 正在工厂加班加点进行拼装...';
+
+        $scope.name = 'UI Components';
 
 
-        $rootScope.countries = [
+        $scope.countries = [
             {"name": "Algeria", "flag": "Algeria.png", "confederation": "CAF", "rank": 21},
             {"name": "Argentina", "flag": "Argentina.png", "confederation": "CONMEBOL", "rank": 5},
             {"name": "Australia", "flag": "Australia.png", "confederation": "AFC", "rank": 32},
@@ -22,7 +24,7 @@ define(['app', 'ng-tags-input'], function (app) {
         ];
 
         $http.get('server/list.json').success(function (res) {
-            $rootScope.users = res;
+            $scope.users = res;
         });
 
     });
