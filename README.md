@@ -35,7 +35,7 @@ http://angular.html.ctolog.com/index.html
 
 服务端：PHP CodeIgnite3 + MySQL
 
-客户端：RequireJs + AngluarJs + Boostrap + jQuery
+客户端：RequireJs + AngluarJs + Boostrap
 
 ## 阶段里程碑
 
