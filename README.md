@@ -2,7 +2,7 @@
 
 基于 RequireJs+AngluarJs+Bootstrap 的管理平台界面
 
-## 开发日志
+### 开发日志
 
 ##### ================ 2016-07-02 更新 ================
     
@@ -16,7 +16,8 @@
 
 ##### ============================================
 
-## 使用方法
+
+### 使用方法
 #### 一、下载项目代码到你的WEB目录中
 ```shell
 git clone http://git.oschina.net/zoujingli/Angular.Admin.git
@@ -31,13 +32,15 @@ npm install
 http://angular.html.ctolog.com/index.html
 ```
 
-## 技术领域
+
+### 技术领域
 
 服务端：PHP CodeIgnite3 + MySQL
 
 客户端：RequireJs + AngluarJs + Boostrap
 
-## 阶段里程碑
+
+### 阶段里程碑
 
 一. 前端UI构建
 
