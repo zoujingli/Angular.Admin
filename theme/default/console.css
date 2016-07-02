@@ -31,6 +31,7 @@ select.form-control.input-sm{padding:0 0 0 10px}
 .gray-bg {background-color:#f3f3f4}
 .full-height {height:100% !important}
 .full-width {width:100% !important}
+.leftnull{left:0!important}
 .nowrap{white-space:nowrap!important}
 td .text-explode:first-child{opacity:0;display:none}
 .text-explode {color: #CCC !important;font-weight: normal !important;margin: 0px 4px !important;}
@@ -193,6 +194,9 @@ a{color:#06C;cursor:pointer}a:hover{color:#039}label{font-size:100%;font-weight:
 .framework-sidebar .sidebar-fold{height:30px;width:220px;background:#394555;color:#aeb9c2;text-align:center;line-height:30px !important;font-size:12px;user-select:none;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;display:block}
 .framework-sidebar .sidebar-fold:hover{background:#37424f;color:#fff}
 .framework-sidebar .sidebar-nav{width:220px}
+
+.framework-sidebar .sidebar-nav .sidebar-trans{display:none}
+.framework-sidebar .sidebar-nav.open .sidebar-trans{display:block}
 
 .framework-sidebar .sidebar-nav ul{margin:0px;padding:0px;list-style:none;overflow:hidden;text-indent:1.2em}
 .framework-sidebar .sidebar-nav li a{display:block;width:100%;height:40px;line-height:40px;overflow:hidden}

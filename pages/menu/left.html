@@ -1,62 +1,27 @@
-<div class="sidebar-content" ng-controller="app.menu">
+<div class="sidebar-content" ng-controller="app.menu" ng-if='app.leftmenudata'>
     <div class="sidebar-inner">
         <a class="sidebar-fold" ng-click="toggleLeftNav()">
             <span class="glyphicon glyphicon-option-vertical transition-min"></span>
         </a>
-        <div class="" data-menu-box="m-10011">
-            <div class="sidebar-nav main-nav open">
-                <div class="sidebar-title">
+        <div>
+            <div class="sidebar-nav main-nav" ng-class='{true:"open",false:""}[menu.open]' ng-repeat='menu in app.leftmenudata'>
+                <div class="sidebar-title" ng-if='menu.sub' ng-click="toggleLeftItemNav(menu)">
                     <div class="sidebar-title-inner">
                         <span class="sidebar-title-icon fa fa-caret-right transition-min"></span>
-                        <span class="sidebar-title-text">商城配置</span>
+                        <span class="sidebar-title-text" ng-bind="menu.name"></span>
                     </div>
                 </div>
-                <ul class="sidebar-trans">
-                    <li class="nav-item active">
-                        <a data-menu-node="m-10011-10125" data-open="http://basic.demo.cuci.cc/index.php/store/config/advertising.html" class="sidebar-trans">
+                <ul class="sidebar-trans" ng-if='menu.sub'>
+                    <li class="nav-item" ng-repeat='submenu in menu.sub'>
+                        <a class="sidebar-trans">
                             <div class="nav-icon sidebar-trans">
                                 <span class="fa fa-bullhorn transition-min"></span>
                             </div>
-                            <span class="nav-title">广告管理</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a data-menu-node="m-10011-10138" data-open="http://basic.demo.cuci.cc/index.php/store/coupons/index.html" class="sidebar-trans">
-                            <div class="nav-icon sidebar-trans">
-                                <span class="fa fa-gg-circle transition-min"></span>
-                            </div>
-                            <span class="nav-title">优惠券管理</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a data-menu-node="m-10011-10147" data-open="http://basic.demo.cuci.cc/index.php/store/config/order.html" class="sidebar-trans">
-                            <div class="nav-icon sidebar-trans">
-                                <span class="fa fa-certificate transition-min"></span>
-                            </div>
-                            <span class="nav-title">订单配置</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="sidebar-nav main-nav open">
-                <div class="sidebar-title">
-                    <div class="sidebar-title-inner">
-                        <span class="sidebar-title-icon fa fa-caret-right transition-min"></span>
-                        <span class="sidebar-title-text">会员管理</span>
-                    </div>
-                </div>
-                <ul class="sidebar-trans" style="" data-menu-node="m-10011-10131">
-                    <li class="nav-item">
-                        <a data-menu-node="m-10011-10132" data-open="http://basic.demo.cuci.cc/index.php/store/member/index.html" class="sidebar-trans">
-                            <div class="nav-icon sidebar-trans">
-                                <span class="fa fa-mortar-board transition-min"></span>
-                            </div>
-                            <span class="nav-title">会员列表</span>
+                            <span class="nav-title">{{submenu.name}}</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-
     </div>
 </div>
