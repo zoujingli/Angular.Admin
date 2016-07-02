@@ -4,21 +4,25 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
 
     app.controller('app.menu.top', function ($rootScope, $scope, $http, $cookies) {
         // 加载应用数据
-        $http.get('server/app.json').success(function (ret) {
+        $rootScope.appInfo || $http.get('server/app.json').success(function (ret) {
             $rootScope.appInfo = ret;
         });
+
         // 加载用户数据
-        $http.get('server/user.json').success(function (ret) {
+        $rootScope.userInfo || $http.get('server/user.json').success(function (ret) {
             $rootScope.userInfo = ret;
         });
-        // 加载菜单信息
-        $rootScope.app.leftmenudata = false;
 
-        $http.get('server/menu.json').success(function (ret) {
+        // 加载菜单信息
+        $rootScope.app.menudata || $http.get('server/menu.json').success(function (ret) {
             $rootScope.app.layout.loaded = true;
-            setMenuStat($rootScope.app.menudata = ret);
+            $rootScope.app.menudata = ret;
+            $cookies.put('menudata', ret);
+            setMenuStat($rootScope.app.menudata);
         });
 
+        // 设置左侧菜单
+        $rootScope.app.leftmenudata = false;
         $scope.setLeftMenu = function (menu) {
             angular.forEach($rootScope.app.menudata, function (menu) {
                 menu.active = false;
