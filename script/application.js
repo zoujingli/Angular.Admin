@@ -87,12 +87,12 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
 
     app.run([
         '$state',
+        '$location',
         '$stateParams',
         '$rootScope',
-        '$location',
         'ngProviders',
         '$injector',
-        function ($state, $stateParams, $rootScope, $location, ngProviders, $injector) {
+        function ($state, $location, $stateParams, $rootScope, ngProviders, $injector) {
             var $controllerProvider = ngProviders.$controllerProvider;
             var $compileProvider = ngProviders.$compileProvider;
             var $filterProvider = ngProviders.$filterProvider;
@@ -178,6 +178,8 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                     loaded: false
                 }
             };
+            $rootScope.$state = $state;
+            $rootScope.$location = $location;
             // URI访问处理
             app.path = $location.$$path;
             $rootScope.$on('$locationChangeSuccess', function () {

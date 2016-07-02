@@ -190,7 +190,7 @@ a{color:#06C;cursor:pointer}a:hover{color:#039}label{font-size:100%;font-weight:
 /** 左侧菜单 **/
 .framework-sidebar{width:0px;display:none;position:fixed;top:50px;bottom:0px;background-color:#293038;z-index:102;overflow-x:hidden;-webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}
 .framework-sidebar .sidebar-content{width:230px;height:100%;overflow:auto;overflow-x:hidden}
-.framework-sidebar .sidebar-fold{height:30px;width:220px;background:#394555;color:#aeb9c2;text-align:center;line-height:30px !important;font-size:12px;user-select:none;cursor:pointer;-webkit-user-select:none;-moz-user-select:none}
+.framework-sidebar .sidebar-fold{height:30px;width:220px;background:#394555;color:#aeb9c2;text-align:center;line-height:30px !important;font-size:12px;user-select:none;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;display:block}
 .framework-sidebar .sidebar-fold:hover{background:#37424f;color:#fff}
 .framework-sidebar .sidebar-nav{width:220px}
 

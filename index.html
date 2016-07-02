@@ -8,8 +8,8 @@
         <link href="theme/default/console.css" rel="stylesheet" type="text/css"/>
         <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </head>
-    <body data-ui-view='main'>
-        <div class="framework-loader" ng-hide="app.layout.loaded">加载中...</div>
+    <body>
+        <!--<div class=" well-lg" ng-hide='app.layout.loaded'>加载中...</div>-->
         <div ng-class="app.layout.class.menu" data-ui-view='main.top'></div>
         <div ng-class="app.layout.class.main">
             <div class="framework-sidebar" data-ui-view="main.left"></div>

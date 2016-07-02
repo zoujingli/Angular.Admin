@@ -1,13 +1,13 @@
-define(['angular'], function (angular) {
-    return angular.module('app.menu.left', ['ui.bootstrap','ui.router']).run(function ($rootScope, $http) {
-        $http.get('server/app.json').success(function (ret) {
-            $rootScope.appInfo = ret;
-        });
-        $http.get('server/user.json').success(function (ret) {
-            $rootScope.userInfo = ret;
-        });
-        $http.get('server/menu.json').success(function (ret) {
-            $rootScope.menuTopInfo = ret;
-        });
+define(['app'], function (app) {
+    app.controller('app.menu', function ($rootScope) {
+        $rootScope.toggleLeftNav = function () {
+            var menuClass = $rootScope.app.layout.class.main;
+            if (menuClass.indexOf(' framework-sidebar-full') !== -1) {
+                $rootScope.app.layout.class.main = menuClass.replace(' framework-sidebar-full', ' framework-sidebar-mini');
+            } else {
+                $rootScope.app.layout.class.main = menuClass.replace(' framework-sidebar-mini', ' framework-sidebar-full');
+            }
+        };
     });
+
 });
