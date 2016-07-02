@@ -13,7 +13,7 @@
                 </div>
                 <ul class="sidebar-trans" ng-if='menu.sub'>
                     <li class="nav-item" ng-repeat='submenu in menu.sub'>
-                        <a class="sidebar-trans" ng-href="#{{submenu.uri}}" ng-if="submenu.uri">
+                        <a class="sidebar-trans" ng-click="$location.spm = submenu.node" ng-href="#{{submenu.uri}}" ng-if="submenu.uri">
                             <div class="nav-icon sidebar-trans">
                                 <span class="fa fa-bullhorn transition-min"></span>
                             </div>

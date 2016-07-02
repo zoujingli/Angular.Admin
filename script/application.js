@@ -184,13 +184,11 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
             };
             $rootScope.$state = $state;
             $rootScope.$location = $location;
-            console.log($location);
             // URI访问处理
             app.path = $location.$$path;
 
             $rootScope.$on('$locationChangeStart', function () {
-                var spm = $location.search().spm || 'ss';
-                spm && $location.search('spm', spm);
+                $location.spm && $location.search('spm', $location.spm);
             });
 
             $rootScope.$on('$locationChangeSuccess', function () {
