@@ -8,11 +8,12 @@
         <link href="theme/default/console.css" rel="stylesheet" type="text/css"/>
         <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </head>
-    <body>
-        <div class="framework-topbar" data-ui-view="menu.top"> </div>
-        <div class="framework-body framework-sidebar-full">
-            <div class="framework-sidebar" data-ui-view="menu.left"></div>
-            <div class="framework-container layer-main-container" data-ui-view="main"></div>
+    <body data-ui-view='main'>
+        <div ng-class="app.layout.menu" ng-if='app.layout.loaded' data-ui-view='main.top'></div>
+        <div ng-class="app.layout.main" ng-if='app.layout.loaded'>
+            <div class="framework-sidebar" data-ui-view="main.left"></div>
+            <div class="framework-container layer-main-container" data-ui-view="main.content"></div>
         </div>
+        <div class="framework-loader"  ng-if='!app.layout.loaded'>加载中...</div>
     </body>
 </html>

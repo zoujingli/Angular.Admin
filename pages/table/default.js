@@ -1,5 +1,6 @@
-define(['angular'], function (angular) {
-    return angular.module('app.table', []).run(function ($rootScope) {
-        $rootScope.message = '表格';
+define(['app'], function (app) {
+    app.controller('app.table', function ($scope) {
+        $scope.message = '表格';
     });
+
 });

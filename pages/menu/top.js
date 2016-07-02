@@ -1,6 +1,6 @@
-define(['angular', 'application'], function (angular, app) {
+define(['app'], function (app) {
 
-    angular.module('app.menu.top', ['ui.bootstrap', 'ui.router']).run(function ($rootScope, $http) {
+    app.controller('app.menu.top', function ($rootScope, $http) {
         // 页面刷新
         $rootScope.reload = function () {
             app.$state.reload();

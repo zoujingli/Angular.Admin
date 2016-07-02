@@ -1,6 +1,6 @@
-define(['angular', 'ng-tags-input'], function (angular) {
+define(['app', 'ng-tags-input'], function (app) {
 
-    var app = angular.module('app.welcome', ['ngTagsInput']).run(function ($rootScope, $interval, $http) {
+    app.controller('app.welcome', function ($rootScope, $http) {
 
         $rootScope.message = '别着急嘛 ... ^_^ ... Angluar.Admin 正在工厂加班加点进行拼装...';
 

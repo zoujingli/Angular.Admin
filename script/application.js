@@ -1,13 +1,13 @@
-define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-bootstrap'], function (require, angular) {
+define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], function (require, angular) {
 
-    var app = angular.module('app', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad']);
+    var app = angular.module('app', ['ui.router', 'ui.bootstrap']).config(config);
 
     app.provider('RouterHelper', function () {
         this.filter = function (uri) {
             return  (uri === '' || uri === '/') ? '/welcome/hello' : uri;
         };
         this.loadTemplate = function (uri) {
-            return  'pages' + this.filter(uri) + '.html'
+            return  'pages' + this.filter(uri) + '.html';
         };
         this.loadScript = function (uri) {
             return 'pages' + this.filter(uri) + '.js';
@@ -16,60 +16,81 @@ define(['require', 'angular', 'oclazyload', 'angular-ui-router', 'angular-ui-boo
 
     });
 
-    app.config(['$ocLazyLoadProvider', '$stateProvider', 'RouterHelperProvider', '$urlRouterProvider', function ($ocLazyLoadProvider, $stateProvider, helper, $urlRouterProvider) {
-            $ocLazyLoadProvider.config({asyncLoader: require});
-            $urlRouterProvider.deferIntercept(true);
-            $stateProvider.state('root', {
-                views: {
-                    'menu.top': {
-                        templateUrl: function () {
-                            return helper.loadTemplate('/menu/top');
-                        },
-                        resolve: {
-                            load: function ($ocLazyLoad) {
-                                return $ocLazyLoad.load(helper.loadScript('/menu/top'));
-                            }
-                        }
+    config.$inject = ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$stateProvider', 'RouterHelperProvider'];
+    function config($controllerProvider, $compileProvider, $filterProvider, $provide, $stateProvider, helper) {
+        app.controller = $controllerProvider.register;
+        app.directive = $compileProvider.directive;
+        app.filter = $filterProvider.register;
+        app.factory = $provide.factory;
+        app.service = $provide.service;
+        app.constant = $provide.constant;
+        app.value = $provide.value;
+
+        $stateProvider.state('root', {
+            views: {
+                'main.top': {
+                    templateUrl: function () {
+                        return helper.loadTemplate('/menu/top');
                     },
-                    'menu.left': {
-                        templateUrl: function () {
-                            return helper.loadTemplate('/menu/left');
-                        },
-                        resolve: {
-                            load: function ($ocLazyLoad) {
-                                return $ocLazyLoad.load(helper.loadScript('/menu/left'));
-                            }
-                        }
-                    },
-                    "main": {
-                        templateUrl: function () {
-                            return helper.loadTemplate(app.$location.$$path);
-                        },
-                        resolve: {
-                            load: function ($ocLazyLoad) {
-                                return $ocLazyLoad.load({
-                                    files: [helper.loadScript(app.$location.$$path)]
+                    resolve: {
+                        load: ["$q", function ($q) {
+                                var deferred = $q.defer();
+                                require([helper.loadScript('/menu/top')], function () {
+                                    deferred.resolve();
                                 });
-                            }
-                        }
+                                return deferred.promise;
+                            }]
+                    }
+                },
+                'main.left': {
+                    templateUrl: function () {
+                        return helper.loadTemplate('/menu/left');
+                    },
+                    resolve: {
+                        load: ["$q", function ($q) {
+                                var deferred = $q.defer();
+                                require([helper.loadScript('/menu/left')], function () {
+                                    deferred.resolve();
+                                });
+                                return deferred.promise;
+                            }]
+                    }
+                },
+                "main.content": {
+                    templateUrl: function () {
+                        return helper.loadTemplate(app.path);
+                    },
+                    resolve: {
+                        load: ["$q", function ($q) {
+                                var deferred = $q.defer();
+                                require([helper.loadScript(app.path)], function () {
+                                    deferred.resolve();
+                                });
+                                return deferred.promise;
+                            }]
                     }
                 }
-            });
-        }]);
+            }
+        });
 
-    app.run(['$state', '$stateParams', '$rootScope', '$location', '$timeout', function ($state, $stateParams, $rootScope, $location, $timeout) {
+    }
+
+    app.run(['$state', '$stateParams', '$rootScope', '$location', '$timeout', function ($state, $stateParams, $rootScope, $location) {
             $rootScope.ptitle = 'Angular.Admin';
-            // 默认状态
-            $state.go('root', $stateParams);
-            // 地址变化处理
+            $rootScope.app = app;
+            app.layout = {
+                'menu': 'framework-topbar',
+                'main': 'framework-body framework-sidebar-full',
+                loaded: true
+            };
+            // URI访问处理
+            app.path = $location.$$path;
             $rootScope.$on('$locationChangeSuccess', function () {
+                app.path = $location.$$path;
                 $state.current.name && $state.reload($state.current);
             });
-
-            // 变量全局绑定
-            app.$location = $location;
-            app.$state = $state;
-            app.$stateParams = $stateParams;
+            // 启用默认路由
+            $state.go('root', $stateParams);
         }]);
 
     return app;
