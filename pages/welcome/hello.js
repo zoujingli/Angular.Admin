@@ -1,14 +1,7 @@
 define(['app', 'ng-tags-input'], function (app) {
-
-    app.useModule('ngTagsInput')
-
+    app.useModule('ngTagsInput');
     app.controller('app.welcome', function ($scope, $http) {
-
         $scope.message = '别着急嘛 ... ^_^ ... Angluar.Admin 正在工厂加班加点进行拼装...';
-
-        $scope.name = 'UI Components';
-
-
         $scope.countries = [
             {"name": "Algeria", "flag": "Algeria.png", "confederation": "CAF", "rank": 21},
             {"name": "Argentina", "flag": "Argentina.png", "confederation": "CONMEBOL", "rank": 5},
@@ -22,17 +15,13 @@ define(['app', 'ng-tags-input'], function (app) {
             {"name": "Costa Rica", "flag": "Costa-Rica.png", "confederation": "CONCACAF", "rank": 24},
             {"name": "Croatia", "flag": "Croatia.png", "confederation": "UEFA", "rank": 17}
         ];
-
         $http.get('server/list.json').success(function (res) {
             $scope.users = res;
         });
-
+        $scope.data = {
+            input: 'input',
+        };
     });
 
-    app.controller('form', function ($scope) {
-        $scope.getvalue = function () {
-            console.log($scope.tags);
-            console.log($scope.sss);
-        }
-    })
+
 });

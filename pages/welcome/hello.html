@@ -3,17 +3,12 @@
     <div class="well">
         {{message}}
     </div>
-    <form name="form" ng-controller="form">
-        <tags-input ng-model="tags" display-property="name" placeholder="Add a country" replace-spaces-with-dashes="false" style="width:300px;">
-            <auto-complete source="countries"
-                           min-length="0"
-                           load-on-focus="true"
-                           load-on-empty="true"
-                           max-results-to-show="32"
-                           template="my-custom-template"></auto-complete>
+    <form>
+        <tags-input ng-model="data.tags" display-property="name" placeholder="Add a country" replace-spaces-with-dashes="false" style="width:300px;">
+            <auto-complete source="countries" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" template="my-custom-template"></auto-complete>
         </tags-input>
-        <input ng-model="sss" name="sss" value="22" />
-        <button type="button" ng-click="getvalue()">get</button>
+        <input ng-model="data.input" name="input" />
+        {{data}}
     </form>
     <script type="text/ng-template" id="my-custom-template">
         <div>
