@@ -168,6 +168,10 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 $provide.provider(name, provider);
                 return app;
             };
+
+
+
+
             // 样式显示
             $rootScope.app = {
                 layout: {
@@ -180,8 +184,15 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
             };
             $rootScope.$state = $state;
             $rootScope.$location = $location;
+            console.log($location);
             // URI访问处理
             app.path = $location.$$path;
+
+            $rootScope.$on('$locationChangeStart', function () {
+                var spm = $location.search().spm || 'ss';
+                spm && $location.search('spm', spm);
+            });
+
             $rootScope.$on('$locationChangeSuccess', function () {
                 app.path = $location.$$path;
                 $state.current.name && $state.reload($state.current);

@@ -29,6 +29,7 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
             if (menu.sub) {
                 setMenuStat($rootScope.app.leftmenudata = menu.sub);
             } else {
+                $rootScope.$location.search('spm', menu.node);
                 $rootScope.app.leftmenudata = false;
             }
         };
