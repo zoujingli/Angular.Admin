@@ -28,7 +28,7 @@ npm install
 ```
 ### 三、使用HTTP访问项目中的index.html
 ```link
-[http://angular.html.ctolog.com/index.html](http://angular.html.ctolog.com/index.html)
+http://angular.html.ctolog.com/index.html
 ```
 
 ## 技术领域
