@@ -97,6 +97,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
             var $compileProvider = ngProviders.$compileProvider;
             var $filterProvider = ngProviders.$filterProvider;
             var $provide = ngProviders.$provide;
+
             /**
              * 动态注入一个 Angular 模块
              * @param {type} name
@@ -122,68 +123,60 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 });
                 return app;
             };
-            app.value = function (name, value) {
-                $provide.value(name, value);
-                return app;
-            };
-
-            app.constant = function (name, value) {
-                $provide.constant(name, value);
-                return app;
-            };
-
-            app.factory = function (name, factory) {
-                $provide.factory(name, factory);
-                return app;
-            };
-
-            app.service = function (name, service) {
-                $provide.service(name, service);
-                return app;
-            };
-
-            app.filter = function (name, filter) {
-                $filterProvider.register(name, filter);
-                return app;
-            };
-
-            app.directive = function (name, directive) {
-                $compileProvider.directive(name, directive);
-                return app;
-            };
-
-            app.controller = function (name, controller) {
-                $controllerProvider.register(name, controller);
-                return app;
-            };
-
-            app.decorator = function (name, decorator) {
-                $provide.decorator(name, decorator);
-                return app;
-            };
-
-            app.provider = function (name, service) {
-                $provide.provider(name, service);
-                return app;
-            };
 
             /**
-             * Get angular injector object by name in module scope.
-             *
+             * 在模块范围内获取一个 angular injector 对象
              * @param {String} name
-             * @returns {*} the injected object
+             * @returns {unresolved} the injected object
              */
             app.get = function (name) {
                 return $injector.get(name);
             };
-
-
-            $rootScope.ptitle = 'Angular.Admin';
-            $rootScope.app = app;
-            app.layout = {
-                'menu': 'framework-topbar',
-                'main': 'framework-body framework-sidebar-full',
-                loaded: true
+            app.value = function (name, value) {
+                $provide.value(name, value);
+                return app;
+            };
+            app.constant = function (name, value) {
+                $provide.constant(name, value);
+                return app;
+            };
+            app.factory = function (name, factory) {
+                $provide.factory(name, factory);
+                return app;
+            };
+            app.service = function (name, service) {
+                $provide.service(name, service);
+                return app;
+            };
+            app.filter = function (name, filter) {
+                $filterProvider.register(name, filter);
+                return app;
+            };
+            app.directive = function (name, directive) {
+                $compileProvider.directive(name, directive);
+                return app;
+            };
+            app.controller = function (name, controller) {
+                $controllerProvider.register(name, controller);
+                return app;
+            };
+            app.decorator = function (name, decorator) {
+                $provide.decorator(name, decorator);
+                return app;
+            };
+            app.provider = function (name, provider) {
+                $provide.provider(name, provider);
+                return app;
+            };
+            // 样式显示
+            $rootScope.app = {
+                layout: {
+                    class: {
+                        'menu': 'framework-topbar',
+                        'main': 'framework-body framework-sidebar-full'
+                    },
+                    loaded: false
+                }
             };
             // URI访问处理
             app.path = $location.$$path;

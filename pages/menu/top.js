@@ -15,7 +15,9 @@ define(['app'], function (app) {
         });
         // 加载菜单信息
         $http.get('server/menu.json').success(function (ret) {
+            $rootScope.app.layout.loaded = true;
             $rootScope.menuTopInfo = ret;
+            console.log($rootScope.app);
         });
     });
 
