@@ -188,12 +188,14 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
             app.path = $location.$$path;
 
             $rootScope.$on('$locationChangeStart', function () {
-                $location.spm && $location.search('spm', $location.spm);
+//                $location.spm && $location.search('spm', $location.spm);
             });
 
             $rootScope.$on('$locationChangeSuccess', function () {
                 app.path = $location.$$path;
                 $state.current.name && $state.reload($state.current);
+                 $location.spm && $location.search('spm', $location.spm);
+                
             });
             // 启用默认路由
             $state.go('root', $stateParams);

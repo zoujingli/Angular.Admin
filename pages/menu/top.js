@@ -3,6 +3,7 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
     app.useModule('ngCookies');
 
     app.controller('app.menu.top', function ($rootScope, $scope, $http, $cookies) {
+
         // 加载应用数据
         $rootScope.appInfo || $http.get('server/app.json').success(function (ret) {
             $rootScope.appInfo = ret;
@@ -15,15 +16,25 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
 
         // 加载菜单信息
         $rootScope.app.menudata || $http.get('server/menu.json').success(function (ret) {
+            //显示UI布局
             $rootScope.app.layout.loaded = true;
+            //应用个性化属性
+            setMenuStat(ret);
+            //显示顶部菜单
             $rootScope.app.menudata = ret;
-            $cookies.put('menudata', ret);
-            setMenuStat($rootScope.app.menudata);
+            // 首次加载时初始化左侧菜单 
+            var spm = $rootScope.$location.search().spm;
+            spm && angular.forEach($rootScope.app.menudata, function (menu) {
+                if (menu.sub && angular.toJson(menu).indexOf('"node":"' + spm + '"') !== -1) {
+                    return $rootScope.app.leftmenudata = menu.sub;
+                }
+            });
         });
 
         // 设置左侧菜单
-        $rootScope.app.leftmenudata = false;
+        $rootScope.app.leftmenudata = $rootScope.app.leftmenudata || false;
         $scope.setLeftMenu = function (menu) {
+            console.log('setLeftMenu : ' + menu.name);
             angular.forEach($rootScope.app.menudata, function (menu) {
                 menu.active = false;
                 $cookies.put('menu-active-' + menu.node, false);
@@ -31,7 +42,7 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
             menu.active = true;
             $cookies.put('menu-active-' + menu.node, true);
             if (menu.sub) {
-                setMenuStat($rootScope.app.leftmenudata = menu.sub);
+                $rootScope.app.leftmenudata = menu.sub
             } else {
                 $rootScope.$location.spm = menu.node;
                 $rootScope.app.leftmenudata = false;
