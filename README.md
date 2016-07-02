@@ -1,8 +1,8 @@
 #Angular.Admin
 
-基于 RequireJs+AngluarJs+Bootstap 的管理平台
+基于 RequireJs+AngluarJs+Bootstap 的管理平台界面
 
-### 开发日志
+## 开发日志
 
 =========== 2016-07-02 更新 ==============
     
@@ -16,21 +16,18 @@
 
 ============================================
 
-### 最终目标
-完善整套REST方案
-
-### 安装使用
+## 安装使用
 ```shell
 npm install
 ```
 
-### 技术工具
+## 技术工具
 
 服务端：PHP CodeIgnite3 + MySQL
 
 客户端：RequireJs + AngluarJs + Boostrap + jQuery
 
-### 阶段里程碑
+## 阶段里程碑
 
 一. 前端UI构建
 
