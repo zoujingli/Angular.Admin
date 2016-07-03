@@ -17,7 +17,8 @@ require.config({
         'angular-ui-router': {deps: ['angular']},
         'angular-ui-bootstrap': {deps: ['angular']},
     },
-    deps: ['angular', 'app']
+    deps: ['angular', 'app'],
+    urlArgs: "v=" + (new Date()).getTime()
 });
 
 /**
