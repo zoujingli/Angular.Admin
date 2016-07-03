@@ -4,7 +4,7 @@
             <span class="glyphicon glyphicon-option-vertical transition-min"></span>
         </a>
         <div>
-            <div class="sidebar-nav main-nav" ng-class='{true:"open",false:""}[menu.open]' ng-repeat='menu in app.leftmenudata'>
+            <div class="sidebar-nav main-nav" ng-class='{true:"open"}[menu.open]' ng-repeat='menu in app.leftmenudata'>
                 <div class="sidebar-title" ng-if='menu.sub' ng-click="toggleLeftItemNav(menu)">
                     <div class="sidebar-title-inner">
                         <span class="sidebar-title-icon fa fa-caret-right transition-min"></span>
@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <ul class="sidebar-trans" ng-if='menu.sub'>
-                    <li class="nav-item" ng-repeat='submenu in menu.sub'>
+                    <li class="nav-item" ng-class="{true:'active'}[submenu.active]" ng-repeat='submenu in menu.sub'>
                         <a class="sidebar-trans" ng-click="openMenu(submenu)" ng-href="#{{submenu.uri}}" ng-if="submenu.uri">
                             <div class="nav-icon sidebar-trans">
                                 <span class="fa fa-bullhorn transition-min"></span>

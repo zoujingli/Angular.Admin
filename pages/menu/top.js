@@ -26,6 +26,9 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
             var spm = $rootScope.$location.search().spm;
             spm && angular.forEach($rootScope.app.menudata, function (menu) {
                 if (menu.sub && angular.toJson(menu).indexOf('"node":"' + spm + '"') !== -1) {
+                    // 顶部菜单选中
+                    menu.active = true;
+                    // 显示左侧菜单
                     return $rootScope.app.leftmenudata = menu.sub;
                 }
             });
@@ -42,7 +45,7 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
             menu.active = true;
             $cookies.put('menu-active-' + menu.node, true);
             if (menu.sub) {
-                $rootScope.app.leftmenudata = menu.sub
+                $rootScope.app.leftmenudata = menu.sub;
             } else {
                 $rootScope.$location.spm = menu.node;
                 $rootScope.app.leftmenudata = false;

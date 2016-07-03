@@ -22,8 +22,22 @@ define(['app', 'angular-cookies'], function (app) {
             console.log('toggleLeftItemNav : ' + menu.name);
             $cookies.put('menu-open-' + menu.node, menu.open = !menu.open);
         };
+
+        function clearSelectMenu(menu, level) {
+            menu && angular.forEach(menu, function (m) {
+                if (level > 0) {
+                    $cookies.put('menu-active-' + m.node, m.active = false);
+                }
+                m.sub && clearSelectMenu(m.sub, level + 1);
+            });
+        }
+
         $scope.openMenu = function (menu) {
             console.log('openMenu : ' + menu.name);
+            //去除所有菜单的选择
+            clearSelectMenu($rootScope.app.menudata, 0);
+            //记录当前点击菜单的选择
+            $cookies.put('menu-active-' + menu.node, menu.active = true);
             $rootScope.$location.spm = menu.node;
         };
     });
