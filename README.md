@@ -10,7 +10,7 @@
 
     2.完成Angular的控制器自动加载
 
-    3.完成Angular模块依赖动态注入
+    3.完成Angular模块依赖动态注入, 如：app.useModule('ngCookies')
     
     4.完成后台菜单显示, 基于cookie与server控制
 
