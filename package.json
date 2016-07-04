@@ -13,7 +13,6 @@
     },
     "devDependencies": {},
     "scripts": {
-        "build-js": "jssdfasf ffasd.js | zip min.js",
         "build": "npm run build"
     },
     "repository": {
