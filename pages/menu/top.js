@@ -2,7 +2,39 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
 
     app.useModule('ngCookies');
 
-    app.controller('app.menu.top', function ($rootScope, $scope, $http, $cookies) {
+    app.provider('appMenuSetProvider', function () {
+        this.$get = function ($cookies) {
+            return {
+                _getMenuStat: function (menu, type) {
+                    var key = 'menu-' + type + '-' + menu.node;
+                    if ($cookies.get(key) === 'true') {
+                        return true;
+                    } else if ($cookies.get(key) === 'false') {
+                        return false;
+                    } else {
+                        return menu[type] || false;
+                    }
+                },
+                initMenuStat: function (menus) {
+                    var self = this, isSetActive = false;
+                    menus && angular.forEach(menus, function (menu) {
+                        //处理 active 属性
+                        menu.active = self._getMenuStat(menu, 'active');
+                        isSetActive && (menu.active = false);
+                        menu.active && (isSetActive = true);
+                        $cookies.put('menu-active-' + menu.node, menu.active);
+                        // 处理 open 属性
+                        menu.open = self._getMenuStat(menu, 'open');
+                        $cookies.put('menu-open-' + menu.node, menu.open);
+                        // 处理子菜单
+                        menu.sub && self.initMenuStat(menu.sub);
+                    });
+                }
+            };
+        };
+    });
+
+    app.controller('app.menu.top', function ($rootScope, $scope, $http, $cookies, appMenuSetProvider) {
 
         // 加载应用数据
         $rootScope.appInfo || $http.get('server/app.json').success(function (ret) {
@@ -19,7 +51,7 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
             //显示UI布局
             $rootScope.app.layout.loaded = true;
             //应用个性化属性
-            setMenuStat(ret);
+            appMenuSetProvider.initMenuStat(ret);
             //显示顶部菜单
             $rootScope.app.menudata = ret;
             // 首次加载时初始化左侧菜单 
@@ -51,31 +83,6 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
                 $rootScope.app.leftmenudata = false;
             }
         };
-
-
-
-        /**
-         * 处理菜单状态
-         * @param {type} menus
-         * @returns {undefined}
-         */
-        function setMenuStat(menus) {
-            menus && angular.forEach(menus, function (menu) {
-                var statType = ['active', 'open'];
-                for (var i in statType) {
-                    var type = statType[i];
-                    switch ($cookies.get('menu-' + type + '-' + menu.node)) {
-                        case 'true':
-                            menu[type] = true;
-                            break;
-                        case 'false':
-                            menu[type] = false;
-                            break;
-                    }
-                }
-                menu.sub && setMenuStat(menu.sub);
-            });
-        }
     });
 
 });
