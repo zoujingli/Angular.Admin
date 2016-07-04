@@ -8,9 +8,10 @@
         <link href="theme/default/console.css" rel="stylesheet" type="text/css"/>
         <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </head>
-    <body data-ui-view="body" ng-class="app.layout.class.body">
-        <div class="well-lg" style="position:fixed" ng-if='!app.layout.loaded'>加载中...</div>
-        <div ng-class="app.layout.class.menu" data-ui-view='main.top' ng-if="app.layout.loaded"></div>
+    <body>
+        <div data-ui-view="body" ng-class="app.layout.class.body" ng-hide="!app.layout.class.body"></div>
+        <div class="well-lg" style="position:fixed" ng-if='!app.layout.loaded||!app.layout.class.body'>加载中...</div>
+        <div ng-class="app.layout.class.menu" data-ui-view='main.top' ng-hide="!app.layout.loaded"></div>
         <div ng-class="{true:app.layout.class.fullmain,false:app.layout.class.minimain}[app.layout.full]" ng-if="app.layout.loaded">
             <div class="framework-sidebar" data-ui-view="main.left" ng-if='app.layout.menuleft'></div>
             <div class="framework-container layer-main-container" data-ui-view="main.content" ng-style="{false:{'left':'0'}}[app.layout.menuleft]"></div>
