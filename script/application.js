@@ -202,7 +202,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 $location.spm && $location.search('spm', $location.spm);
             });
             // 启用默认路由
-            $state.go('root', $stateParams);
+            $state.go('login', $stateParams);
         }]);
 
     return app;
