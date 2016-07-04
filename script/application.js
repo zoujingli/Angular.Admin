@@ -64,7 +64,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 }
             }
         }).state('login', {
-            views: {'body': {
+            views: {'main.top': {
                     templateUrl: function () {
                         return helper.loadTemplate('/login/in');
                     },
@@ -184,8 +184,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
             $rootScope.app = {
                 layout: {
                     class: {
-                        'menu': 'framework-topbar',
-                        'body': '',
+                        'top': 'framework-topbar',
                         'fullmain': 'framework-body framework-sidebar-full',
                         'minimain': 'framework-body framework-sidebar-mini'
                     },
