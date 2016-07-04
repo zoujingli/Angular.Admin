@@ -207,15 +207,16 @@ a{color:#06C;cursor:pointer}a:hover{color:#039}label{font-size:100%;font-weight:
 .framework-sidebar .sidebar-nav .sidebar-title{height:40px;background:#37424f;border-bottom:1px solid #414d5c;color:#fff;line-height:40px;position:relative;cursor:pointer;-webkit-user-select:none;-moz-user-select:none}
 .framework-sidebar .sidebar-nav .sidebar-title:hover{background:#414d5c;}
 .framework-sidebar .sidebar-nav .sidebar-title-icon{display:inline-block;margin:0 8px 0 20px;vertical-align:middle}
+.framework-sidebar .sidebar-nav .sidebar-title-inner{display:block;color:#fff;text-decoration:none}
 .framework-sidebar .sidebar-manage{vertical-align:middle;position:absolute;height:40px;width:40px;right:0}
 .framework-sidebar .sidebar-manage a{display:block;width:100%;height:100%;text-align:center;line-height:40px;font-size:14px;color:#a0abb3;text-decoration:none}
 .framework-sidebar .sidebar-nav.open .sidebar-title{background: #22282e;border-bottom:1px solid #22282e}
 .framework-sidebar .sidebar-nav.open .sidebar-title-icon{transform:rotate(90deg);-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg)}
 .framework-sidebar .sidebar-nav .nav-icon{width:50px;text-align:center;font-size:16px;float:left;color:#aeb9c2}
 .framework-sidebar .sidebar-nav .nav-title{float:left;overflow:hidden;color:#fff;white-space:nowrap;text-overflow:ellipsis;display:block;width:130px}
-.framework-sidebar .sidebar-nav li.active a{background:#0099cc}
-.framework-sidebar .sidebar-nav li.active a .nav-title{color:#fff}
-.framework-sidebar .sidebar-nav li.active a .nav-icon{color:#fff}
+.framework-sidebar .sidebar-nav .active a{background:#0099cc!important}
+.framework-sidebar .sidebar-nav .active a .nav-title{color:#fff!important}
+.framework-sidebar .sidebar-nav .active a .nav-icon{color:#fff!important}
 .framework-sidebar .sidebar-nav .manage-nav{height:30px;overflow:hidden}
 .framework-sidebar .sidebar-nav .manage-nav:hover .nav-icon{color:#fff}
 .framework-sidebar .sidebar-nav .manage-nav a{display:block;height:100%}
@@ -233,7 +234,6 @@ a{color:#06C;cursor:pointer}a:hover{color:#039}label{font-size:100%;font-weight:
 .framework-sidebar-mini .framework-sidebar .sidebar-fold span{transform:rotate(-270deg);-webkit-transform:rotate(-270deg);-moz-transform:rotate(-270deg);-ms-transform:rotate(-270deg);-o-transform:rotate(-270deg)}
 .framework-sidebar-mini .framework-sidebar .sidebar-title{background: #22282e;border-bottom:1px solid #22282e}
 .framework-sidebar-mini .framework-sidebar .sidebar-title .sidebar-title-text{display:none}
-.framework-sidebar-mini .framework-sidebar .sidebar-title-inner:hover+.nav-tooltip{display:block}
 .framework-sidebar-mini .framework-sidebar .sidebar-manage{display:none}
 .framework-sidebar-full .framework-sidebar{width:220px;display:block}
 .framework-sidebar-full .framework-sidebar .sidebar-nav .nav-icon{width:50px}

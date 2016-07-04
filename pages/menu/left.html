@@ -10,6 +10,19 @@
                      tooltip-enable='{false:"true"}[app.layout.full]' 
                      tooltip-placement='right' 
                      tooltip-append-to-body='true'
+                     tooltip-class='console-sidebar-tooltip'
+                     ng-class="{true:'active'}[menu.active]" 
+                     ng-if='menu.uri && !menu.sub'>
+                    <a class="sidebar-title-inner" ng-click="openMenu(menu)" ng-href="#{{menu.uri}}">
+                        <span class="sidebar-title-icon transition-min" ng-class="menu.icon" ng-if="menu.icon = menu.icon || 'fa fa-link'"></span>
+                        <span class="sidebar-title-text" ng-bind="menu.name"></span>
+                    </a>
+                </div>
+                <div class="sidebar-title"
+                     uib-tooltip="{{menu.name}}" 
+                     tooltip-enable='{false:"true"}[app.layout.full]' 
+                     tooltip-placement='right' 
+                     tooltip-append-to-body='true'
                      tooltip-class='console-sidebar-tooltip' 
                      ng-if='menu.sub' ng-click="toggleLeftItemMenuType(menu)">
                     <div class="sidebar-title-inner">
@@ -28,7 +41,7 @@
                         ng-repeat='submenu in menu.sub'>
                         <a class="sidebar-trans" ng-click="openMenu(submenu)" ng-href="#{{submenu.uri}}" ng-if="submenu.uri">
                             <div class="nav-icon sidebar-trans">
-                                <span class="transition-min {{submenu.icon}}"></span>
+                                <span class="transition-min" ng-class="submenu.icon" ng-if="submenu.icon = submenu.icon || 'fa fa-link'"></span>
                             </div>
                             <span class="nav-title" ng-bind="submenu.name"></span>
                         </a>

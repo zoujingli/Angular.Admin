@@ -18,8 +18,6 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
                 initMenuStat: function (menus) {
                     var self = this, isSetActive = false;
                     menus && angular.forEach(menus, function (menu) {
-                        //处理icon
-                        menu.icon || (menu.icon = 'fa fa-bar-chart-o');
                         //处理 active 属性
                         menu.active = self._getMenuStat(menu, 'active');
                         isSetActive && (menu.active = false);

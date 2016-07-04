@@ -16,6 +16,12 @@
         "name": "商城管理",
         "sub": [
             {
+                "node": "m-20",
+                "name": "商城配置",
+                "icon": "",
+                "uri": "/shop/config"
+            },
+            {
                 "node": "m-21",
                 "name": "商品中心",
                 "icon": "",
