@@ -169,7 +169,8 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 layout: {
                     class: {
                         'menu': 'framework-topbar',
-                        'main': 'framework-body framework-sidebar-full'
+                        'fullmain': 'framework-body framework-sidebar-full',
+                        'minimain': 'framework-body framework-sidebar-mini'
                     },
                     loaded: false
                 }

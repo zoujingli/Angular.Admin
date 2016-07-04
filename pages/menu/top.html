@@ -1,10 +1,10 @@
 <div class="console-topbar" ng-controller="app.menu.top">
     <div class="topbar-wrap topbar-clearfix">
         <div class="topbar-head topbar-left">
-            <a href="#" class="topbar-logo topbar-left">
+            <a href="javascript:void(0)" class="topbar-logo topbar-left">
                 <span class="icon-logo">{{appInfo.appName}} <sup ng-bind="appInfo.appVers"></sup></span>
             </a>
-            <span ng-repeat="menu in app.menudata">
+            <span ng-repeat="menu in app.layout.menudata">
                 <a data-ng-click="setLeftMenu(menu)" ng-if="menu.uri" ng-href="#{{menu.uri}}" ng-class='{true:"active",false:""}[menu.active]'  class="topbar-home-link topbar-btn topbar-left">
                     <span data-ng-bind="menu.name"> </span>
                 </a>

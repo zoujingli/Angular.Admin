@@ -1,20 +1,17 @@
 [
     {
-        "active": true,
         "node": "m-1",
         "name": "后台首页",
         "icon": "",
         "uri": "/welcome/hello"
     },
     {
-        "active": false,
         "node": "m-2",
         "name": "表格样式",
         "icon": "",
         "uri": "/table/default"
     },
     {
-        "active": true,
         "node": "m-3",
         "name": "商城管理",
         "sub": [
@@ -25,33 +22,28 @@
                 "sub": [
                     {
                         "open": true,
-                        "active": true,
                         "node": "m-211",
                         "name": "商品管理",
                         "uri": "/shop/goods"
                     },
                     {
                         "node": "m-212",
-                        "active": true,
                         "name": "规格管理",
                         "uri": "/shop/spec"
                     }
                 ]
             },
             {
-                "active": false,
                 "node": "m-22",
                 "name": "个人中心",
                 "icon": "",
                 "sub": [
                     {
-                        "active": false,
                         "node": "m-221",
                         "name": "我的资源",
                         "uri": "/shop/goods"
                     },
                     {
-                        "active": false,
                         "node": "m-222",
                         "name": "操作日志",
                         "uri": "/shop/spec"

@@ -11,9 +11,9 @@
     <body>
         <div class="well-lg" style="position:fixed" ng-hide='app.layout.loaded'>加载中...</div>
         <div ng-class="app.layout.class.menu" data-ui-view='main.top'></div>
-        <div ng-class="app.layout.class.main">
-            <div class="framework-sidebar" data-ui-view="main.left" ng-if='app.leftmenudata'></div>
-            <div class="framework-container layer-main-container" data-ui-view="main.content" ng-style="{false:{'left':'0'}}[app.leftmenudata]"></div>
+        <div ng-class="{true:app.layout.class.fullmain,false:app.layout.class.minimain}[app.layout.full]">
+            <div class="framework-sidebar" data-ui-view="main.left" ng-if='app.layout.menuleft'></div>
+            <div class="framework-container layer-main-container" data-ui-view="main.content" ng-style="{false:{'left':'0'}}[app.layout.menuleft]"></div>
         </div>
     </body>
 </html>
