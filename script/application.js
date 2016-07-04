@@ -63,6 +63,22 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                     }
                 }
             }
+        }).state('login', {
+            views: {'body': {
+                    templateUrl: function () {
+                        return helper.loadTemplate('/login/in');
+                    },
+                    resolve: {
+                        load: ["$q", function ($q) {
+                                var deferred = $q.defer();
+                                require([helper.loadScript('/login/in')], function () {
+                                    deferred.resolve();
+                                });
+                                return deferred.promise;
+                            }]
+                    }
+                }
+            }
         });
     }
 
@@ -169,6 +185,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 layout: {
                     class: {
                         'menu': 'framework-topbar',
+                        'body': '',
                         'fullmain': 'framework-body framework-sidebar-full',
                         'minimain': 'framework-body framework-sidebar-mini'
                     },
@@ -185,7 +202,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 $location.spm && $location.search('spm', $location.spm);
             });
             // 启用默认路由
-            $state.go('root', $stateParams);
+            $state.go('login', $stateParams);
         }]);
 
     return app;
