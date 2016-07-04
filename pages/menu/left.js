@@ -1,8 +1,8 @@
-define(['app', 'angular-cookies'], function (app) {
+define(['app', 'angular', 'angular-cookies'], function (app, angular) {
 
     app.useModule('ngCookies');
 
-    app.controller('app.menu', function ($rootScope, $scope, $cookies) {
+    app.controller('app.menu', function ($rootScope, $scope, $cookies, appMenuSetProvider) {
 
         // 初始左侧菜单的模式
         var layoutMainClass = $cookies.get('layout-main-class');
@@ -23,19 +23,10 @@ define(['app', 'angular-cookies'], function (app) {
             $cookies.put('menu-open-' + menu.node, menu.open = !menu.open);
         };
 
-        function clearSelectMenu(menu, level) {
-            menu && angular.forEach(menu, function (m) {
-                if (level > 0) {
-                    $cookies.put('menu-active-' + m.node, m.active = false);
-                }
-                m.sub && clearSelectMenu(m.sub, level + 1);
-            });
-        }
-
         $scope.openMenu = function (menu) {
             console.log('openMenu : ' + menu.name);
             //去除所有菜单的选择
-            clearSelectMenu($rootScope.app.menudata, 0);
+            appMenuSetProvider.clearMenuStat($rootScope.app.menudata, 0, 'active');
             //记录当前点击菜单的选择
             $cookies.put('menu-active-' + menu.node, menu.active = true);
             $rootScope.$location.spm = menu.node;
