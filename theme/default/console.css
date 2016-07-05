@@ -54,7 +54,8 @@ td .text-explode:first-child{opacity:0;display:none}
 .input-focus{background:none!important;padding:3px 5px!important}
 
 /** 表单Input错误提示 */
-.error-input-right{-webkit-animation-duration:.2s;animation-duration:.2s;padding-right:5px}
+.error-input{-webkit-animation-duration:.2s;animation-duration:.2s;animation-duration: 0.2s;padding-right: 10px;color: rgb(169, 68, 66);position: absolute;right: 0px;font-size: 12px;z-index: 2;display: block;width: auto;text-align: center;pointer-events: none;top: 0px;padding-top: 6px;padding-bottom: 6px;line-height: 20px;}
+
 .label-required:after{content:'*';color:red;position:absolute;margin-left:4px;font-weight:bold;line-height:1.8em}
 
 /** 列表图片图标样式 */
