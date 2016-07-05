@@ -33,7 +33,7 @@ require.config({
  */
 require(['spin'], function () {
     new Spinner({
-        lines: 17, length: 0, width: 11, radius: 41, scale: 1.75, corners: 1, color: '#000', opacity: 0.05,
+        lines: 7, length: 0, width: 12, radius: 25, scale: 1, corners: 1, color: '#000', opacity: 0.15,
         rotate: 0, direction: 1, speed: 1, trail: 60, fps: 20, zIndex: 2e9, className: 'display-inline-block',
         top: '50%', left: '50%', shadow: true, hwaccel: true, position: 'absolute'
     }).spin(document.getElementById('preloader'));
@@ -69,7 +69,7 @@ require(['require', 'angular', 'angular-cookies'], function (require, angular) {
         }
     });
     /*! 启用动态模块 */
-    angular.bootstrap(document.body, [app.name]);
+//    angular.bootstrap(document.body, [app.name]);
     angular.element(document.body).addClass('ng-app');
 
 });
