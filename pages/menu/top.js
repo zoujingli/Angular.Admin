@@ -130,7 +130,7 @@ define(['angular', 'app.admin', 'angular-cookies'], function (angular, app) {
         }
 
         // 初始左侧菜单的模式
-        $rootScope.app.layout.full = $cookies.get('layout-nav-full') === 'true' || false;
+        $rootScope.app.layout.full = $cookies.get('layout-nav-full') !== 'false' || true;
         // 切换左侧菜单模式
         $rootScope.toggleLeftMenuType = function (menus) {
             $cookies.put('layout-nav-full', $rootScope.app.layout.full = !$rootScope.app.layout.full);
