@@ -1,6 +1,6 @@
 <div class="well-lg" style="position:fixed" ng-if='!app.layout.loaded'>加载中...</div>
-<div ng-class="app.layout.class.top" data-ui-view='main.top'></div>
-<div ng-class="{true:app.layout.class.fullmain,false:app.layout.class.minimain}[app.layout.full]" ng-if="app.layout.loaded">
+<div ng-cloak ng-class="app.layout.class.top" data-ui-view='main.top'></div>
+<div ng-cloak ng-class="{true:app.layout.class.fullmain,false:app.layout.class.minimain}[app.layout.full]" ng-if="app.layout.loaded">
     <div class="framework-sidebar" data-ui-view="main.left" ng-if='app.layout.menuleft'></div>
     <div class="framework-container layer-main-container" data-ui-view="main.content" ng-style="{false:{'left':'0'}}[app.layout.menuleft]"></div>
 </div>
