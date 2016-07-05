@@ -136,7 +136,7 @@ td .text-explode:first-child{opacity:0;display:none}
 .mobile-footer .arrow_out {bottom:-6px;border-top-color:#d0d0d0}
 
 /** 登录页面样式 */
-.login-container{min-width:560px;position:absolute;left:0;top:0;display:table;-webkit-transform:translateZ(0);background:#e9e9e9 url(./img/login_bg.jpg) no-repeat center !important;background-size:100% auto}
+.login-container{min-width:560px;position:absolute;left:0;top:0;display:table;-webkit-transform:translateZ(0);background:#e9e9e9 url(./img/login_bg.png) no-repeat center !important;background-size:100% auto}
 .login-container input{padding-left:33px}
 .login-container .logo{font-size:25px;color: #676767;font-family: 'Open Sans', sans-serif;font-weight: 400;padding:5% 0 10% 0;text-align: center;}
 .login-container .logo img{margin-bottom:48px;max-width: 200px;}
