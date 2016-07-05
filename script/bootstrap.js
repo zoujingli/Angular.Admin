@@ -62,7 +62,7 @@ require(['spin'], function () {
  * @param {type} angular
  * @returns {undefined}
  */
-require(['app', 'angular-ui-bootstrap'], function (app) {
+require(['angular-ui-bootstrap'], function () {
     //app.bootstrap();
 });
 
