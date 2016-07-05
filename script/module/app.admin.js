@@ -2,6 +2,8 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
 
     var app = angular.module('app.admin', ['ui.router', 'ui.bootstrap', 'ngCookies']).config(config);
 
+//    app.useModule('ngAnimate')
+
     app.provider('RouterHelper', function () {
         this.filter = function (uri) {
             return  (uri === '' || uri === '/') ? '/welcome/hello' : uri;
@@ -68,12 +70,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
         });
     }
 
-    app.provider('ngProviders', [
-        '$controllerProvider',
-        '$compileProvider',
-        '$filterProvider',
-        '$provide',
-        '$injector',
+    app.provider('ngProviders', ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$injector',
         function ($controllerProvider, $compileProvider, $filterProvider, $provide, $injector) {
             this.$get = function () {
                 return {
@@ -87,14 +84,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
         }
     ]);
 
-    app.run([
-        '$state',
-        '$location',
-        '$stateParams',
-        '$rootScope',
-        'ngProviders',
-        '$injector',
-        '$cookies',
+    app.run(['$state', '$location', '$stateParams', '$rootScope', 'ngProviders', '$injector', '$cookies',
         function ($state, $location, $stateParams, $rootScope, ngProviders, $injector, $cookies) {
             var $controllerProvider = ngProviders.$controllerProvider;
             var $compileProvider = ngProviders.$compileProvider;
