@@ -193,7 +193,6 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
             if (!(user && user.username && user.password)) {
                 $rootScope.logout();
             } else {
-                $location.path('welcome/hello');
                 $state.go('root', $stateParams);
             }
             // 退出登录
@@ -202,6 +201,8 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
                 $location.spm = null;
                 window.location.reload();
             };
+            // 加载用户数据
+            $rootScope.app.user = $cookies.getObject('user');
         }]);
 
     /**
