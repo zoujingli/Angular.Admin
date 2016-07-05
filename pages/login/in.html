@@ -1,5 +1,5 @@
 <div class="text-center layer-box" ng-controller="app.login">
-    <div class="animated fadeInDown layer-content" style="background:#fff;">
+    <div class="animated fadeInDown layer-content">
         <div class='logo' ng-bind="appInfo.appName"></div>
         <form onsubmit="return false;" data-callback='logincallback' data-time="0.01" data-auto role="form" action="http://basic.demo.cuci.cc/index.php/admin-login.html" method="POST">
             <div class="form-group has-feedback">
@@ -9,13 +9,6 @@
             <div class="form-group has-feedback">
                 <span class="fa fa-key input-icon"></span>
                 <input autocomplete="off" class="form-control" name="password" placeholder="Password" title="请输入登录密码" required type="password" />
-            </div>
-            <div class="form-group has-feedback verify-label clearfix hide">
-                <span class="fa fa-gg input-icon"></span>
-                <span class='input'>
-                    <input maxlength='4' autocomplete="off" class="form-control" name="verify" placeholder="Verify" title="请输入验证码" required type="text" />
-                </span>
-                <img data-tips-text='刷新验证码' class='pointer' onclick="this.src = this.src + '?'" src="http://basic.demo.cuci.cc/index.php/admin-login-verify.html"/>
             </div>
             <button type="submit" class="btn btn-primary btn-lg full-width login-btn">登录</button>
         </form>
