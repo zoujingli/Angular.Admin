@@ -26,8 +26,7 @@ require.config({
  * @param {type} angular
  * @returns {undefined}
  */
-require(['angular', 'app', 'angular-ui-bootstrap'], function (angular) {
-    angular.bootstrap(document, ['app']);
-    angular.element(document).find('html').addClass('ng-app');
+require(['app', 'angular-ui-bootstrap'], function (app) {
+    app.bootstrap();
 });
 

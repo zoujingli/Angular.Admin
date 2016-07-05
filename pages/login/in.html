@@ -1,14 +1,14 @@
 <div class="text-center layer-box" ng-controller="app.login">
     <div class="animated fadeInDown layer-content">
         <div class='logo' ng-bind="app.info.name"></div>
-        <form onsubmit="return false;" method="POST">
+        <form ng-submit="submit()" onsubmit="return false;" method="POST">
             <div class="form-group has-feedback">
                 <span class="fa fa-user input-icon"></span>
-                <input autofocus autocomplete="off" class="form-control" name="username" placeholder="Username" title="请输入用户帐号" required type="text" />
+                <input ng-model="user.username" autofocus autocomplete="off" class="form-control" name="username" placeholder="Username" title="请输入用户帐号" required type="text" />
             </div>
             <div class="form-group has-feedback">
                 <span class="fa fa-key input-icon"></span>
-                <input autocomplete="off" class="form-control" name="password" placeholder="Password" title="请输入登录密码" required type="password" />
+                <input ng-model="user.password" autocomplete="off" class="form-control" name="password" placeholder="Password" title="请输入登录密码" required type="password" />
             </div>
             <button type="submit" class="btn btn-primary btn-lg full-width login-btn">登录</button>
         </form>

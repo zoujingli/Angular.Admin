@@ -1,6 +1,6 @@
-define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], function (require, angular) {
+define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angular-cookies'], function (require, angular) {
 
-    var app = angular.module('app', ['ui.router', 'ui.bootstrap']).config(config);
+    var app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ngCookies']).config(config);
 
     app.provider('RouterHelper', function () {
         this.filter = function (uri) {
@@ -12,7 +12,9 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
         this.loadScript = function (uri) {
             return 'pages' + this.filter(uri) + '.js';
         };
-        this.$get = {};
+        this.$get = function () {
+
+        };
 
     });
 
@@ -109,7 +111,8 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
         '$rootScope',
         'ngProviders',
         '$injector',
-        function ($state, $location, $stateParams, $rootScope, ngProviders, $injector) {
+        '$cookies',
+        function ($state, $location, $stateParams, $rootScope, ngProviders, $injector, $cookies) {
             var $controllerProvider = ngProviders.$controllerProvider;
             var $compileProvider = ngProviders.$compileProvider;
             var $filterProvider = ngProviders.$filterProvider;
@@ -201,9 +204,29 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 $state.current.name && $state.reload($state.current);
                 $location.spm && $location.search('spm', $location.spm);
             });
-            // 启用默认路由
-            $state.go('root', $stateParams);
-        }]);
 
+            // 检查用户登录
+            var user = $cookies.getObject('user');
+            if (!(user && user.username && user.password)) {
+                $location.path('login/in');
+                $state.go('login', $stateParams);
+            } else {
+                $location.path('welcome/hello');
+                $state.go('root', $stateParams);
+            }
+            // 退出登录
+            $rootScope.logout = function () {
+                $cookies.remove('user');
+                window.location.reload();
+            };
+        }]);
+    /**
+     * APP启动方法
+     * @returns {undefined}
+     */
+    app.bootstrap = function () {
+        angular.bootstrap(document, ['app']);
+        angular.element(document).find('html').addClass('ng-app');
+    };
     return app;
 });
