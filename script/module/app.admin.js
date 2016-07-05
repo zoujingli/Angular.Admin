@@ -189,19 +189,17 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
             });
 
             // 检查用户登录
-//            var user = $cookies.getObject('user');
-//            if (!(user && user.username && user.password)) {
-//                $location.path('login/in');
-//                $state.go('login', $stateParams);
-//            } else {
-//                $location.path('welcome/hello');
-//                $state.go('root', $stateParams);
-//            }
-            $location.path('welcome/hello');
-            $state.go('root', $stateParams);
+            var user = $cookies.getObject('user');
+            if (!(user && user.username && user.password)) {
+                $rootScope.logout();
+            } else {
+                $location.path('welcome/hello');
+                $state.go('root', $stateParams);
+            }
             // 退出登录
             $rootScope.logout = function () {
                 $cookies.remove('user');
+                $location.spm = null;
                 window.location.reload();
             };
         }]);
@@ -210,8 +208,8 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
      * @returns {undefined}
      */
     app.bootstrap = function () {
-        angular.bootstrap(document.body, [app.name]);
-        angular.element(document.body).addClass('ng-app');
+        angular.bootstrap(document, [app.name]);
+        angular.element(document).addClass('ng-app');
     };
     return app;
 });

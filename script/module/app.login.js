@@ -163,8 +163,8 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
      * @returns {undefined}
      */
     app.bootstrap = function () {
-        angular.bootstrap(document.body, [app.name]);
-        angular.element(document.body).addClass('ng-app');
+        angular.bootstrap(document, [app.name]);
+        angular.element(document).addClass('ng-app');
     };
     return app;
 });
