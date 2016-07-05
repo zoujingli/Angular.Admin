@@ -38,9 +38,9 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
     app.bootstrap = function () {
         angular.bootstrap(document.body, [app.name]);
         angular.element(document.body).addClass('ng-app');
-
-
     };
+    
+    app.bootstrap();
 
     /**
      * 返回模块对象
