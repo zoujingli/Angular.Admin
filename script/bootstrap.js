@@ -6,6 +6,7 @@
  */
 require.config({
     baseUrl: './',
+    map: {'*': {'css': '//cdn.bootcss.com/require-css/0.1.8/css.min'}},
     paths: {
         'app.login': 'script/module/app.login',
         'app.admin': 'script/module/app.admin',
