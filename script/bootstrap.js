@@ -13,7 +13,6 @@ require.config({
         'spin': ['//cdn.bootcss.com/spin.js/2.3.2/spin.min', 'node_modules/spin/dist/spin.min'],
         'angular': ['//cdn.bootcss.com/angular.js/1.5.7/angular.min', 'node_modules/angular/angular.min'],
         'ng-tags-input': ['//cdn.bootcss.com/ng-tags-input/3.1.1/ng-tags-input.min', 'node_modules/ng-tags-input/build/ng-tags-input.min'],
-        'angular-animate': ["//cdn.bootcss.com/angular.js/1.5.7/angular-animate.min", 'node_modules/angular-animate/angular-animate.min'],
         'angular-cookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min', "node_modules/angular-cookies/angular-cookies.min"],
         'angular-ui-router': ['//cdn.bootcss.com/angular-ui-router/0.3.1/angular-ui-router.min', 'node_modules/angular-ui-router/release/angular-ui-router.min'],
         'angular-ui-bootstrap': ['//cdn.bootcss.com/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min', 'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls'],
@@ -21,7 +20,6 @@ require.config({
     shim: {
         'angular': {exports: 'angular'},
         'ng-tags-input': {deps: ['angular']},
-        'angular-animate': {deps: ['angular']},
         'angular-cookies': {deps: ['angular']},
         'angular-ui-router': {deps: ['angular']},
         'angular-ui-bootstrap': {deps: ['angular']},
@@ -48,9 +46,9 @@ require(['spin'], function (Spinner) {
  * @param {type} angular
  * @returns {undefined}
  */
-require(['require', 'angular', 'angular-cookies', 'angular-animate'], function (require, angular) {
+require(['require', 'angular', 'angular-cookies'], function (require, angular) {
     /*! 定义模块 */
-    var app = angular.module('app', ['ngCookies', 'ngAnimate']);
+    var app = angular.module('app', ['ngCookies']);
     /*! 全局运行 */
     app.run(function ($http, $cookies) {
         /*! 检查用户登录 */
