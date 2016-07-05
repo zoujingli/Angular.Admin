@@ -1,4 +1,4 @@
-define(['app', 'angular', 'angular-cookies'], function (app, angular) {
+define(['app.admin', 'angular', 'angular-cookies'], function (app, angular) {
 
     app.useModule('ngCookies');
 

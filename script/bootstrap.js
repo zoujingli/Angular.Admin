@@ -1,9 +1,15 @@
 /* global require */
 
+/**
+ * 配置require文件位置
+ * @param {type} param
+ */
 require.config({
     baseUrl: './',
     paths: {
         'app': 'script/application',
+        'app.login': 'script/module/app.login',
+        'app.admin': 'script/module/app.admin',
         'ng-tags-input': ['node_modules/ng-tags-input/build/ng-tags-input.min'],
         'angular': ['node_modules/angular/angular.min'],
         'angular-cookies': ["node_modules/angular-cookies/angular-cookies.min"],
@@ -22,7 +28,7 @@ require.config({
 });
 
 /**
- * 载入并 Angluar 模块
+ * 载入并启动 Angluar 模块
  * @param {type} angular
  * @returns {undefined}
  */

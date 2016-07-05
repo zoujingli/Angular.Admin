@@ -1,4 +1,4 @@
-define(['app', 'ng-tags-input'], function (app) {
+define(['app.admin', 'ng-tags-input'], function (app) {
     app.useModule('ngTagsInput');
     app.controller('app.welcome', function ($scope, $http) {
         $scope.message = '别着急嘛 ... ^_^ ... Angluar.Admin 正在工厂加班加点进行拼装...';
