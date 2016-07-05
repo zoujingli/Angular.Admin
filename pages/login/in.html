@@ -4,17 +4,15 @@
         <form ng-submit="submit()" name="login" novalidate>
             <div class="form-group has-feedback">
                 <span class="fa fa-user input-icon"></span>
-                <input require ng-minlength="4" ng-maxlength="20" ng-model="user.username" autofocus autocomplete="off" class="form-control" name="username" placeholder="Username"  type="text" />
+                <input require ng-minlength="4" maxlength="20" ng-model="user.username" autofocus autocomplete="off" class="form-control" name="username" placeholder="Username"  type="text" />
                 <span class="error-input" ng-show="login.username.$dirty && login.username.$error.required">登录账号不能为空哦！</span>
                 <span class="error-input" ng-show="login.username.$dirty && login.username.$error.minlength">登录账号不能少于4位字符！</span>
-                <span class="error-input" ng-show="login.username.$dirty && login.username.$error.maxlength">登录账号不能大于20位字符！</span>
             </div>
             <div class="form-group has-feedback">
                 <span class="fa fa-key input-icon"></span>
-                <input required ng-minlength="4" ng-maxlength="20" ng-model="user.password" autocomplete="off" class="form-control" name="password" placeholder="Password" type="password" />
+                <input required ng-minlength="4" maxlength="20" ng-model="user.password" autocomplete="off" class="form-control" name="password" placeholder="Password" type="password" />
                 <span class="error-input" ng-show="login.password.$dirty && login.password.$error.required">登录密码不能为空哦！</span>
                 <span class="error-input" ng-show="login.password.$dirty && login.password.$error.minlength">登录密码不能少于4位字符！</span>
-                <span class="error-input" ng-show="login.password.$dirty && login.password.$error.maxlength">登录账号不能大于20位字符！</span>
             </div>
             <button type="submit" ng-disabled="login.$invalid" class="btn btn-primary btn-lg full-width login-btn">登录</button>
         </form>
