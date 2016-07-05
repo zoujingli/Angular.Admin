@@ -69,8 +69,8 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
     app.controller('app.menu.top', function ($rootScope, $scope, $http, $cookies, appMenuSetProvider) {
 
         // 加载应用数据
-        $rootScope.appInfo || $http.get('server/app.json').success(function (ret) {
-            $rootScope.appInfo = ret;
+        $rootScope.app.info || $http.get('server/app.json').success(function (ret) {
+            $rootScope.app.info = ret;
         });
 
         // 加载用户数据
