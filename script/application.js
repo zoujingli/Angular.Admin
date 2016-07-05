@@ -64,7 +64,8 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 }
             }
         }).state('login', {
-            views: {'body': {
+            views: {
+                'main.top': {
                     templateUrl: function () {
                         return helper.loadTemplate('/login/in');
                     },
@@ -184,14 +185,16 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
             $rootScope.app = {
                 layout: {
                     class: {
-                        'menu': 'framework-topbar',
-                        'body': '',
+                        'top': 'framework-topbar',
                         'fullmain': 'framework-body framework-sidebar-full',
                         'minimain': 'framework-body framework-sidebar-mini'
                     },
                     loaded: false
                 }
             };
+            $rootScope.$watch($rootScope.app.layout.loaded,function(){
+                console.log(arguments);
+            })
             $rootScope.$state = $state;
             $rootScope.$location = $location;
             // URI访问处理
@@ -202,7 +205,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                 $location.spm && $location.search('spm', $location.spm);
             });
             // 启用默认路由
-            $state.go('login', $stateParams);
+            $state.go('root', $stateParams);
         }]);
 
     return app;

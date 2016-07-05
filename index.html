@@ -3,18 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title ng-bind="appInfo.appName"></title>
-        <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="theme/default/console.css" rel="stylesheet" type="text/css"/>
-        <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </head>
     <body>
         <div class="well-lg" style="position:fixed" ng-if='!app.layout.loaded'>加载中...</div>
-        <div data-ui-view="body" ng-class="app.layout.class.body" ng-hide="!app.layout.class.body"></div>
-        <div ng-class="app.layout.class.menu" data-ui-view='main.top' ng-hide="!app.layout.loaded"></div>
+        <div ng-class="app.layout.class.top" data-ui-view='main.top'></div>
         <div ng-class="{true:app.layout.class.fullmain,false:app.layout.class.minimain}[app.layout.full]" ng-if="app.layout.loaded">
             <div class="framework-sidebar" data-ui-view="main.left" ng-if='app.layout.menuleft'></div>
             <div class="framework-container layer-main-container" data-ui-view="main.content" ng-style="{false:{'left':'0'}}[app.layout.menuleft]"></div>
         </div>
+        <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </body>
 </html>
