@@ -1,6 +1,4 @@
 define(['app.login', 'angular-cookies'], function (app) {
-    
-    console.log(app);
 
     app.useModule('ngCookies');
 
