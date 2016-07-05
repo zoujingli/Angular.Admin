@@ -7,6 +7,7 @@
 /** 设置选择文字及背景颜色 */
 ::selection{background-color:#ec494e;color:#FFF}
 ::-moz-selection{background-color:#ec494e;color:#FFF}
+html,body{min-width:100%;min-height:100%;height:100%;display:block}
 
 /* radio 样式定制 */
 .cuci-radio {width: 18px;height: 18px;position: relative;margin: 0px 5px!important;background: #ffffff;border: solid 1px #dddddd;border-radius: 50%;display: table;float: left;-webkit-appearance: none;transition: background-color ease 0.1s;}
@@ -27,7 +28,14 @@ select.form-control.input-sm{padding:0 0 0 10px}
 .framework-sidebar-mini .wrapper{min-width:950px}*/
 .help-block{margin-bottom:0}
 .text-center{text-align:center}
-.block{display:block}
+.text-middel{vertical-align: middle}
+
+.display-table{display:table}
+.display-table-cell{display:table-cell}
+
+.display-block{display:block}
+.display-inline-block{display:inline-block}
+
 .gray-bg {background-color:#f3f3f4}
 .full-height {height:100% !important}
 .full-width {width:100% !important}

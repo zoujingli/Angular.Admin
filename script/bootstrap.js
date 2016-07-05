@@ -7,6 +7,7 @@
 require.config({
     baseUrl: './',
     paths: {
+        'spin': 'node_modules/spin/dist/spin.min',
         'app': 'script/application',
         'app.login': 'script/module/app.login',
         'app.admin': 'script/module/app.admin',

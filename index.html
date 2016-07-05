@@ -8,8 +8,9 @@
         <link href="theme/default/console.css" rel="stylesheet" type="text/css"/>
     </head>
     <body data-ui-view ng-class="app.layout.class.body">
-        <div>加载中哦，别急...</div>
-        <div class="loading" ng-show="loading.show"></div>
+        <div class="display-table full-width full-height gray-bg">
+            <div id="preloader" class="display-table-cell full-width full-height text-center text-middel"></div>
+        </div>
         <script src="node_modules/requirejs/require.js" data-main="script/bootstrap.js"></script>
     </body>
 </html>
