@@ -30,7 +30,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
     });
 
     /**
-     * APP启动方法
+     * APP启动入口
      * @returns {undefined}
      */
     app.bootstrap = function () {

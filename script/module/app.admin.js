@@ -65,7 +65,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
                     }
                 }
             }
-        })
+        });
     }
 
     app.provider('ngProviders', [
@@ -203,13 +203,18 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
                 window.location.reload();
             };
         }]);
+
     /**
-     * APP启动方法
+     * APP启动入口
      * @returns {undefined}
      */
     app.bootstrap = function () {
         angular.bootstrap(document, [app.name]);
         angular.element(document).addClass('ng-app');
     };
+
+    /**
+     * 返回模块对象
+     */
     return app;
 });
