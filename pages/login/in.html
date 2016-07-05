@@ -1,7 +1,7 @@
 <div class="text-center layer-box" ng-controller="app.login">
     <div class="animated fadeInDown layer-content">
         <div class='logo' ng-bind="appInfo.appName"></div>
-        <form onsubmit="return false;" data-callback='logincallback' data-time="0.01" data-auto role="form" action="http://basic.demo.cuci.cc/index.php/admin-login.html" method="POST">
+        <form onsubmit="return false;" method="POST">
             <div class="form-group has-feedback">
                 <span class="fa fa-user input-icon"></span>
                 <input autofocus autocomplete="off" class="form-control" name="username" placeholder="Username" title="请输入用户帐号" required type="text" />
