@@ -1,4 +1,4 @@
-define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angular-cookies'], function (require, angular) {
+require(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angular-cookies'], function (require, angular) {
 
    
 
@@ -45,5 +45,5 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
     /**
      * 返回模块对象
      */
-    return app;
+//    return app;
 });
