@@ -69,7 +69,7 @@ require(['require', 'angular', 'angular-cookies'], function (require, angular) {
         }
     });
     /*! 启用动态模块 */
-//    angular.bootstrap(document.body, [app.name]);
+    angular.bootstrap(document.body, [app.name]);
     angular.element(document.body).addClass('ng-app');
 
 });
