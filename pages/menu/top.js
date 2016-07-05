@@ -74,8 +74,8 @@ define(['angular', 'app', 'angular-cookies'], function (angular, app) {
         });
 
         // 加载用户数据
-        $rootScope.userInfo || $http.get('server/user.json').success(function (ret) {
-            $rootScope.userInfo = ret;
+        $rootScope.app.user || $http.get('server/user.json').success(function (ret) {
+            $rootScope.app.user = ret;
         });
 
         // 加载菜单信息
