@@ -47,9 +47,9 @@ require(['spin'], function (Spinner) {
  * @param {type} angular
  * @returns {undefined}
  */
-require(['require', 'angular', 'angular-cookies'], function (require, angular) {
+require(['require', 'angular', 'angular-cookies', 'angular-animate'], function (require, angular) {
     /*! 定义模块 */
-    var app = angular.module('app', ['ngCookies']);
+    var app = angular.module('app', ['ngCookies', 'ngAnimate']);
     /*! 全局运行 */
     app.run(function ($http, $cookies) {
         /*! 检查用户登录 */
