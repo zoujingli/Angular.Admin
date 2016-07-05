@@ -10,7 +10,7 @@ define(['app.login', 'angular-cookies'], function (app) {
             $rootScope.app.info = ret;
         });
         //表单处理
-        var user = {username: '', password: ''}
+        var user = {username: '', password: ''};
         $scope.user = user;
         //登录，记录数据到cookie
         $scope.submit = function () {
