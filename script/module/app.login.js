@@ -151,6 +151,7 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
             var user = $cookies.getObject('user');
             if (!(user && user.username && user.password)) {
                 $location.path('login/in');
+                $location.spm = '';
                 $state.go('login', $stateParams);
             } else {
                 $location.path('welcome/hello');

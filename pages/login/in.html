@@ -1,17 +1,40 @@
 <div class="text-center layer-box" ng-controller="app.login">
-    <style>html{height: 100%}</style>
+    <style>
+        html{height: 100%}
+        .error{    
+            animation-duration: 0.2s;
+            padding-right: 20px;
+            color: rgb(169, 68, 66);
+            position: absolute;
+            right: 0px;
+            font-size: 12px;
+            z-index: 2;
+            display: block;
+            width: auto;
+            text-align: center;
+            pointer-events: none;
+            top: 0px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            line-height: 20px;
+        }
+    </style>
     <div class="animated fadeInDown layer-content">
         <div class='logo' ng-bind="app.info.name"></div>
-        <form ng-submit="submit()" onsubmit="return false;" method="POST">
+        <form ng-submit="submit()" name="login" novalidate>
             <div class="form-group has-feedback">
                 <span class="fa fa-user input-icon"></span>
-                <input ng-model="user.username" autofocus autocomplete="off" class="form-control" name="username" placeholder="Username" title="请输入用户帐号" required type="text" />
+                <input require ng-minlength="4" ng-model="user.username" autofocus autocomplete="off" class="form-control" name="username" placeholder="Username"  type="text" />
+                <span class="error" ng-show="login.username.$dirty && login.username.$error.required">登录账号不能为空哦！</span>
+                <span class="error" ng-show="login.username.$dirty && login.username.$error.minlength">登录账号不能少于4位字符！</span>
             </div>
             <div class="form-group has-feedback">
                 <span class="fa fa-key input-icon"></span>
-                <input ng-model="user.password" autocomplete="off" class="form-control" name="password" placeholder="Password" title="请输入登录密码" required type="password" />
+                <input required ng-minlength="4" ng-model="user.password" autocomplete="off" class="form-control" name="password" placeholder="Password" type="password" />
+                <span class="error" ng-show="login.password.$dirty && login.password.$error.required">登录密码不能为空哦！</span>
+                <span class="error" ng-show="login.password.$dirty && login.password.$error.minlength">登录密码不能少于4位字符！</span>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg full-width login-btn">登录</button>
+            <button type="submit" ng-disabled="login.$invalid" class="btn btn-primary btn-lg full-width login-btn">登录</button>
         </form>
     </div>
     <p class='copyright'><small>广州楚才信息科技有限公司 &copy; 2016</small></p>
