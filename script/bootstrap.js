@@ -53,7 +53,7 @@ require(['spin'], function () {
         , left: '50%' // Left position relative to parent
         , shadow: true // Whether to render a shadow
         , hwaccel: true // Whether to use hardware acceleration
-        , position: 'fixed' // Element positioning
+        , position: 'absolute' // Element positioning
     }).spin(document.getElementById('preloader'));
 });
 

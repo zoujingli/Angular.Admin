@@ -45,14 +45,15 @@ define(['angular', 'app.admin', 'angular-cookies'], function (angular, app) {
                     level = level || 0;
                     var self = this;
                     angular.forEach(menus, function (menu) {
-                        if (menu.sub && (angular.toJson(menu.sub).indexOf('"node":"' + node + '"') !== -1 || menu.node === node)) {
-                            $cookies.put('menu-active-' + menu.active, menu.active = true);
-                            $cookies.put('menu-open-' + menu.open, menu.open = true);
-                            if (level === 0) {
-                                $rootScope.app.layout.menuleft = menu.sub;
-                            }
-                            self.setMenuStat(menu.sub, node, level + 1);
+                        if ((menu.sub && angular.toJson(menu.sub).indexOf('"node":"' + node + '"') !== -1) || menu.node === node) {
+                            $cookies.put('menu-active-' + menu.node, menu.active = true);
+                            $cookies.put('menu-open-' + menu.node, menu.open = true);
+                            // 如果一级菜单存在子菜单，则显示子菜单
+                            (menu.sub && level === 0) && ($rootScope.app.layout.menuleft = menu.sub);
+                        } else {
+                            $cookies.put('menu-active-' + menu.node, menu.active = false);
                         }
+                        menu.sub && self.setMenuStat(menu.sub, node, level + 1);
                     });
                 },
                 toggleLeftMenuType: function (menus) {
@@ -73,21 +74,21 @@ define(['angular', 'app.admin', 'angular-cookies'], function (angular, app) {
             $rootScope.app.info = ret;
         });
 
-        // 加载用户数据
-        $rootScope.app.user = $cookies.getObject('user');
-
         // 加载菜单信息
         $rootScope.app.layout.menudata || $http.get('server/menu.json').success(function (ret) {
-            //显示UI布局
+            // 显示UI布局
             $rootScope.app.layout.loaded = true;
-            //应用个性化属性
+            // 应用个性化属性
             appMenuSetProvider.initMenuStat(ret);
             // 首次加载时初始化左侧菜单 
             var spm = $rootScope.$location.search().spm;
             spm && appMenuSetProvider.setMenuStat(ret, spm, 0);
-            //显示顶部菜单
+            // 显示顶部菜单
             $rootScope.app.layout.menudata = ret;
         });
+        // 默认根据spm去识别菜单
+        var spm = $rootScope.$location.search().spm;
+        spm && appMenuSetProvider.setMenuStat($rootScope.app.layout.menudata, spm, 0);
 
         // 设置左侧菜单是否显示
         $rootScope.app.layout.menuleft = $rootScope.app.layout.menuleft || false;
@@ -107,7 +108,8 @@ define(['angular', 'app.admin', 'angular-cookies'], function (angular, app) {
                 if (firstUriMenu) {
                     $rootScope.app.layout.menuleft = menu.sub;
                     $rootScope.$location.spm = firstUriMenu.node;
-                    return $rootScope.$location.path(firstUriMenu.uri);
+                    $rootScope.$location.path(firstUriMenu.uri);
+                    return $rootScope.$state.reload();
                 }
             }
             $rootScope.$location.spm = menu.node;
