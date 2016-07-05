@@ -192,9 +192,6 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap'], func
                     loaded: false
                 }
             };
-            $rootScope.$watch($rootScope.app.layout.loaded,function(){
-                console.log(arguments);
-            })
             $rootScope.$state = $state;
             $rootScope.$location = $location;
             // URI访问处理
