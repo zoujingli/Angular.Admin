@@ -187,9 +187,11 @@ define(['require', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'angu
             }
             // 退出登录
             $rootScope.logout = function () {
-                $cookies.remove('user');
-                $location.spm = null;
-                window.location.reload();
+                if (window.confirm('确定要退出系统吗？')) {
+                    $cookies.remove('user');
+                    $location.spm = null;
+                    window.location.reload();
+                }
             };
             // 加载用户数据
             $rootScope.app.user = $cookies.getObject('user');
