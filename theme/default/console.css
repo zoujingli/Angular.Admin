@@ -85,9 +85,9 @@ td .text-explode:first-child{opacity:0;display:none}
 
 /** 按钮定义 */
 .btn{outline:none!important}
-.btn-primary {background-color:#1ab394;border-color:#1ab394;color:#FFFFFF}
+/*.btn-primary {background-color:#1ab394;border-color:#1ab394;color:#FFFFFF}
 .btn-primary:hover,.btn-primary:focus,.btn-primary:active{background-image:none!important;background-color:#18a689!important;border-color:#18a689!important;color:#FFFFFF!important;box-shadow:none!important}
-.btn-primary.disabled,.btn-primary.disabled:hover,.btn-primary.disabled:focus,.btn-primary.disabled:active{background-color:#1dc5a3;border-color:#1dc5a3}
+.btn-primary.disabled,.btn-primary.disabled:hover,.btn-primary.disabled:focus,.btn-primary.disabled:active{background-color:#1dc5a3;border-color:#1dc5a3}*/
 .btn-white {color:inherit;background:white;border:1px solid #e7eaec}
 .btn-white:hover,.btn-white:focus,.btn-white:active{color:inherit;border:1px solid #d2d2d2}
 .btn-white.disabled,.btn-white.disabled:hover,.btn-white.disabled:focus,.btn-white.disabled.active{color:#cacaca}
