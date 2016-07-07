@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+
+        meta(charset="utf-8")
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+        meta(name='description', content='{{app.info.description}}')
+        meta(name='keywords', content='angular, angular.admin, bootstrap, admin')
+
+        title(ng-bind="app.info.name") loading...
+
+        // FontAwesome styles
+        link(href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css",rel="stylesheet")
+
+        // Bootstrap styles
+        link(href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css",rel="stylesheet")
+
+        // Animate styles
+        link(href="theme/public/animate.css",rel="stylesheet")
+
+        // Application styles
+        link(href="theme/default/console.css",rel="stylesheet")
+
+    body(data-ui-view,ng-class="app.layout.class.body")
+        div.display-table.full-width.full-height.gray-bg
+            div#preloader.display-table-cell.full-width.full-height.text-center.text-middel
+        script(src="//cdn.bootcss.com/require.js/2.2.0/require.min.js")
+        script(src="script/bootstrap.js")
