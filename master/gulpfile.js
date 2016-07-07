@@ -17,7 +17,7 @@ function log(msg) {
 gulp.task('default', function () {
     log('Building jade files');
 
-    gulp.src('!./jade/*.jade')
+    gulp.src('jade/*.jade')
             .pipe($.jade())
             .on('error', handleError)
             .pipe($.htmlPrettify({
@@ -27,7 +27,7 @@ gulp.task('default', function () {
             }))
             .pipe(gulp.dest('../'));
 
-    gulp.src('!./jade/**/**/*.jade')
+    gulp.src('jade/**/**/*.jade')
             .pipe($.jade())
             .on('error', handleError)
             .pipe($.htmlPrettify({
