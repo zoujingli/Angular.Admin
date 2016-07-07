@@ -1,21 +1,28 @@
-<div class="text-center layer-box" ng-controller="app.login" ng-cloak>
+<div ng-controller="app.login" ng-cloak="ng-cloak" class="text-center layer-box">
     <div class="animated fadeInDown layer-content">
-        <div class='logo' ng-bind="app.info.name">　</div>
-        <form ng-submit="submit()" name="login" novalidate>
+        <!-- 登录页面Logo-->
+        <div ng-bind="app.info.name" class="logo"></div>
+        <!-- 登录表单-->
+        <form ng-submit="submit()" name="login" novalidate="novalidate">
+            <!-- 用户名输入框-->
             <div class="form-group has-feedback">
                 <span class="fa fa-user input-icon"></span>
-                <input required ng-minlength="4" maxlength="20" ng-model="user.username" autofocus autocomplete="off" class="form-control" name="username" placeholder="Username"  type="text" />
-                <span class="error-input" ng-show="login.username.$dirty && login.username.$error.required">账号不能为空哦！</span>
-                <span class="error-input" ng-show="login.username.$dirty && login.username.$error.minlength">账号不能少于4位字符！</span>
+                <input type="text" name="username" required="required" ng-minlength="4" maxlength="20" ng-model="user.username" autofocus="autofocus" autocomplete="off" placeholder="Username" class="form-control" />
+                <span ng-show="login.username.$dirty && login.username.$error.required" class="error-input">账号不能为空哦！</span>
+                <span ng-show="login.username.$dirty && login.username.$error.minlength" class="error-input">账号不能少于4位字符！</span>
             </div>
+            <!-- 密码输入框-->
             <div class="form-group has-feedback">
                 <span class="fa fa-key input-icon"></span>
-                <input required ng-minlength="4" maxlength="20" ng-model="user.password" autocomplete="off" class="form-control" name="password" placeholder="Password" type="password" />
-                <span class="error-input" ng-show="login.password.$dirty && login.password.$error.required">密码不能为空哦！</span>
-                <span class="error-input" ng-show="login.password.$dirty && login.password.$error.minlength">密码不能少于4位字符！</span>
+                <input type="password" name="password" required="required" ng-minlength="4" maxlength="20" ng-model="user.password" autocomplete="off" placeholder="Password" class="form-control" />
+                <span ng-show="login.password.$dirty && login.password.$error.required" class="error-input">密码不能为空哦！</span>
+                <span ng-show="login.password.$dirty && login.password.$error.minlength" class="error-input">密码不能少于4位字符！</span>
             </div>
             <button type="submit" ng-disabled="login.$invalid" class="btn btn-primary btn-lg full-width login-btn">登录</button>
         </form>
     </div>
-    <p class='copyright'><small ng-bind="app.info.copyright"></small></p>
+    <!-- 版权信息-->
+    <p class="copyright">
+        <small ng-bind="app.info.copyright"></small>
+    </p>
 </div>
