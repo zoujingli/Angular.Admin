@@ -10,12 +10,12 @@ require.config({
     paths: {
         'app.login': 'script/module/app.login',
         'app.admin': 'script/module/app.admin',
-        'spin': ['//cdn.bootcss.com/spin.js/2.3.2/spin.min', 'node_modules/spin/dist/spin.min'],
-        'angular': ['//cdn.bootcss.com/angular.js/1.5.7/angular.min', 'node_modules/angular/angular.min'],
-        'ng-tags-input': ['//cdn.bootcss.com/ng-tags-input/3.1.1/ng-tags-input.min', 'node_modules/ng-tags-input/build/ng-tags-input.min'],
-        'angular-cookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min', "node_modules/angular-cookies/angular-cookies.min"],
-        'angular-ui-router': ['//cdn.bootcss.com/angular-ui-router/0.3.1/angular-ui-router.min', 'node_modules/angular-ui-router/release/angular-ui-router.min'],
-        'angular-ui-bootstrap': ['//cdn.bootcss.com/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min', 'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls'],
+        'spin': ['//cdn.bootcss.com/spin.js/2.3.2/spin.min', 'master/node_modules/spin/dist/spin.min'],
+        'angular': ['//cdn.bootcss.com/angular.js/1.5.7/angular.min', 'master/node_modules/angular/angular.min'],
+        'ng-tags-input': ['//cdn.bootcss.com/ng-tags-input/3.1.1/ng-tags-input.min', 'master/node_modules/ng-tags-input/build/ng-tags-input.min'],
+        'angular-cookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min', "master/node_modules/angular-cookies/angular-cookies.min"],
+        'angular-ui-router': ['//cdn.bootcss.com/angular-ui-router/0.3.1/angular-ui-router.min', 'master/node_modules/angular-ui-router/release/angular-ui-router.min'],
+        'angular-ui-bootstrap': ['//cdn.bootcss.com/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min', 'master/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls'],
     },
     shim: {
         'angular': {exports: 'angular'},
