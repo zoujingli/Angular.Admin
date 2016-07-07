@@ -12,7 +12,7 @@ define(['angular', 'app.admin', 'angular-cookies'], function (angular, app) {
                     } else if ($cookies.get(key) === 'false') {
                         return false;
                     } else {
-                        return menu[type] || false;
+                        return menu[type] || true;
                     }
                 },
                 initMenuStat: function (menus) {
