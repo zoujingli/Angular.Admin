@@ -16,45 +16,76 @@
         "name": "商城管理",
         "sub": [
             {
-                "node": "m-20",
+                "node": "m-30",
                 "name": "商城配置",
                 "icon": "",
                 "uri": "/shop/config"
             },
             {
-                "node": "m-21",
+                "node": "m-31",
                 "name": "商品中心",
                 "icon": "",
                 "sub": [
                     {
                         "open": true,
-                        "node": "m-211",
+                        "node": "m-311",
                         "name": "商品管理",
                         "uri": "/shop/goods"
                     },
                     {
-                        "node": "m-212",
+                        "node": "m-312",
                         "name": "规格管理",
                         "uri": "/shop/spec"
                     }
                 ]
             },
             {
-                "node": "m-22",
+                "node": "m-32",
                 "name": "个人中心",
                 "icon": "",
                 "sub": [
                     {
-                        "node": "m-221",
+                        "node": "m-321",
                         "name": "我的资源",
                         "uri": "/shop/goods"
                     },
                     {
-                        "node": "m-222",
+                        "node": "m-322",
                         "name": "操作日志",
                         "uri": "/shop/spec"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "node": "m-4",
+        "name": "Bootstrap",
+        "icon": "",
+        "sub": [
+            {
+                "node": "m-41",
+                "name": "Alert",
+                "icon": "",
+                "uri": "/bootstrap/alert"
+            },
+            {
+                "node": "m-42",
+                "name": "Button",
+                "icon": "",
+                "uri": "/bootstrap/button"
+            },
+            {
+                "node": "m-43",
+                "name": "Carousel",
+                "icon": "",
+                "uri": "/bootstrap/carousel"
+            },
+            {
+                "node": "m-44",
+                "name": "Datepicker",
+                "icon": "",
+                "uri": "/bootstrap/datepicker"
             }
         ]
     }
