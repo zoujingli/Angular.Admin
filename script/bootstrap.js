@@ -6,7 +6,7 @@
  */
 require.config({
     baseUrl: './',
-    map: {'*': {'css': '//cdn.bootcss.com/require-css/0.1.8/css.min'}},
+    map: {'*': {'css': '//cdn.bootcss.com/require-css/0.1.8/css.min.js'}},
     paths: {
         'app.login': 'script/module/app.login',
         'app.admin': 'script/module/app.admin',
@@ -19,7 +19,7 @@ require.config({
     },
     shim: {
         'angular': {exports: 'angular'},
-        'ng-tags-input': {deps: ['angular']},
+        'ng-tags-input': {deps: ['angular', 'css!master/node_modules/ng-tags-input/build/ng-tags-input.min.css']},
         'angular-cookies': {deps: ['angular']},
         'angular-ui-router': {deps: ['angular']},
         'angular-ui-bootstrap': {deps: ['angular']},
