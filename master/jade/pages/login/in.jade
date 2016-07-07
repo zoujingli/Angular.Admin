@@ -20,6 +20,8 @@ div.text-center.layer-box(ng-controller="app.login",ng-cloak)
                 input(type="password",name="password",required,ng-minlength="4",maxlength="20" ng-model="user.password",autocomplete="off" class="form-control",placeholder="Password")
                 span.error-input(ng-show!="login.password.$dirty && login.password.$error.required") 密码不能为空哦！
                 span.error-input(ng-show!="login.password.$dirty && login.password.$error.minlength") 密码不能少于4位字符！
+
+            // 登录按钮
             button.btn.btn-primary.btn-lg.full-width.login-btn(type="submit",ng-disabled="login.$invalid")  登录
 
     // 版权信息
