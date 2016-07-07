@@ -19,7 +19,7 @@ require.config({
     },
     shim: {
         'angular': {exports: 'angular'},
-        'ng-tags-input': {deps: ['angular', 'css!master/node_modules/ng-tags-input/build/ng-tags-input.min.css']},
+        'ng-tags-input': {deps: ['angular', 'css!//cdn.bootcss.com/ng-tags-input/3.1.1/ng-tags-input.min.css']},
         'angular-cookies': {deps: ['angular']},
         'angular-ui-router': {deps: ['angular']},
         'angular-ui-bootstrap': {deps: ['angular']},
