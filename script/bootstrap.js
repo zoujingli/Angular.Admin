@@ -53,14 +53,13 @@ require(['require', 'angular', 'angular-cookies'], function (require, angular) {
     app.run(function ($http, $cookies) {
         /*! 检查用户登录 */
         var user = $cookies.getObject('user');
-        /*! 进入用户登录界面 */
         if (!(user && user.username && user.password)) {
+            /*! 进入用户登录界面 */
             require(['app.login'], function (module) {
                 module.bootstrap();
             });
-        }
-        /*! 进入后台管理界面 */
-        else {
+        } else {
+            /*! 进入后台管理界面 */
             require(['app.admin'], function (module) {
                 $http.get('script/module/app.admin.layout.html').success(function (ret) {
                     document.body.innerHTML = ret;
@@ -72,6 +71,5 @@ require(['require', 'angular', 'angular-cookies'], function (require, angular) {
     /*! 启用动态模块 */
     angular.bootstrap(document.body, [app.name]);
     angular.element(document.body).addClass('ng-app');
-
 });
 
