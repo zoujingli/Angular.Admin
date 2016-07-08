@@ -10,6 +10,7 @@ require.config({
     paths: {
         'app.login': 'script/module/app.login',
         'app.admin': 'script/module/app.admin',
+        'app.extends': 'script/provider/extends',
         'spin': ['//cdn.bootcss.com/spin.js/2.3.2/spin.min', 'master/node_modules/spin/dist/spin.min'],
         'angular': ['//cdn.bootcss.com/angular.js/1.5.7/angular.min', 'master/node_modules/angular/angular.min'],
         'ng-tags-input': ['//cdn.bootcss.com/ng-tags-input/3.1.1/ng-tags-input.min', 'master/node_modules/ng-tags-input/build/ng-tags-input.min'],
