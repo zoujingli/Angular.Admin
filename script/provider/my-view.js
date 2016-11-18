@@ -1,3 +1,5 @@
+/* global require */
+
 /**
  * 应用视图扩展模块
  * @param {type} angular
@@ -11,7 +13,7 @@ define(['angular'], function (angular) {
         '$injector',
         '$routeProvider',
         function ($controllerProvider, $compileProvider, $filterProvider, $provide, $injector, $routeProvider) {
-            this.views = [];
+            this.views = {};
             var self = this, ngProviders = {
                 $controllerProvider: $controllerProvider,
                 $compileProvider: $compileProvider,
@@ -44,7 +46,7 @@ define(['angular'], function (angular) {
                 if (typeof viewConfig === 'string') {
                     viewConfig = {path: viewConfig};
                 }
-                viewConfig.path = viewConfig.path.replace(/^\/|\/$/, '') || 'user/login';
+                viewConfig.path = viewConfig.path.replace(/^\/|\/$/, '') || 'user/login.html';
                 var moduleName = viewConfig.path.replace(/\//ig, '.').replace(/\.html$/, '');
                 if (!viewConfig.viewUrl) {
                     viewConfig.viewUrl = '/' + viewConfig.path;
@@ -68,9 +70,9 @@ define(['angular'], function (angular) {
                     });
                 }
                 if (!viewConfig.controller) {
-                    viewConfig.controller = 'init';
+                    viewConfig.controller = 'Construct';
                 }
-                this.views.push(viewConfig);
+                this.views[viewConfig.viewUrl] = viewConfig;
                 $routeProvider.when(viewConfig.viewUrl, {
                     templateUrl: viewConfig.templateUrl,
                     controller: viewConfig.controller,

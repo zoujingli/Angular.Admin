@@ -21,7 +21,6 @@ require.config({
         'jquery': ['//cdn.bootcss.com/jquery/1.12.4/jquery.min'],
         'angular': ['//cdn.bootcss.com/angular.js/1.5.8/angular.min'],
         'sweetalert': ['//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min'],
-        'ngLocale': ['//cdn.bootcss.com/angular.js/1.5.8/i18n/angular-locale_zh-cn'],
         'ngCookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min'],
         'ngSanitize': ['//cdn.bootcss.com/angular-sanitize/1.5.8/angular-sanitize.min'],
         'ngRoute': ['//cdn.bootcss.com/angular.js/1.5.8/angular-route.min'],
@@ -38,11 +37,10 @@ require.config({
         'myForm': {deps: ['angular', 'myDialog', 'jquery']},
         'myDialog': {deps: ['angular', 'sweetalert']},
         'ngRoute': {deps: ['angular']},
-        'ngLocale': {deps: ['angular']},
         'ngCookies': {deps: ['angular']},
         'ngSanitize': {deps: ['angular']},
     },
-    deps: ['angular', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
+    deps: ['css!theme/css/animate.css', 'css!theme/css/common.css'],
     urlArgs: "v=" + (new Date()).getTime()
 });
 
@@ -59,14 +57,13 @@ require(['pace'], function (pace) {
  * @param {type} angular
  * @returns {undefined}
  */
-require(['angular', 'ngRoute', 'myView', 'ngLocale', 'ui.bootstrap'], function (angular) {
+require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
     // 创建APP应用
-    var app = angular.module('app', ['ngRoute', 'myView', 'ui.bootstrap', 'ngLocale']);
+    var app = angular.module('app', ['ngRoute', 'myView']);
     // 应用启动配置
     app.config(['$routeProvider', '$viewProvider', function ($routeProvider, $viewProvider) {
-        var initPath = 'user/login.html';
-        $viewProvider.registerView(initPath);
-        $routeProvider.otherwise(initPath);
+        $viewProvider.registerView('/user/login.html');
+        $routeProvider.otherwise('/user/login.html');
     }]);
     // 应用初始化动作
     app.run(['$location', '$view', '$rootScope', function ($location, $view, $rootScope) {
@@ -77,11 +74,16 @@ require(['angular', 'ngRoute', 'myView', 'ngLocale', 'ui.bootstrap'], function (
             },
             site: {
                 title: 'Angular.Admin',
-                icon: 'http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico'
+                icon: 'http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico',
+                copyright: '©版权所有 2016 楚才科技 | 粤ICP备14082924号'
             }
         };
-        // 动态注册PATH路由视图
-        $view.registerView($location.$$path);
+        // 页面跳转前的处理
+        $rootScope.$on("$locationChangeStart", function () {
+            if ($location.$$path.length > 0) {
+                $view.registerView($location.$$path);
+            }
+        });
     }]);
     // 启动应用
     require(['layui', 'myDebug'], function () {
