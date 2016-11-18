@@ -17,6 +17,7 @@ require.config({
         'plugs.validate': ['script/plugs/validate'],
         'myView': ['script/provider/myView'],
         'myForm': ['script/provider/myForm'],
+        'myDialog': ['script/provider/myDialog'],
         'layui': ['script/plugs/layui/layui'],
         'pace': ['//cdn.bootcss.com/pace/1.0.2/pace.min'],
         'jquery': ['//cdn.bootcss.com/jquery/1.12.4/jquery.min'],
@@ -34,7 +35,8 @@ require.config({
         'plugs.debug': {deps: ['jquery']},
         'angular': {exports: 'angular'},
         'ngRoute': {deps: ['angular']},
-        'myView': {desp: ['angular', 'ngRoute']},
+        'myView': {deps: ['angular', 'ngRoute']},
+        'myForm': {deps: ['angular', 'myDialog']},
         'ngCookies': {deps: ['angular']},
         'ngSanitize': {deps: ['angular']},
         'ui.bootstrap': {deps: ['angular', 'css!//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css']}

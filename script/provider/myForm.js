@@ -1,10 +1,12 @@
 /**
- * 应用视图扩展模块
+ * 表单H5自定义验插件
  * @param {type} angular
  */
-define(['angular', 'jquery'], function (angular, $) {
+define(['angular', 'jquery', 'myDialog'], function (angular, $) {
 
-    angular.module('myForm', []).provider('$form', function () {
+    angular.module('myForm', ['myDialog']).provider('$form', ['$dialogProvider', function ($dialog) {
+
+        var self = this;
 
         /**
          * 表单H5自定义验插件
@@ -14,7 +16,6 @@ define(['angular', 'jquery'], function (angular, $) {
          * @private
          */
         var _form = function (form, callback, options) {
-
             /*! 默认配置项 */
             var defaults = {
                 checkTag: 'input,textarea,select', // 需验证的表单元素
@@ -24,14 +25,12 @@ define(['angular', 'jquery'], function (angular, $) {
                     return true;
                 }  // 其他额外的验证
             };
-
             // 合并配置项
             var self = this;
+            this.form = form;
             this.options = $.extend({}, defaults, options || {});
-
             // 去除HTML5的自动验证
             $(form).attr("novalidate", "novalidate");
-
             // 元素动态监听
             this.$elements = $(form).find(this.options.checkTag).not('[data-none-auto],[data-auto-none]');
             this.$elements.map(function () {
@@ -59,13 +58,12 @@ define(['angular', 'jquery'], function (angular, $) {
         /**
          * 检查验证表单并返回数据
          * @param {type} callback
-         * @returns {Array|Boolean}
+         * @returns {object|Boolean}
          */
         _form.prototype.check = function (callback) {
             if (this.isAllpass() && this.options.validate.call(this)) {
-                console.log('go');
                 var sdata = {};
-                var data = $(_form).serializeArray();
+                var data = $(this.form).serializeArray();
                 for (var i in data) {
                     var key = data[i].name, value = data[i].value;
                     if (sdata.hasOwnProperty(key)) {
@@ -74,8 +72,8 @@ define(['angular', 'jquery'], function (angular, $) {
                         sdata[key] = value;
                     }
                 }
-                (typeof callback === 'function') && callback.call(this, data);
-                return data;
+                (typeof callback === 'function') && callback.call(this.form, sdata);
+                return sdata;
             }
             return false;
         };
@@ -330,18 +328,18 @@ define(['angular', 'jquery'], function (angular, $) {
          * @param options
          * @returns {_form}
          */
-        function factory(form, callback, options) {
+        this.validate = function (form, callback, options) {
             return new _form(form, callback, options);
-        }
+        };
 
         /**
          * 自动处理显示Think返回的Json数据
          * @param {type} data JSON数据对象
          * @param {type} time 延迟关闭时间
          */
-        factory.autoResult = function (data, time) {
+        this.autoResult = function (data, time) {
             if (data.code === 'SUCCESS') {
-                message.success(data.info, time, function () {
+                $dialog.success(data.info, time, function () {
                     if (data.referer === 'back') {
                     } else if (data.referer) {
                         window.location.href = data.referer;
@@ -352,14 +350,13 @@ define(['angular', 'jquery'], function (angular, $) {
                     }
                 });
             } else {
-                message.error(data.info, 3, function () {
+                $dialog.error(data.info, 3, function () {
                     if (data.referer) {
                         window.location.href = data.referer;
                     }
                 });
             }
         };
-
 
         /**
          * 异步加载的数据
@@ -370,7 +367,7 @@ define(['angular', 'jquery'], function (angular, $) {
          * @param {type} time 自动提示等待时间
          * @returns {undefined}
          */
-        factory.load = function (url, data, type, callback, time) {
+        this.load = function (url, data, type, callback, time) {
             this.errMsg = '{status}服务器繁忙，请稍候再试！';
             var self = this;
             var send_data = (typeof data === 'object' && data.tagName === 'FORM') ? $(data).serialize() : data;
@@ -380,14 +377,14 @@ define(['angular', 'jquery'], function (angular, $) {
                 data: send_data || {},
                 statusCode: {
                     404: function () {
-                        message.error(self.errMsg.replace('{status}', 'E404 - '));
+                        $dialog.error(self.errMsg.replace('{status}', 'E404 - '));
                     },
                     500: function () {
-                        message.error(self.errMsg.replace('{status}', 'E500 - '));
+                        $dialog.error(self.errMsg.replace('{status}', 'E500 - '));
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    message.error(self.errMsg.replace('{status}', 'E' + textStatus + ' - '));
+                    $dialog.error(self.errMsg.replace('{status}', 'E' + textStatus + ' - '));
                 },
                 success: function (res) {
                     if (typeof callback === 'function' && callback.call(self, res) === false) {
@@ -397,7 +394,7 @@ define(['angular', 'jquery'], function (angular, $) {
                         return self.autoResult(res, time);
                     }
                     if (res.indexOf('A PHP Error was encountered') !== -1) {
-                        return message.error(self.errMsg.replace('{status}', 'E505 - '));
+                        return $dialog.error(self.errMsg.replace('{status}', 'E505 - '));
                     }
                 }
             });
@@ -408,14 +405,14 @@ define(['angular', 'jquery'], function (angular, $) {
          * @param {type} app
          * @returns {undefined}
          */
-        factory.listen = function () {
+        this.listen = function () {
             var self = this;
             $('form[data-auto]').map(function () {
                 if ($(this).attr('data-validate-listen') === 'true') {
                     return;
                 }
                 $(this).attr('data-validate-listen', "true");
-                factory(this, function (data) {
+                self.validate(this, function (data) {
                     var action = this.getAttribute('method') || 'POST';
                     var url = this.getAttribute('action') || window.location.href;
                     var callback = window[$(this).attr('data-callback') || '_default_callback'] || undefined;
@@ -425,7 +422,7 @@ define(['angular', 'jquery'], function (angular, $) {
         };
 
         this.$get = function () {
-            return factory;
+            return this;
         }
-    });
+    }]);
 });
