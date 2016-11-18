@@ -3,7 +3,13 @@
  * @param {type} angular
  */
 define(['angular'], function (angular) {
-    angular.module('myView', []).provider('$view', ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$injector', '$routeProvider',
+    angular.module('myView', []).provider('$view', [
+        '$controllerProvider',
+        '$compileProvider',
+        '$filterProvider',
+        '$provide',
+        '$injector',
+        '$routeProvider',
         function ($controllerProvider, $compileProvider, $filterProvider, $provide, $injector, $routeProvider) {
             this.views = [];
             var self = this, ngProviders = {
