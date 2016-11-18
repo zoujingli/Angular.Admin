@@ -57,23 +57,23 @@ define(['angular', 'jquery', 'myDialog'], function (angular, $) {
 
         /**
          * 检查验证表单并返回数据
-         * @param {type} callback
+         * @param {function} callback
          * @returns {object|Boolean}
          */
         _form.prototype.check = function (callback) {
             if (this.isAllpass() && this.options.validate.call(this)) {
-                var sdata = {};
+                var _data = {};
                 var data = $(this.form).serializeArray();
                 for (var i in data) {
                     var key = data[i].name, value = data[i].value;
-                    if (sdata.hasOwnProperty(key)) {
-                        (typeof sdata[key] === 'object') ? sdata[key].push(value) : (sdata[key] = [sdata[key], value]);
+                    if (_data.hasOwnProperty(key)) {
+                        (typeof _data[key] === 'object') ? _data[key].push(value) : (_data[key] = [_data[key], value]);
                     } else {
-                        sdata[key] = value;
+                        _data[key] = value;
                     }
                 }
-                (typeof callback === 'function') && callback.call(this.form, sdata);
-                return sdata;
+                (typeof callback === 'function') && callback.call(this.form, _data);
+                return _data;
             }
             return false;
         };
