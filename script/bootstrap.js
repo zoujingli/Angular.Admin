@@ -40,7 +40,7 @@ require.config({
         'ngCookies': {deps: ['angular']},
         'ngSanitize': {deps: ['angular']},
     },
-    deps: ['css!theme/css/animate.css', 'css!theme/css/common.css'],
+    deps: ['angular', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
     urlArgs: "v=" + (new Date()).getTime()
 });
 
