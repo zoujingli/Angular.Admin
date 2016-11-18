@@ -65,10 +65,20 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
         $routeProvider.otherwise(initPath);
     }]);
     // 应用初始化动作
-    app.run(function ($location, $view) {
+    app.run(['$location', '$view', '$rootScope', function ($location, $view, $rootScope) {
+        // 页面全局属性定义
+        $rootScope.app = {
+            layout: {
+                class: {body: 'login'}
+            },
+            site: {
+                title: 'Angular.Admin',
+                icon: 'http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico'
+            }
+        };
         // 动态注册PATH路由视图
         $view.registerView($location.$$path);
-    });
+    }]);
     // 启动应用
     require(['layui'], function () {
         angular.bootstrap(document, [app.name]);
