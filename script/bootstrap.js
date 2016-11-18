@@ -1,31 +1,44 @@
 /* global require */
 
 /**
- * 配置require文件位置
- * @param {type} param
+ * 应用启动文件
+ *
+ * @author Anyon <zoujingli@qq.com>
+ * @date 2016/11/04 16:10
  */
 require.config({
+    waitSeconds: 0,
     baseUrl: './',
     map: {'*': {'css': '//cdn.bootcss.com/require-css/0.1.8/css.min.js'}},
     paths: {
-        'app.login': 'script/module/app.login',
-        'app.admin': 'script/module/app.admin',
-        'app.extends': 'script/provider/extends',
-        'spin': ['//cdn.bootcss.com/spin.js/2.3.2/spin.min', 'master/node_modules/spin/dist/spin.min'],
-        'angular': ['//cdn.bootcss.com/angular.js/1.5.7/angular.min', 'master/node_modules/angular/angular.min'],
-        'ng-tags-input': ['//cdn.bootcss.com/ng-tags-input/3.1.1/ng-tags-input.min', 'master/node_modules/ng-tags-input/build/ng-tags-input.min'],
-        'angular-cookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min', "master/node_modules/angular-cookies/angular-cookies.min"],
-        'angular-ui-router': ['//cdn.bootcss.com/angular-ui-router/0.3.1/angular-ui-router.min', 'master/node_modules/angular-ui-router/release/angular-ui-router.min'],
-        'angular-ui-bootstrap': ['//cdn.bootcss.com/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min', 'master/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls'],
+        'app.config': ['script/config'],
+        'plugs.debug': ['script/plugs/debug'],
+        'plugs.message': ['script/plugs/message'],
+        'plugs.validate': ['script/plugs/validate'],
+        'myView': ['script/provider/myView'],
+        'layui': ['script/plugs/layui/layui'],
+        'pace': ['//cdn.bootcss.com/pace/1.0.2/pace.min'],
+        'jquery': ['//cdn.bootcss.com/jquery/1.12.4/jquery.min'],
+        'angular': ['//cdn.bootcss.com/angular.js/1.5.7/angular.min'],
+        'sweetalert': ['//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min'],
+        'ngCookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min'],
+        'ngSanitize': ['//cdn.bootcss.com/angular-sanitize/1.5.8/angular-sanitize.min'],
+        'ngRoute': ['//cdn.bootcss.com/angular.js/1.5.8/angular-route.min'],
+        'ui.bootstrap': ['//cdn.bootcss.com/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min']
     },
     shim: {
+        'pace': {deps: ['css!//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-loading-bar.min.css']},
+        'sweetalert': {deps: ['css!//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css']},
+        'layui': {deps: ['css!script/plugs/layui/css/layui.css', 'jquery']},
+        'plugs.debug': {deps: ['jquery']},
         'angular': {exports: 'angular'},
-        'ng-tags-input': {deps: ['angular', 'css!//cdn.bootcss.com/ng-tags-input/3.1.1/ng-tags-input.min.css']},
-        'angular-cookies': {deps: ['angular']},
-        'angular-ui-router': {deps: ['angular']},
-        'angular-ui-bootstrap': {deps: ['angular']},
+        'ngRoute': {deps: ['angular']},
+        'myView': {desp: ['angular', 'ngRoute']},
+        'ngCookies': {deps: ['angular']},
+        'ngSanitize': {deps: ['angular']},
+        'ui.bootstrap': {deps: ['angular', 'css!//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css']}
     },
-    deps: ['angular', 'angular-ui-bootstrap'],
+    deps: ['css!theme/css/animate.css', 'css!theme/css/common.css'],
     urlArgs: "v=" + (new Date()).getTime()
 });
 
@@ -33,44 +46,31 @@ require.config({
  * 加载进度显示
  * @returns {undefined}
  */
-require(['spin'], function (Spinner) {
-    new Spinner({
-        lines: 7, length: 0, width: 12, radius: 25, scale: 1, corners: 1, color: '#000', opacity: 0.15,
-        rotate: 0, direction: 1, speed: 1, trail: 60, fps: 20, zIndex: 2e9, className: 'display-inline-block',
-        top: '50%', left: '50%', shadow: true, hwaccel: true, position: 'absolute'
-    }).spin(document.getElementById('preloader'));
+require(['pace'], function (pace) {
+    pace.start();
 });
 
 /**
- * 定义并启动基础应用模块
- * @param {type} require
+ * 应用启动器
  * @param {type} angular
  * @returns {undefined}
  */
-require(['require', 'angular', 'angular-cookies'], function (require, angular) {
-    /*! 定义模块 */
-    var app = angular.module('app', ['ngCookies']);
-    /*! 全局运行 */
-    app.run(function ($http, $cookies) {
-        /*! 检查用户登录 */
-        var user = $cookies.getObject('user');
-        if (!(user && user.username && user.password)) {
-            /*! 进入用户登录界面 */
-            require(['app.login'], function (module) {
-                module.bootstrap();
-            });
-        } else {
-            /*! 进入后台管理界面 */
-            require(['app.admin'], function (module) {
-                $http.get('script/module/app.admin.layout.html').success(function (ret) {
-                    document.body.innerHTML = ret;
-                    module.bootstrap();
-                });
-            });
-        }
+require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
+    // 创建APP应用
+    var app = angular.module('app', ['ngRoute', 'myView', 'ui.bootstrap']);
+    // 应用启动配置
+    app.config(['$routeProvider', '$viewProvider', function ($routeProvider, $viewProvider) {
+        var initPath = 'user/login.html';
+        $viewProvider.registerView(initPath);
+        $routeProvider.otherwise(initPath);
+    }]);
+    // 应用初始化动作
+    app.run(function ($location, $view) {
+        // 动态注册PATH路由视图
+        $view.registerView($location.$$path);
     });
-    /*! 启用动态模块 */
-    angular.bootstrap(document.body, [app.name]);
-    angular.element(document.body).addClass('ng-app');
+    // 启动应用
+    require(['layui'], function () {
+        angular.bootstrap(document, [app.name]);
+    });
 });
-
