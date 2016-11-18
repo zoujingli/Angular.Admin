@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e40da7a-2a1f-4c7c-8724-a54b5bcdab43" name="默认" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pages/user/register.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pages/user/register.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pages/user/register.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/user/login.html" afterPath="$PROJECT_DIR$/pages/user/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/user/login.js" afterPath="$PROJECT_DIR$/pages/user/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script/bootstrap.js" afterPath="$PROJECT_DIR$/script/bootstrap.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script/provider/my-view.js" afterPath="$PROJECT_DIR$/script/provider/my-view.js" />
     </list>
     <ignored path="Angular.Admin.iws" />
@@ -70,7 +63,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="register.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/user/register.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
@@ -102,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my-view.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="my-view.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script/provider/my-view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="768">
-              <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+            <state relative-caret-position="413">
+              <caret line="76" column="17" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -155,9 +148,9 @@
         <option value="$PROJECT_DIR$/pages/user/login.html" />
         <option value="$PROJECT_DIR$/pages/user/register.html" />
         <option value="$PROJECT_DIR$/script/bootstrap.js" />
-        <option value="$PROJECT_DIR$/script/provider/my-view.js" />
         <option value="$PROJECT_DIR$/pages/user/login.js" />
         <option value="$PROJECT_DIR$/pages/user/register.js" />
+        <option value="$PROJECT_DIR$/script/provider/my-view.js" />
       </list>
     </option>
   </component>
@@ -435,12 +428,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1479470689653</updated>
-      <workItem from="1479470692091" duration="9081000" />
+      <workItem from="1479470692091" duration="9234000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9081000" />
+    <option name="totallyTimeSpent" value="9234000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -565,16 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/provider/my-view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/user/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -596,6 +579,16 @@
         <state relative-caret-position="480">
           <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/provider/my-view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="76" column="17" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

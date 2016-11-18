@@ -72,6 +72,9 @@ define(['angular'], function (angular) {
                 if (!viewConfig.controller) {
                     viewConfig.controller = 'Construct';
                 }
+                if (this.views[viewConfig.viewUrl]) {
+                    return false;
+                }
                 this.views[viewConfig.viewUrl] = viewConfig;
                 $routeProvider.when(viewConfig.viewUrl, {
                     templateUrl: viewConfig.templateUrl,
