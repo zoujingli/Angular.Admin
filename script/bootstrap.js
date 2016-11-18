@@ -40,13 +40,7 @@ require.config({
         'ngCookies': {deps: ['angular']},
         'ngSanitize': {deps: ['angular']},
     },
-    deps: ['pace', 'angular', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
-    callback: function () {
-        require(['pace'], function (pace) {
-            console.log(1);
-            pace.start({document: false});
-        });
-    },
+    deps: ['angular', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
     urlArgs: "v=" + (new Date()).getTime()
 });
 
@@ -55,7 +49,6 @@ require.config({
  * @returns {undefined}
  */
 require(['pace'], function (pace) {
-    console.log(2);
     pace.start({document: false});
 });
 
@@ -66,7 +59,7 @@ require(['pace'], function (pace) {
  */
 require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
     // 创建APP应用
-    var app = angular.module('app', ['ngRoute', 'myView']);
+    var app = angular.module('app', ['ngRoute', 'myView', 'ui.bootstrap']);
     // 应用启动配置
     app.config(['$routeProvider', '$viewProvider', function ($routeProvider, $viewProvider) {
         $viewProvider.registerView('/user/login.html');
