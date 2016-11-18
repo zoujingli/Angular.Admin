@@ -38,5 +38,5 @@ define(['jquery'], function ($) {
         }
     };
     JPlaceHolder.init();
-    return $;
+    return JPlaceHolder;
 });

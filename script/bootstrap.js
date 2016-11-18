@@ -1,5 +1,5 @@
 /* global require */
-
+var script = document.scripts[document.scripts.length - 1].src, baseUrl = script.substring(0, script.lastIndexOf("/"));
 /**
  * 应用启动文件
  *
@@ -86,7 +86,8 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
         });
     }]);
     // 启动应用
-    require(['layui', 'myDebug'], function () {
+    require(['layui'], function () {
+        layui.config({dir: baseUrl + '/plugs/layui/'});
         angular.bootstrap(document, [app.name]);
     });
 });

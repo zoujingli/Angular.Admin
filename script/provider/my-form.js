@@ -2,8 +2,12 @@
  * 表单H5自定义验插件
  * @param {type} angular
  */
-define(['angular', 'jquery', 'myDialog'], function (angular, $) {
+define(['angular', 'jquery', 'myDebug', 'myDialog'], function (angular, $, myDebug) {
 
+    // 表单DEBUG处理
+    myDebug.init();
+
+    // 表决模块定义
     angular.module('myForm', ['myDialog']).provider('$form', ['$dialogProvider', function ($dialog) {
 
         var self = this;
