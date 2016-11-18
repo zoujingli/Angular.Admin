@@ -16,6 +16,7 @@ require.config({
         'plugs.message': ['script/plugs/message'],
         'plugs.validate': ['script/plugs/validate'],
         'myView': ['script/provider/myView'],
+        'myForm': ['script/provider/myForm'],
         'layui': ['script/plugs/layui/layui'],
         'pace': ['//cdn.bootcss.com/pace/1.0.2/pace.min'],
         'jquery': ['//cdn.bootcss.com/jquery/1.12.4/jquery.min'],

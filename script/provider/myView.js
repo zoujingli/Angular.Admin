@@ -1,11 +1,9 @@
-/* global require */
 /**
  * 应用视图扩展模块
  * @param {type} angular
- * @returns {unresolved}
  */
 define(['angular'], function (angular) {
-    return angular.module('myView', []).provider('$view', ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$injector', '$routeProvider',
+    angular.module('myView', []).provider('$view', ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$injector', '$routeProvider',
         function ($controllerProvider, $compileProvider, $filterProvider, $provide, $injector, $routeProvider) {
             this.views = [];
             var self = this, ngProviders = {
@@ -72,17 +70,17 @@ define(['angular'], function (angular) {
                     controller: viewConfig.controller,
                     resolve: {
                         resolver: ['$q', '$timeout', function ($q, $timeout) {
-                                var deferred = $q.defer();
-                                require(['css!' + viewConfig.cssUrl]);
-                                require([viewConfig.requireJs], function (module) {
-                                    module(viewConfig.module, viewConfig.controller);
-                                    self.registerModule(viewConfig.module);
-                                    $timeout(function () {
-                                        deferred.resolve();
-                                    });
+                            var deferred = $q.defer();
+                            require(['css!' + viewConfig.cssUrl]);
+                            require([viewConfig.requireJs], function (module) {
+                                module(viewConfig.module, viewConfig.controller);
+                                self.registerModule(viewConfig.module);
+                                $timeout(function () {
+                                    deferred.resolve();
                                 });
-                                return deferred.promise;
-                            }]
+                            });
+                            return deferred.promise;
+                        }]
                     }
                 });
             };
