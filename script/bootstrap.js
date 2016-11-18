@@ -40,7 +40,13 @@ require.config({
         'ngCookies': {deps: ['angular']},
         'ngSanitize': {deps: ['angular']},
     },
-    deps: ['angular', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
+    deps: ['pace', 'angular', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
+    callback: function () {
+        require(['pace'], function (pace) {
+            console.log(1);
+            pace.start({document: false});
+        });
+    },
     urlArgs: "v=" + (new Date()).getTime()
 });
 
@@ -49,6 +55,7 @@ require.config({
  * @returns {undefined}
  */
 require(['pace'], function (pace) {
+    console.log(2);
     pace.start({document: false});
 });
 
