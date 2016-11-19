@@ -11,23 +11,39 @@
 
     <!-- BEGIN LOGIN -->
     <div class="content">
+        <hello></hello>
         <!-- BEGIN LOGIN FORM -->
-        <form class="login-form" onsubmit="return false;" data-auto data-time=".01"
+        <form class="login-form" name="login"
               action="http://localhost/service/public/index.php/user/login.html" method="post">
-            <h3 class="form-title font-green" ng-bind="mainTitle"></h3>
+            <h3 class="form-title font-green">用户登录</h3>
             <div class="form-group">
                 <label class="control-label visible-ie8 visible-ie9">Username</label>
-                <input ng-model="user.username" name="username" required=""
-                       pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})|(1[3-9]\d{9})$" title="请输入手机号码/邮箱地址"
-                       class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off"
-                       placeholder="手机/邮箱"/></div>
+                <input data-ng-model="user.username"
+                       required="required"
+                       pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})|(1[3-9]\d{9})$"
+                       data-tips-$invalid="请输入手机号码/邮箱地址"
+                       data-tips-$error-required="手机号码/邮箱地址不能为空"
+                       type="text"
+                       autocomplete="off"
+                       class="form-control form-control-solid placeholder-no-fix"
+                       placeholder="手机/邮箱"/>
+            </div>
             <div class="form-group">
-                <label ng-model="user.password" class="control-label visible-ie8 visible-ie9">Password</label>
-                <input ng-model="user.password" name="password" required="" pattern="^\S{4,}$" title="请输入4位以上的登录密码"
-                       class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off"
-                       placeholder="密码"/></div>
+                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <input data-ng-model="user.password"
+                       required="required"
+                       pattern="^\S{4,}$"
+                       data-tips-$invalid="请输入4位以上的登录密码"
+                       data-tips-$error-required="登录密码不能为空"
+                       type="password"
+                       class="form-control form-control-solid placeholder-no-fix"
+                       autocomplete="off"
+                       placeholder="密码"/>
+            </div>
             <div class="form-actions">
-                <button type="submit" style='padding:12px 70px!important' class="btn green uppercase">登 录</button>
+                <button data-ng-disabled="login.$invalid" type="submit" style='padding:12px 70px!important'
+                        class="btn green uppercase">登 录
+                </button>
                 <a href="#user/forget.html" class="forget-password">找回密码</a>
                 <a href="#user/register.html" class="forget-password" style="margin-right:10px">注册账号</a>
             </div>

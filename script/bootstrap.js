@@ -28,7 +28,7 @@ require.config({
     },
     shim: {
         'angular': {exports: 'angular'},
-        'pace': {deps: ['css!//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-loading-bar.min.css']},
+        'pace': {deps: ['css!//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.min.css']},
         'sweetalert': {deps: ['css!//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css']},
         'ui.bootstrap': {deps: ['angular', 'css!//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css']},
         'layui': {deps: ['css!script/plugs/layui/css/layui.css', 'jquery']},
