@@ -21,8 +21,8 @@
                        name="username"
                        required="required"
                        pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})|(1[3-9]\d{9})$"
-                       data-tips-$invalid="请输入手机号码/邮箱地址"
-                       data-tips-$error-required="手机号码/邮箱地址不能为空"
+                       data-tips-invalid="请输入手机号码/邮箱地址"
+                       data-tips-error-required="手机号码/邮箱地址不能为空"
                        type="text"
                        autocomplete="off"
                        class="form-control form-control-solid placeholder-no-fix"
@@ -32,8 +32,8 @@
                 <label ng-model="user.password" class="control-label visible-ie8 visible-ie9">Password</label>
                 <input ng-model="user.password" name="password" required="" pattern="^\S{4,}$"
                        class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off"
-                       data-tips-$invalid="请输入手机号码/邮箱地址"
-                       data-tips-$error-required="手机号码/邮箱地址不能为空"
+                       data-tips-invalid="请输入手机号码/邮箱地址"
+                       data-tips-error-required="手机号码/邮箱地址不能为空"
                        placeholder="密码"/>
             </div>
             <div class="form-actions">

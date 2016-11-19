@@ -7,10 +7,8 @@ define(['angular', 'myView', 'myForm'], function (angular) {
      */
     return function (moduleName, controllerName) {
         /*! 创建默认模块及默认控制器 */
-        angular.module(moduleName, ['myView', 'myForm']).controller(controllerName, ['$scope', '$location', '$view', '$form',
-            function ($scope, $location, $view, $form) {
-                // $scope.title='用户登录';
-                $form.listen($scope, {});
+        angular.module(moduleName, ['myView', 'myForm']).controller(controllerName, ['$scope', '$location', '$view',
+            function ($scope, $location, $view) {
             }
         ]);
     };
