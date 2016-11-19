@@ -158,7 +158,7 @@ define(['angular', 'jquery', 'myDebug', 'pace', 'myDialog'], function (angular, 
                         // 自动验证标签解析
                         var bindName = $this.attr('data-ng-model') || $this.attr('ng-model') || '';
                         if (!this.name && !!bindName) {
-                            $this.attr('name', bindName.split('.').pop() || getRandName('input'));
+                            $this.attr('name', bindName.substring(bindName.indexOf('.') + 1) || getRandName('input'));
                         }
                         // 未设置绑定数据源时，动态生成绑定
                         if (!bindName && !!this.name) {
