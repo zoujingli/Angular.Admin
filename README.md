@@ -2,58 +2,25 @@
 
 基于 RequireJs+AngluarJs+Bootstrap 的管理平台界面
 
-项目于2016年11月18日基于新架构重构，老版本已经切换到 old-master 分支。
+** 项目于2016年11月18日基于新架构重构，旧版本已经切换到 [old-master](https://git.oschina.net/zoujingli/Angular.Admin/tree/old-master/) 分支。**
 
 ### 开发日志
 
-    ================ 2016-07-01 更新 ================
+    ================ 2016-11-19 更新 ================
 
-    1.搭建基于NPM基础代码框架
-
-    2.完成require与angular组合启动应用
-
-    ================ 2016-07-02 更新 ================
+    1.完成require与angular组合启动应用
     
-    1.完成基于ui-router的自动路由机制
+    2.完成基于 ngRoute 的自动路由机制
 
-    2.完成Angular的控制器自动加载
-
-    3.完成Angular模块依赖动态注入, 如：app.useModule('ngCookies')
+    3.完成Angular的模块自定加载入注册
     
-    4.完成后台菜单显示, 基于cookie与server控制
+    ================ 2016-11-20 更新 ================
 
-    ================ 2016-07-03 更新 ================
-
-    1. 修改并优化前一天的模块
-
-    ================ 2016-07-04 更新 ================
-
-    1. 合并封装菜单状态处理代码
-
-    2. 增加菜单缓存机制
-
-    ================ 2016-07-05 更新 ================
-
-    1. 增加登录模块，并使用Cookie记录状态
-
-    2. 分离入口|后台|登录模块（app|app.admin|app.login）
-
-    3. 增加表单验证样式（见登录页面）
+    1. 完成表单自定义组件`myForm`,支持自动验证与提交
     
-    4. 优化页面加载过程的提示
-
-    ================ 2016-07-07 更新 ================
-
-    1. 加入gulp工具，jade模板
-
-    2. 引入部分bootstrap样式demo
-
-    3. 基础模块功能优化，默认使用CDN加载
-
-
-    ================ 2016-07-11 更新 ================
+    > 在form元素上添加属性`data-auto=true`，绑定自动提交事件
     
-    1. 基础框架搭建完成
+    > input元素上可设置 `data-tips` 属性，用于指定错误时的显示内容
 
     ============================================
 
@@ -64,27 +31,8 @@
 git clone http://git.oschina.net/zoujingli/Angular.Admin.git
 cd Angular.Admin
 ```
-##### 2. 运行NPM命令安装相关依赖组件
-```shell
-npm install
-```
-##### 3. 使用HTTP访问项目中的index.html
+
+##### 2. 使用HTTP访问项目中的index.html
 ```link
-http://angular.html.ctolog.com/index.html
+http://zoujingli.oschina.io/angular.admin
 ```
-
-
-### 技术领域
-
-服务端：PHP CodeIgnite3 + MySQL
-
-客户端：RequireJs + AngluarJs + Bootstrap
-
-
-### 阶段里程碑
-
-一. 前端UI构建
-
-二. 后端Oauth权限机制
-
-三. 数据动态化 
