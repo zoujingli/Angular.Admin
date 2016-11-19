@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="3e40da7a-2a1f-4c7c-8724-a54b5bcdab43" name="默认" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/user/login.html" afterPath="$PROJECT_DIR$/pages/user/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/user/login.js" afterPath="$PROJECT_DIR$/pages/user/login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script/bootstrap.js" afterPath="$PROJECT_DIR$/script/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script/provider/my-form.js" afterPath="$PROJECT_DIR$/script/provider/my-form.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script/provider/my-view.js" afterPath="$PROJECT_DIR$/script/provider/my-view.js" />
     </list>
     <ignored path="Angular.Admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,6 +24,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="bootstrap.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/script/bootstrap.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="797">
+              <caret line="91" column="10" selection-start-line="91" selection-start-column="10" selection-end-line="91" selection-end-column="10" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -51,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my-form.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="my-form.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/provider/my-form.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="-360">
+              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -95,12 +102,12 @@
         <option value="$PROJECT_DIR$/pages/user/register.js" />
         <option value="$PROJECT_DIR$/pages/user/register.html" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/script/bootstrap.js" />
         <option value="$PROJECT_DIR$/script/provider/my-view.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/pages/user/login.js" />
         <option value="$PROJECT_DIR$/pages/user/login.html" />
         <option value="$PROJECT_DIR$/script/provider/my-form.js" />
+        <option value="$PROJECT_DIR$/script/bootstrap.js" />
       </list>
     </option>
   </component>
@@ -387,7 +394,7 @@
       <updated>1479470689653</updated>
       <workItem from="1479470692091" duration="17847000" />
       <workItem from="1479522965084" duration="21767000" />
-      <workItem from="1479563547090" duration="7789000" />
+      <workItem from="1479563547090" duration="8900000" />
     </task>
     <task id="LOCAL-00001">
       <created>1479481420253</created>
@@ -431,11 +438,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479540488234</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="完善表单自动提交机制">
+      <created>1479572057779</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1479572057779</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47403000" />
+    <option name="totallyTimeSpent" value="48514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -474,7 +488,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完善表单自动验证提示" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善表单自动验证提示" />
+    <MESSAGE value="完善表单自动提交机制" />
+    <MESSAGE value="暂时不默认加载layui" />
+    <option name="LAST_COMMIT_MESSAGE" value="暂时不默认加载layui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -698,16 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="38" column="39" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/user/register.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -772,9 +778,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/script/provider/my-form.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="-360">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="797">
+          <caret line="91" column="10" selection-start-line="91" selection-start-column="10" selection-end-line="91" selection-end-column="10" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

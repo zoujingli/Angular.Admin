@@ -86,8 +86,9 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
         });
     }]);
     // 启动应用
-    require(['layui'], function () {
-        layui.config({dir: baseUrl + '/plugs/layui/'});
-        angular.bootstrap(document, [app.name]);
-    });
+    // require(['layui'], function () {
+    //     layui.config({dir: baseUrl + '/plugs/layui/'});
+    //     angular.bootstrap(document, [app.name]);
+    // });
+    angular.bootstrap(document, [app.name]);
 });
