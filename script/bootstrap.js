@@ -33,7 +33,7 @@ require.config({
         'ui.bootstrap': {deps: ['angular', 'css!//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css']},
         'layui': {deps: ['css!script/plugs/layui/css/layui.css', 'jquery']},
         'myDebug': {deps: ['jquery']},
-        'myView': {deps: ['angular', 'ngRoute']},
+        'myView': {deps: ['angular']},
         'myForm': {deps: ['angular', 'myDialog', 'jquery']},
         'myDialog': {deps: ['angular', 'sweetalert']},
         'ngRoute': {deps: ['angular']},

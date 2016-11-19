@@ -4,7 +4,7 @@
  * 应用视图扩展模块
  * @param {type} angular
  */
-define(['angular', 'jquery'], function (angular, $) {
+define(['angular'], function (angular) {
     angular.module('myView', []).provider('$view', [
         '$controllerProvider',
         '$compileProvider',
@@ -91,68 +91,9 @@ define(['angular', 'jquery'], function (angular, $) {
                     useModule: self.registerModule,
                     registerModule: self.registerModule,
                     useView: self.registerView,
-                    registerView: self.registerView,
-                    formValidateBuild: self.formValidateBuild,
+                    registerView: self.registerView
                 };
             };
         }
-    ]).directive('form', function () {
-
-        function getRandName(type) {
-            return (type || 'default') + Math.ceil(Math.random() * 1000000000000);
-        }
-
-        return {
-            restrict: 'E',
-            compile: function (element, attr) {
-                element.attr('novalidate', 'novalidate');
-                var checkAttrs = ['$error-minlength', '$error-maxlength', '$error-required', '$invalid'];
-                if (attr.auto) {
-                    element.off('submit', submit).on('submit', submit);
-                    function submit() {
-                        alert(22);
-                        return false;
-                    }
-                }
-                for (var i in element[0].elements) {
-                    var input = element[0].elements[i];
-                    if (typeof input === 'object' && input.tagName && input.tagName.toLowerCase() !== 'button') {
-                        if ($(input).next('.form-error-tips').size() < 1) {
-                            // 提交按钮处理
-                            var $submitbtn = $(element[0]).find('[type=submit]');
-                            if (!$submitbtn.attr('data-ng-disabled') && !$submitbtn.attr('ng-disabled')) {
-                                $submitbtn.attr("data-ng-disabled", attr.name + ".$invalid")
-                            }
-                            // 自动验证标签解析
-                            !input.name && ($(input).attr('name', getRandName('input')));
-                            var first = attr.name + '.' + input.name + '.';
-                            var css = 'right:0;animation-duration:.2s;padding-right:20px;color:#a94442;position:absolute;font-size:12px;z-index:2;display:block;text-align:center;pointer-events:none';
-                            for (var j in checkAttrs) {
-                                var checkAttr = 'data-tips-' + checkAttrs[j];
-                                if ($(input).attr(checkAttr)) {
-                                    var data = {
-                                        attr: [first + checkAttrs[j].replace(/-/g, '.')],
-                                        title: $(input).attr(checkAttr)
-                                    };
-                                    if ($(input).attr('data-tips-$error-required') && checkAttr !== 'data-tips-$error-required') {
-                                        data.attr.push('!' + first + '$error.required');
-                                    }
-                                    // 当表单修改后再显示提示
-                                    data.attr.push(first + '$dirty');
-                                    var tpl = '<span style="' + css + '" class="form-error-tips" data-ng-show="' + data.attr.join(' && ') + '">' + data.title + '</span>';
-                                    $(input).after($(tpl).css({
-                                        top: $(input).position().top + 'px',
-                                        marginTop: $(input).css('marginTop'),
-                                        paddingBottom: $(input).css('paddingBottom'),
-                                        lineHeight: $(input).css('height'),
-                                        paddingRight: (parseFloat($(input).css('marginRight')) + parseFloat($(input).css('paddingRight')) + 30) + 'px'
-                                    }));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    })
+    ]);
 });

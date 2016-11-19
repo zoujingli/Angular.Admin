@@ -2,9 +2,9 @@
 <html lang="zh-cn">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
         <title data-ng-bind="app.site.title">loading...</title>
-        <link rel="shortcut icon" href="{{app.site.icon}}" />
+        <link rel="shortcut icon" data-ng-href="{{app.site.icon}}" />
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     </head>
     <body class="" data-ng-class="app.layout.class.body">
         <div data-ng-view=""></div>
