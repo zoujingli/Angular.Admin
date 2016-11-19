@@ -107,6 +107,13 @@ define(['angular', 'jquery'], function (angular, $) {
             compile: function (element, attr) {
                 element.attr('novalidate', 'novalidate');
                 var checkAttrs = ['$error-minlength', '$error-maxlength', '$error-required', '$invalid'];
+                if (attr.auto) {
+                    element.off('submit', submit).on('submit', submit);
+                    function submit() {
+                        alert(22);
+                        return false;
+                    }
+                }
                 for (var i in element[0].elements) {
                     var input = element[0].elements[i];
                     if (typeof input === 'object' && input.tagName && input.tagName.toLowerCase() !== 'button') {
