@@ -1,11 +1,10 @@
 #Angular.Admin
 
-基于 RequireJs+AngluarJs+Bootstrap 的管理平台界面
+基于 RequireJs+AngluarJs+Bootstrap 的管理平台
 
-代码简洁、模块清晰，
+大道至简，清晰简洁的模块构建，让WEB起步变得更简单
 
-
-**项目于2016年11月18日基于新架构重构，旧版本已经切换到 [old-master](https://git.oschina.net/zoujingli/Angular.Admin/tree/old-master/) 分支。**
+**项目于2016年11月18日基于新架构重构，旧版本已经切换到 [old-master](https://git.oschina.net/zoujingli/Angular.Admin/tree/old-master/) 分支**
 
 更新日志
 --
