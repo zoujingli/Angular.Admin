@@ -62,29 +62,44 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
     var app = angular.module('app', ['ngRoute', 'myView', 'ui.bootstrap']);
     // 应用启动配置
     app.config(['$routeProvider', '$viewProvider', function ($routeProvider, $viewProvider) {
-            $viewProvider.registerView('/user/login.html');
-            $routeProvider.otherwise('/user/login.html');
-        }]);
+        $viewProvider.registerView('/user/login.html');
+        $routeProvider.otherwise('/user/login.html');
+    }]);
     // 应用初始化动作
     app.run(['$location', '$view', '$rootScope', function ($location, $view, $rootScope) {
-            // 页面全局属性定义
-            $rootScope.app = {
-                layout: {
-                    class: {body: 'login'}
-                },
-                site: {
-                    title: 'Angular.Admin',
-                    icon: 'http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico',
-                    copyright: '©版权所有 2016 楚才科技 | 粤ICP备14082924号'
-                }
-            };
-            // 页面跳转前的处理
-            $rootScope.$on("$locationChangeStart", function () {
-                if ($location.$$path.length > 0) {
-                    $view.registerView($location.$$path);
-                }
+        // 页面全局属性定义
+        $rootScope.app = {
+            layout: {
+                class: {body: 'login'}
+            },
+            site: {
+                title: 'Angular.Admin',
+                icon: 'http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico',
+                copyright: '©版权所有 2016 楚才科技 | 粤ICP备14082924号'
+            }
+        };
+        // 页面跳转前的处理
+        $rootScope.$on("$locationChangeStart", function () {
+            if ($location.$$path.length > 0) {
+                $view.registerView($location.$$path);
+            }
+        });
+        // 页面标题修正，兼容苹果设备
+        $rootScope.$watch('app.site.title', function (title) {
+            var body = document.getElementsByTagName('body')[0];
+            document.title = title;
+            var iframe = document.createElement("iframe");
+            iframe.title = '', iframe.width = 0, iframe.height = 0;
+            iframe.setAttribute("src", "empty.html");
+            iframe.addEventListener('load', function () {
+                setTimeout(function () {
+                    iframe.removeEventListener('load');
+                    document.body.removeChild(iframe);
+                }, 0);
             });
-        }]);
+            document.body.appendChild(iframe);
+        });
+    }]);
     // 启动应用
     // require(['layui'], function () {
     //     layui.config({dir: baseUrl + '/plugs/layui/'});
