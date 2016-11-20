@@ -67,6 +67,18 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
     }]);
     // 应用初始化动作
     app.run(['$location', '$view', '$rootScope', function ($location, $view, $rootScope) {
+        // 页面标题修正，兼容苹果设备
+        $rootScope.$watch('app.site.title', function (title) {
+            var body = document.getElementsByTagName('body')[0];
+            document.title = title;
+            var iframe = document.createElement("iframe");
+            iframe.title = '', iframe.width = 0, iframe.height = 0;
+            iframe.setAttribute("src", "empty.html");
+            iframe.addEventListener('load', function () {
+                document.body.removeChild(iframe);
+            });
+            document.body.appendChild(iframe);
+        });
         // 页面全局属性定义
         $rootScope.app = {
             layout: {
@@ -84,21 +96,7 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
                 $view.registerView($location.$$path);
             }
         });
-        // 页面标题修正，兼容苹果设备
-        $rootScope.$watch('app.site.title', function (title) {
-            var body = document.getElementsByTagName('body')[0];
-            document.title = title;
-            var iframe = document.createElement("iframe");
-            iframe.title = '', iframe.width = 0, iframe.height = 0;
-            iframe.setAttribute("src", "empty.html");
-            iframe.addEventListener('load', function () {
-                setTimeout(function () {
-                    iframe.removeEventListener('load');
-                    document.body.removeChild(iframe);
-                }, 0);
-            });
-            document.body.appendChild(iframe);
-        });
+
     }]);
     // 启动应用
     // require(['layui'], function () {
