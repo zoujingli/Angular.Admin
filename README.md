@@ -1,10 +1,10 @@
 #Angular.Admin
 
-`Angular.Admin` 是一个基于 `RequireJs`+`AngluarJs`+`Bootstrap` 搭建的`Web`前端开发平台。
+[Angular.Admin](http://zoujingli.oschina.io/angular.admin) 是一个基于 `RequireJs`+`AngluarJs`+`Bootstrap` 搭建的`Web`前端开发平台。
 
 **大道至简，重剑无锋。**
 
-`Angular.Admin` 清晰简洁的模块构建，让高端`WEB`搭建起步变得更简单。
+[Angular.Admin](http://zoujingli.oschina.io/angular.admin) 清晰简洁的模块构建，让高端`WEB`搭建起步变得更简单。
 
 **重构**：项目于2016年11月18日基于新架构进行重构，旧版本已经切换到 [old-master](https://git.oschina.net/zoujingli/Angular.Admin/tree/old-master/) 分支
 
