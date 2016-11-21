@@ -78,7 +78,10 @@ define(['angular', 'sweetalert'], function (angular) {
                 confirmButtonText: "确定",
                 closeOnConfirm: false,
                 closeOnCancel: false
-            }, callback);
+            }, function () {
+                (typeof callback === 'function') && callback.call();
+                swal.close();
+            });
         };
 
         /**
