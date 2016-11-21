@@ -16,9 +16,9 @@ define(['angular', 'jquery', 'supersized', 'myView', 'myForm'], function (angula
         // Components
         slide_links: 'blank',    // Individual links for each slide (Options: false, 'num', 'name', 'blank')
         slides: [    // Slideshow Images
-            {image: 'http://www.jq22.com/demo/jquery-login-20150514/img/3.jpg'},
-            {image: 'http://www.jq22.com/demo/jquery-login-20150514/img/2.jpg'},
-            {image: 'http://www.jq22.com/demo/jquery-login-20150514/img/1.jpg'}
+            {image: 'pages/user/image/3.jpg'},
+            {image: 'pages/user/image/3.jpg'},
+            {image: 'pages/user/image/3.jpg'}
         ]
     });
     /**
