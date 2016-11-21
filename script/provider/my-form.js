@@ -177,7 +177,7 @@ define(['angular', 'jquery', 'myDebug', 'pace', 'myDialog'], function (angular, 
                                 }
                                 // 当表单修改后再显示提示
                                 data.attr.push(first + '$dirty');
-                                var tpl = '<span style="' + checkStyle + '" data-ng-show="' + data.attr.join(' && ') + '">' + data.title + '</span>';
+                                var tpl = '<span class="form-error-tips" style="' + checkStyle + '" data-ng-show="' + data.attr.join(' && ') + '">' + data.title + '</span>';
                                 $this.after($(tpl).css({
                                     top: $this.position().top + 'px',
                                     marginTop: $this.css('marginTop'),

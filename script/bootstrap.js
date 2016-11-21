@@ -19,6 +19,7 @@ require.config({
         'layui': ['script/plugs/layui/layui'],
         'pace': ['//cdn.bootcss.com/pace/1.0.2/pace.min'],
         'jquery': ['//cdn.bootcss.com/jquery/1.12.4/jquery.min'],
+        'supersized': ['script/plugs/supersized/js/supersized.3.2.7'],
         'angular': ['//cdn.bootcss.com/angular.js/1.5.8/angular.min'],
         'sweetalert': ['//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min'],
         'ngCookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min'],
@@ -29,6 +30,7 @@ require.config({
     shim: {
         'angular': {exports: 'angular'},
         'sweetalert': {deps: ['css!//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css']},
+        'supersized': {deps: ['jquery', 'css!script/plugs/supersized/css/supersized.css']},
         'ui.bootstrap': {deps: ['angular', 'css!//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css']},
         'pace': {deps: ['css!//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.min.css']},
         'layui': {deps: ['css!script/plugs/layui/css/layui.css', 'jquery']},
