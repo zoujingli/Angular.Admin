@@ -46,7 +46,7 @@ define(['angular'], function (angular) {
                 var moduleName = viewConfig.path.replace(/\//ig, '.').replace(/\.html$/, '');
                 viewConfig.viewUrl = viewConfig.viewUrl || ('/' + viewConfig.path);
                 viewConfig.templateUrl = viewConfig.templateUrl || ('pages/' + moduleName.replace(/\./ig, '/') + '.html');
-                viewConfig.cssUrl = viewConfig.cssUrl || ('pages/' + moduleName.replace(/\./ig, '/') + '.css');
+                //viewConfig.cssUrl = viewConfig.cssUrl || ('pages/' + moduleName.replace(/\./ig, '/') + '.css');
                 viewConfig.requireJs = viewConfig.requireJs || ('pages/' + moduleName.replace(/\./ig, '/') + '.js');
                 viewConfig.controller = viewConfig.controller || 'Construct';
                 if (!viewConfig.module) {
@@ -68,7 +68,7 @@ define(['angular'], function (angular) {
                     resolve: {
                         resolver: ['$q', '$timeout', function ($q, $timeout) {
                                 var deferred = $q.defer();
-                                require(['css!' + viewConfig.cssUrl]);
+                                //require(['css!' + viewConfig.cssUrl]);
                                 require([viewConfig.requireJs], function (module) {
                                     module(viewConfig.module, viewConfig.controller);
                                     self.registerModule(viewConfig.module);

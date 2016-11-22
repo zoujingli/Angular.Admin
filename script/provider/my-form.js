@@ -13,7 +13,7 @@ define(['angular', 'jquery', 'myDebug', 'pace', 'myDialog'], function (angular, 
     var app = angular.module('myForm', ['myDialog']);
 
     // 定义表单数据通信Provider
-    app.provider('$form', ['$dialogProvider', function ($dialog) {
+    app.provider('$form', ['$dialogProvider', '$rootScopeProvider', function ($dialog, $rootScope) {
 
         /**
          * 异步加载的数据
@@ -90,9 +90,11 @@ define(['angular', 'jquery', 'myDebug', 'pace', 'myDialog'], function (angular, 
         this.listen = function (form) {
             var self = this;
             $(form).on('submit', function () {
-                if ($(this).hasClass('ng-valid')) {
-                    self.load(this.action, this, this.method || 'get', false, this.getAttribute('data-time') || 3);
+                if (!$(this).hasClass('ng-valid')) {
+                    return false;
                 }
+                var time = this.getAttribute('data-time');
+                self.load(this.action, this, this.method || 'get', false, time);
                 return false;
             });
         };
