@@ -4,105 +4,108 @@
  * @author Anyon <zoujingli@qq.com>
  * @date 2016/11/20 01:23
  */
-define(['angular', 'jquery', 'myDebug', 'pace', 'myDialog'], function (angular, $, myDebug, pace) {
+define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $, debug, pace) {
 
     // 表单DEBUG处理
-    myDebug.init();
+    debug.init();
 
     // 创建 myForm 模块
     var app = angular.module('myForm', ['myDialog']);
 
     // 定义表单数据通信Provider
-    app.provider('$form', ['$dialogProvider', '$rootScopeProvider', function ($dialog, $rootScope) {
+    app.provider('$form', [
+        '$dialogProvider',
+        '$rootScopeProvider',
+        function ($dialog, $rootScope) {
 
-        /**
-         * 异步加载的数据
-         * @param {type} url Ajax请求地址
-         * @param {type} data Ajax请求数据
-         * @param {type} type Ajax请求类型
-         * @param {type} callback 请求成功后的回调函数
-         * @param {type} time 自动提示等待时间
-         * @returns {undefined}
-         */
-        this.load = function (url, data, type, callback, time) {
-            this.errMsg = '{status}服务器繁忙，请稍候再试！';
-            var self = this;
-            var send_data = (typeof data === 'object' && data.tagName === 'FORM') ? $(data).serialize() : data;
-            pace.track(function () {
-                $.ajax({
-                    url: url,
-                    type: type || 'GET',
-                    data: send_data || {},
-                    statusCode: {
-                        404: function () {
-                            $dialog.error(self.errMsg.replace('{status}', 'E404 - '));
+            /**
+             * 异步加载的数据
+             * @param {type} url Ajax请求地址
+             * @param {type} data Ajax请求数据
+             * @param {type} type Ajax请求类型
+             * @param {type} callback 请求成功后的回调函数
+             * @param {type} time 自动提示等待时间
+             * @returns {undefined}
+             */
+            this.load = function (url, data, type, callback, time) {
+                this.errMsg = '{status}服务器繁忙，请稍候再试！';
+                var self = this;
+                var send_data = (typeof data === 'object' && data.tagName === 'FORM') ? $(data).serialize() : data;
+                pace.track(function () {
+                    $.ajax({
+                        url: url,
+                        type: type || 'GET',
+                        data: send_data || {},
+                        statusCode: {
+                            404: function () {
+                                $dialog.error(self.errMsg.replace('{status}', 'E404 - '));
+                            },
+                            500: function () {
+                                $dialog.error(self.errMsg.replace('{status}', 'E500 - '));
+                            }
                         },
-                        500: function () {
-                            $dialog.error(self.errMsg.replace('{status}', 'E500 - '));
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            $dialog.error(self.errMsg.replace('{status}', 'E' + textStatus + ' - '));
+                        },
+                        success: function (res) {
+                            if (typeof callback === 'function' && callback.call(self, res) === false) {
+                                return false;
+                            }
+                            if (typeof (res) === 'object') {
+                                return self.autoResult(res, time);
+                            }
+                            if (res.indexOf('A PHP Error was encountered') !== -1) {
+                                return $dialog.error(self.errMsg.replace('{status}', 'E505 - '));
+                            }
                         }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        $dialog.error(self.errMsg.replace('{status}', 'E' + textStatus + ' - '));
-                    },
-                    success: function (res) {
-                        if (typeof callback === 'function' && callback.call(self, res) === false) {
-                            return false;
-                        }
-                        if (typeof (res) === 'object') {
-                            return self.autoResult(res, time);
-                        }
-                        if (res.indexOf('A PHP Error was encountered') !== -1) {
-                            return $dialog.error(self.errMsg.replace('{status}', 'E505 - '));
-                        }
-                    }
+                    });
                 });
-            });
-        };
+            };
 
-        /**
-         * 自动处理显示Think返回的Json数据
-         * @param {type} data JSON数据对象
-         * @param {type} time 延迟关闭时间
-         */
-        this.autoResult = function (data, time) {
-            if (data.code === 'SUCCESS') {
-                $dialog.success(data.info, time, function () {
-                    if (data.referer) {
-                        window.location.href = data.referer;
-                    } else {
-                        window.location.reload();
-                    }
-                });
-            } else {
-                $dialog.error(data.info, 3, function () {
-                    if (data.referer) {
-                        window.location.href = data.referer;
-                    }
-                });
-            }
-        };
-
-
-        /**
-         * 自动表单处理
-         * @param form
-         */
-        this.listen = function (form) {
-            var self = this;
-            $(form).on('submit', function () {
-                if (!$(this).hasClass('ng-valid')) {
-                    return false;
+            /**
+             * 自动处理显示Think返回的Json数据
+             * @param {type} data JSON数据对象
+             * @param {type} time 延迟关闭时间
+             */
+            this.autoResult = function (data, time) {
+                if (data.code === 'SUCCESS') {
+                    $dialog.success(data.info, time, function () {
+                        if (data.referer) {
+                            window.location.href = data.referer;
+                        } else {
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    $dialog.error(data.info, 3, function () {
+                        if (data.referer) {
+                            window.location.href = data.referer;
+                        }
+                    });
                 }
-                var time = this.getAttribute('data-time');
-                self.load(this.action, this, this.method || 'get', false, time);
-                return false;
-            });
-        };
+            };
 
-        this.$get = function () {
-            return this;
-        };
-    }]);
+
+            /**
+             * 自动表单处理
+             * @param form
+             */
+            this.listen = function (form) {
+                var self = this;
+                $(form).on('submit', function () {
+                    if (!$(this).hasClass('ng-valid')) {
+                        return false;
+                    }
+                    var time = this.getAttribute('data-time');
+                    self.load(this.action, this, this.method || 'get', false, time);
+                    return false;
+                });
+            };
+
+            this.$get = function () {
+                return this;
+            };
+        }]);
 
     // 创建表单加强指令
     app.directive('form', ['$compile', '$form', function ($compile, $form) {
