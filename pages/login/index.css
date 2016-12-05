@@ -4,7 +4,7 @@ body.login ul{display:block;margin:0;padding:0;list-style:none;}
 body.login ul li{display:block;margin:0;padding:0;list-style: none;}
 body.login img{border:0;}
 body.login .clouds {
-    background: url("img/login/cloud.png") no-repeat left 10% ;
+    background: url("img/login/cloud_three.png") repeat-x left 15% ;
     position: absolute;left: 0;top: 0;height: 100%;width: 300%;
     -webkit-animation: cloudmove 200s linear infinite;
     -moz-animation: cloudmove 200s linear infinite;
@@ -16,7 +16,7 @@ body.login .clouds {
     transform: translate3d(0, 0, 0);
 }
 body.login .clouds-fast {
-    background: url("img/login/cloud.png") no-repeat left 30% ;
+    background: url("img/login/cloud.png") no-repeat 0px 40% ;
     -webkit-animation: cloudmove 30s linear infinite;
     -moz-animation: cloudmove 30s linear infinite;
     -o-animation: cloudmove 30s linear infinite;
@@ -24,19 +24,16 @@ body.login .clouds-fast {
 }
 body.login .clouds-footer {
     background: url("img/login/cloud_one.png") no-repeat left 100%;
-    -webkit-animation: cloudmove 130s linear infinite;
-    -moz-animation: cloudmove 130s linear infinite;
-    -o-animation: cloudmove 130s linear infinite;
-    animation: cloudmove 130s linear infinite;
+    animation:none
 }
 @-webkit-keyframes cloudmove {
-    0% {left: -50%}100% {left: 150%}
+    0% {left: -20%}100% {left: 100%}
 }
 @-moz-keyframes cloudmove {
-    0% {left: -50%}100% {left: 150%}
+    0% {left: -20%}100% {left: 100%}
 }
 @keyframes cloudmove {
-    0% {left: -50%}100% {left: 150%}
+    0% {left: -20%}100% {left: 100%}
 }
 body.login a,
 body.login a:focus{text-decoration:none;color:#000;outline:none;blur:expression(this.onFocus=this.blur());}
@@ -64,7 +61,7 @@ body.login input.username,body.login input.password{width:343px; height:48px;bor
 body.login input.username:focus,body.login input.password:focus{border-color: #66afe9;outline: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}
 body.login .username{background:url(img/login/loginuser.png) no-repeat;}
 body.login .password{background:url(img/login/loginpassword.png) no-repeat;}
-body.login button.submit{width:111px;height:35px; background:url(img/login/buttonbg.png) repeat-x; font-size:14px; font-weight:bold; color:#fff;cursor:pointer;line-height:35px;}
+body.login button.submit{width:111px;height:35px; background:url(img/login/buttonbg.png) repeat-x; font-size:14px; font-weight:bold; color:#fff;cursor:pointer;line-height:35px;border:none}
 body.login button.submit[disabled]{color:#ccc}
 
 /* 头像 */

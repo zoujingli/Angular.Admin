@@ -20,8 +20,8 @@
     <form action="server/user/login.json" data-auto="true" method="get" class="content">
         <div class="people">
             <div class="tou"></div>
-            <div class="initial_left_hand" id="left_hand"></div>
-            <div class="initial_right_hand" id="right_hand"></div>
+            <div class="initial_left_hand" data-ng-class="{false:'initial_left_hand', true:'left_hand'}[hideEye]"></div>
+            <div class="initial_right_hand" data-ng-class="{false:'initial_right_hand', true:'right_hand'}[hideEye]"></div>
         </div>
         <ul style="position:absolute">
             <li>
@@ -45,12 +45,14 @@
                        name="password"
                        class="password"
                        autocomplete="off"
+                       data-ng-focus="hideEye = !!1"
+                       data-ng-blur="hideEye = !1"
                        placeholder="请输入密码"/>
             </li>
             <li>
                 <button type="submit" class="submit"/>登录</button>
                 <label><input name="remember" type="checkbox" value="" checked="checked" />记住密码</label>
-                <label><a href="findpwd.php">忘记密码？</a></label>
+                <label><a href="javascript:void(0)">忘记密码？</a></label>
             </li>
         </ul>
     </form>
