@@ -12,9 +12,7 @@ define(['require', 'angular', 'jquery', 'myView', 'myForm'], function (require, 
             '$location',
             '$view',
             function ($scope, $location, $view) {
-                $scope.$on("$destroy", function () {
-
-                });
+                $scope.app.layout.class.body = 'body';
             }
         ]);
     };

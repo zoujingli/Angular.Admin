@@ -7,7 +7,7 @@ define(['angular', 'myView', 'myForm'], function (angular) {
      */
     return function (module, controller) {
         /*! 创建默认模块及默认控制器 */
-        angular.module(module, ['myView', 'myForm']).controller(controller, ['$scope', '$location', '$view', '$rootScope', function ($scope, $location, $view, $rootScope) {
+        angular.module(module, ['myView', 'myForm']).controller(controller, ['$scope', '$location', '$view', function ($scope, $location, $view) {
                 $scope.app.layout.class.body = 'login';
                 $scope.hideEye = false;
             }
