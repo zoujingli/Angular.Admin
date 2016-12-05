@@ -30,13 +30,13 @@ body.login .clouds-footer {
     animation: cloudmove 130s linear infinite;
 }
 @-webkit-keyframes cloudmove {
-    0% {left: 0%}100% {left: 150%}
+    0% {left: -50%}100% {left: 150%}
 }
 @-moz-keyframes cloudmove {
-    0% {left: 0%}100% {left: 150%}
+    0% {left: -50%}100% {left: 150%}
 }
 @keyframes cloudmove {
-    0% {left: 0%}100% {left: 150%}
+    0% {left: -50%}100% {left: 150%}
 }
 body.login a,
 body.login a:focus{text-decoration:none;color:#000;outline:none;blur:expression(this.onFocus=this.blur());}
