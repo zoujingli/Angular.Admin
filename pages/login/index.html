@@ -1,0 +1,60 @@
+<div class="clouds"></div>
+<div class="clouds clouds-fast"></div>
+<div class="clouds clouds-footer"></div>
+
+
+<div class="header">
+    <span>欢迎登录后台管理界面平台</span>
+    <ul>
+        <li><a href="/">回首页</a></li>
+        <li><a href="javascript:void(0)" target="_blank"><b><font color="#FFF">帮助</font></b></a></li>
+        <li><a href="http://sw.bos.baidu.com/sw-search-sp/software/4bcf5e4f1835b/ChromeStandalone_54.0.2840.99_Setup.exe" target="_blank"><b><font color="#fff">谷歌浏览器</font></b></a></li>
+        <li><a href="http://www.cuci.cc">楚才官网</a></li>
+    </ul>
+</div>
+
+<div class="container">
+
+    <div class="logo"></div>
+
+    <form action="server/user/login.json" data-auto="true" method="get" class="content">
+        <div class="people">
+            <div class="tou"></div>
+            <div class="initial_left_hand" id="left_hand"></div>
+            <div class="initial_right_hand" id="right_hand"></div>
+        </div>
+        <ul style="position:absolute">
+            <li>
+                <input required="required"
+                       pattern="^\S{4,}$"
+                       data-tips-error-required="登录账号不能为空"
+                       data-tips-invalid="请输入4位及以上的字符"
+                       type="text"
+                       name="username"
+                       class="username"
+                       autocomplete="off"
+                       autofocus="autofocus"
+                       placeholder="请输入用户名/手机号码" />
+            </li>
+            <li>
+                <input required="required"
+                       pattern="^.{4,}$"
+                       data-tips-error-required="登录密码不能为空"
+                       data-tips-invalid="请输入4位及以上的字符"
+                       type="password"
+                       name="password"
+                       class="password"
+                       autocomplete="off"
+                       placeholder="请输入密码"/>
+            </li>
+            <li>
+                <button type="submit" class="submit"/>登录</button>
+                <label><input name="remember" type="checkbox" value="" checked="checked" />记住密码</label>
+                <label><a href="findpwd.php">忘记密码？</a></label>
+            </li>
+        </ul>
+    </form>
+
+</div>
+
+<div class="footer">版权所有 2014-2018 <a target="_blank" href="http://www.cuci.cc">www.cuci.cc</a> {{app.site.company}}。</div>

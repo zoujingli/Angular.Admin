@@ -1,4 +1,4 @@
-define(['require', 'angular', 'jquery', 'myView', 'myForm', 'pages/user/background'], function (require, angular, $) {
+define(['require', 'angular', 'jquery', 'myView', 'myForm'], function (require, angular, $) {
     /**
      * 定义模块函数
      * @param {string} module 默认模块名

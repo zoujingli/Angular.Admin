@@ -48,11 +48,14 @@ define(['angular'], function (angular) {
                 if (typeof viewConfig === 'string') {
                     viewConfig = {path: viewConfig};
                 }
-                viewConfig.path = viewConfig.path.replace(/^\/|\/$/, '') || 'user/login.html';
+                viewConfig.path = viewConfig.path.replace(/^\/|\/$/, '') || 'login.html';
                 var moduleName = viewConfig.path.replace(/\//ig, '.').replace(/\.html$/, '');
+                if (moduleName.split('.').length < 2) {
+                    moduleName += '.index';
+                }
                 viewConfig.viewUrl = viewConfig.viewUrl || ('/' + viewConfig.path);
                 viewConfig.templateUrl = viewConfig.templateUrl || ('pages/' + moduleName.replace(/\./ig, '/') + '.html');
-                //viewConfig.cssUrl = viewConfig.cssUrl || ('pages/' + moduleName.replace(/\./ig, '/') + '.css');
+                viewConfig.cssUrl = viewConfig.cssUrl || ('pages/' + moduleName.replace(/\./ig, '/') + '.css');
                 viewConfig.requireJs = viewConfig.requireJs || ('pages/' + moduleName.replace(/\./ig, '/') + '.js');
                 viewConfig.controller = viewConfig.controller || 'Construct';
                 if (!viewConfig.module) {
@@ -73,17 +76,17 @@ define(['angular'], function (angular) {
                     controller: viewConfig.controller,
                     resolve: {
                         resolver: ['$q', '$timeout', function ($q, $timeout) {
-                            var deferred = $q.defer();
-                            //require(['css!' + viewConfig.cssUrl]);
-                            require([viewConfig.requireJs], function (module) {
-                                module(viewConfig.module, viewConfig.controller);
-                                self.registerModule(viewConfig.module);
-                                $timeout(function () {
-                                    deferred.resolve();
+                                var deferred = $q.defer();
+                                require(['css!' + viewConfig.cssUrl]);
+                                require([viewConfig.requireJs], function (module) {
+                                    module(viewConfig.module, viewConfig.controller);
+                                    self.registerModule(viewConfig.module);
+                                    $timeout(function () {
+                                        deferred.resolve();
+                                    });
                                 });
-                            });
-                            return deferred.promise;
-                        }]
+                                return deferred.promise;
+                            }]
                     }
                 });
             };
