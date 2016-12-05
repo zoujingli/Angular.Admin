@@ -57,7 +57,7 @@ body.login .content ul li label{color:#687f92; padding-left:25px;}
 body.login .content ul li label a{color:#687f92;}
 body.login .content ul li label a:hover{color:#3d96c9;}
 body.login .content ul li label input{margin-right:5px;}
-body.login input.username,body.login input.password{width:343px; height:48px;border:none;line-height:48px; padding-left:44px; font-size:14px; color:#90a2bc; }
+body.login input.username,body.login input.password{width:344px; height:48px;border:none;line-height:48px; padding-left:44px; font-size:14px; color:#90a2bc; }
 body.login input.username:focus,body.login input.password:focus{border-color: #66afe9;outline: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}
 body.login .username{background:url(img/login/loginuser.png) no-repeat;}
 body.login .password{background:url(img/login/loginpassword.png) no-repeat;}
