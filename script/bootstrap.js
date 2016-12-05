@@ -72,7 +72,7 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
             // 页面全局属性定义
             $rootScope.app = {
                 layout: {
-                    class: {body: 'login'}
+                    class: {body: 'body'}
                 },
                 site: {
                     title: 'Angular.Admin',
