@@ -118,7 +118,27 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
 
     // input 标签编译
     app.directive('input', function () {
-
+        return {
+            restrict: 'E',
+            compile: function (element, attr) {
+                if (!attr.type || element.data('layui-build')) {
+                    return;
+                }
+                console.log(element);
+                switch (attr.type.toLowerCase()) {
+                    case 'checkbox':
+                        var $tpl = $('<div class="layui-unselect layui-form-checkbox"><span>' + element.attr('title') + '</span><i class="layui-icon">&#xe618;</i></div>').on('click', function () {
+                            console.log(element);
+                            element[0].checked = !element[0].checked;
+                            element.triggerHandler('change');
+                        });
+                        element.on('change', function () {
+                            element[0].checked ? $tpl.addClass('layui-form-checked') : $tpl.removeClass('layui-form-checked');
+                        }).data('layui-build', $tpl).triggerHandler('change').after($tpl);
+                        break;
+                }
+            }
+        };
     });
 
     // select 标签编译
@@ -126,7 +146,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
         return {
             restrict: 'E',
             compile: function (element, attr) {
-                if (!element.attr('layui-build')) {
+                if (!element.data('layui-build')) {
                     var $select = $('\n\
                         <div class="layui-unselect layui-form-select">\
                             <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>\
@@ -150,7 +170,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                         });
                         $dl.append($option);
                     });
-                    element.after($select).attr('layui-build', true);
+                    element.after($select).data('layui-build', $select);
                 }
             }
         };
