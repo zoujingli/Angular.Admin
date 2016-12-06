@@ -14,7 +14,15 @@ define(['angular'], function (angular) {
         '$provide',
         '$injector',
         '$routeProvider',
-        function ($controllerProvider, $compileProvider, $filterProvider, $provide, $injector, $routeProvider) {
+        '$httpProvider',
+        function ($controllerProvider, $compileProvider, $filterProvider, $provide, $injector, $routeProvider, $httpProvider) {
+            /*! 设置不缓存  */
+            if (!$httpProvider.defaults.headers.get) {
+                $httpProvider.defaults.headers.get = {};
+            }
+            $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+            $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+            $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
             this.views = {};
             var self = this, ngProviders = {
                 $controllerProvider: $controllerProvider,

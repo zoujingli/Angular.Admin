@@ -1,8 +1,5 @@
 define(['require', 'angular', 'jquery', 'myView', 'myForm'], function (require, angular, $) {
 
-    layui.use('element', function () {
-        var element = layui.element();
-    });
     /**
      * 定义模块函数
      * @param {string} module 默认模块名

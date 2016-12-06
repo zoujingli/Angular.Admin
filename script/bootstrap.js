@@ -43,7 +43,7 @@ require.config({
         'ngCookies': {deps: ['angular']},
         'ngSanitize': {deps: ['angular']},
     },
-    deps: ['angular', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
+    deps: ['angular', 'css!script/plugs/layui/css/layui.css', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
     urlArgs: "v=" + (new Date()).getTime()
 });
 
@@ -60,10 +60,10 @@ require(['pace'], function (pace) {
  * @param {type} angular
  * @returns {undefined}
  */
-require(['angular', 'ngRoute', 'myView', 'layui'], function (angular) {
+require(['angular', 'ngRoute', 'myView'], function (angular) {
 
     // Layui 路径配置
-    layui.config({dir: baseUrl + '/plugs/layui/'});
+//    layui.config({dir: baseUrl + '/plugs/layui/'});
 
     // 创建APP应用
     var app = angular.module('app', ['ngRoute', 'myView']);
@@ -75,7 +75,7 @@ require(['angular', 'ngRoute', 'myView', 'layui'], function (angular) {
         }]);
 
     // 应用初始化动作
-    app.run(['$location', '$view', '$rootScope', function ($location, $view, $rootScope) {
+    app.run(['$location', '$view', '$rootScope', '$templateCache', function ($location, $view, $rootScope, $templateCache) {
 
             // 页面全局属性定义
             $rootScope.app = {
@@ -95,6 +95,10 @@ require(['angular', 'ngRoute', 'myView', 'layui'], function (angular) {
                 if ($location.$$path.length > 0) {
                     $view.registerView($location.$$path);
                 }
+            });
+            $rootScope.$on('$locationChangeSuccess', function () {
+                console.log($templateCache);
+                $templateCache.removeAll();
             });
 
             // 页面标题修正，兼容苹果设备
