@@ -116,6 +116,46 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
             ;
         }]);
 
+    // input 标签编译
+    app.directive('input', function () {
+
+    });
+
+    // select 标签编译
+    app.directive('select', function () {
+        return {
+            restrict: 'E',
+            compile: function (element, attr) {
+                if (!element.attr('layui-build')) {
+                    var $select = $('\n\
+                        <div class="layui-unselect layui-form-select">\
+                            <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>\
+                            <dl class="layui-anim layui-anim-upbit"></dl>\
+                        </div>'), $dl = $select.find('dl');
+                    $('body').on('click', function () {
+                        $select.removeClass('layui-form-selected');
+                    });
+                    $select.find('.layui-select-title').on('click', function (e) {
+                        $select.addClass('layui-form-selected');
+                        e.stopPropagation();
+                    });
+                    $(element).find('option').map(function () {
+                        var $option = $('<dd></dd>').attr('value', this.value).html(this.innerHTML);
+                        (element.val() === this.value) && $option.addClass('layui-this');
+                        $option.on('click', function (e) {
+                            element.val(this.value);
+                            $select.removeClass('layui-form-selected').find('input').attr('placeholder', this.innerHTML);
+                            $option.addClass('layui-this').siblings('dd').removeClass('layui-this');
+                            e.stopPropagation();
+                        });
+                        $dl.append($option);
+                    });
+                    element.after($select).attr('layui-build', true);
+                }
+            }
+        };
+    });
+
     // 创建表单加强指令
     app.directive('form', ['$compile', '$form', function ($compile, $form) {
 
@@ -127,7 +167,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                 var bindName = '';
                 for (var i in element[0].elements) {
                     var input = element[0].elements[i];
-                    if (typeof input === 'object') {
+                    if (typeof input === 'object' && input.getAttribute) {
                         var bind = input.getAttribute('data-ng-model') || input.getAttribute('ng-model') || false;
                         if (bind && bind.indexOf('.') > -1) {
                             bindName = bind.split('.').shift();

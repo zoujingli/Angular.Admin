@@ -62,9 +62,6 @@ require(['pace'], function (pace) {
  */
 require(['angular', 'ngRoute', 'myView'], function (angular) {
 
-    // Layui 路径配置
-//    layui.config({dir: baseUrl + '/plugs/layui/'});
-
     // 创建APP应用
     var app = angular.module('app', ['ngRoute', 'myView']);
 
@@ -97,7 +94,6 @@ require(['angular', 'ngRoute', 'myView'], function (angular) {
                 }
             });
             $rootScope.$on('$locationChangeSuccess', function () {
-                console.log($templateCache);
                 $templateCache.removeAll();
             });
 
