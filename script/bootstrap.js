@@ -1,5 +1,6 @@
-/* global require */
+/* global require, layui */
 var script = document.scripts[document.scripts.length - 1].src, baseUrl = script.substring(0, script.lastIndexOf("/"));
+
 /**
  * 应用启动文件
  *
@@ -59,16 +60,23 @@ require(['pace'], function (pace) {
  * @param {type} angular
  * @returns {undefined}
  */
-require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
+require(['angular', 'ngRoute', 'myView', 'layui'], function (angular) {
+
+    // Layui 路径配置
+    layui.config({dir: baseUrl + '/plugs/layui/'});
+
     // 创建APP应用
-    var app = angular.module('app', ['ngRoute', 'myView', 'ui.bootstrap']);
+    var app = angular.module('app', ['ngRoute', 'myView']);
+
     // 应用启动配置
     app.config(['$routeProvider', '$viewProvider', function ($routeProvider, $viewProvider) {
             $viewProvider.registerView('login.html');
             $routeProvider.otherwise('login.html');
         }]);
+
     // 应用初始化动作
     app.run(['$location', '$view', '$rootScope', function ($location, $view, $rootScope) {
+
             // 页面全局属性定义
             $rootScope.app = {
                 layout: {
@@ -81,15 +89,16 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
                     company: '广州楚才信息科技有限公司'
                 }
             };
+
             // 页面跳转前的处理
             $rootScope.$on("$locationChangeStart", function () {
                 if ($location.$$path.length > 0) {
                     $view.registerView($location.$$path);
                 }
             });
+
             // 页面标题修正，兼容苹果设备
             $rootScope.$watch('app.site.title', function (title) {
-                var body = document.getElementsByTagName('body')[0];
                 document.title = title;
                 var iframe = document.createElement("iframe");
                 iframe.title = '', iframe.width = 0, iframe.height = 0;
@@ -103,10 +112,8 @@ require(['angular', 'ngRoute', 'myView', 'ui.bootstrap'], function (angular) {
             });
 
         }]);
+
     // 启动应用
-    // require(['layui'], function () {
-    //     layui.config({dir: baseUrl + '/plugs/layui/'});
-    //     angular.bootstrap(document, [app.name]);
-    // });
     angular.bootstrap(document, [app.name]);
+
 });
