@@ -1,6 +1,5 @@
 <div class="layui-header" ng-include="'pages/user/header.html'"></div>
 
-
 <div class="layui-main">
 
     <blockquote class="layui-elem-quote">
@@ -62,32 +61,32 @@
             <div class="layui-inline">
                 <label class="layui-form-label">验证数字</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="number" lay-verify="number" autocomplete="off" class="layui-input">
+                    <input type="number" name="number"  autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">验证日期</label>
                 <div class="layui-input-block">
-                    <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+                    <input type="text" name="date" id="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">验证链接</label>
                 <div class="layui-input-block">
-                    <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
+                    <input type="tel" name="url" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">验证身份证</label>
             <div class="layui-input-block">
-                <input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+                <input type="text" name="identity" placeholder="" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">自定义验证</label>
             <div class="layui-input-inline">
-                <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
         </div>
@@ -176,7 +175,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">开关-关</label>
             <div class="layui-input-block">
-                <input type="checkbox" name="close" lay-skin="switch" title="开关">
+                <input type="checkbox" name="close" title="开关">
             </div>
         </div>
         <div class="layui-form-item">
@@ -202,7 +201,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">编辑器</label>
             <div class="layui-input-block">
-                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+                <textarea class="layui-textarea layui-hide" name="content" id="LAY_demo_editor"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -225,7 +224,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">短输入框</label>
             <div class="layui-input-inline">
-                <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
 
@@ -314,7 +313,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <button class="layui-btn" lay-submit="" lay-filter="demo2">跳转式提交</button>
+            <button class="layui-btn">跳转式提交</button>
         </div>
     </form>
 </div>
