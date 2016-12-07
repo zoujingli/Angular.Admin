@@ -14,6 +14,7 @@ define(['require', 'angular', 'jquery', 'myView', 'myForm'], function (require, 
                 $scope.form.username = '';
                 $scope.form.title = '默认值-只能在 controller 中定义哦！';
                 $scope.form.username = '';
+                $scope.form.open = true;
             }
         ]);
     };

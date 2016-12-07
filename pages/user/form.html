@@ -107,7 +107,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">单行选择框</label>
             <div class="layui-input-block">
-                <select name="interest" lay-filter="aihao">
+                <select name="interest">
                     <option value=""></option>
                     <option value="0">写作</option>
                     <option value="1" selected="">阅读</option>
@@ -168,7 +168,7 @@
             <label class="layui-form-label">复选框</label>
             <div class="layui-input-block">
                 <input type="checkbox" name="write" title="写作">
-                <input type="checkbox" name="read" title="阅读" checked="checked">
+                <input type="checkbox" name="read" title="阅读">
                 <input type="checkbox" name="game" title="游戏">
             </div>
         </div>
@@ -179,9 +179,9 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">开关-开</label>
+            <label class="layui-form-label">开关-开{{form.open}}</label>
             <div class="layui-input-block">
-                <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" title="开关">
+                <input type="checkbox" name="open" ng-checked="form.open" data-ng-style="switch">
             </div>
         </div>
         <div class="layui-form-item">

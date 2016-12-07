@@ -117,28 +117,36 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
         }]);
 
     // input 标签编译
-    app.directive('input', function () {
-        return {
-            restrict: 'E',
-            compile: function (element, attr) {
-                if (!attr.type || element.data('layui-build')) {
-                    return;
+    app.directive('input', ['$timeout', function ($timeout) {
+            return {
+                restrict: 'E',
+                compile: function (element, attr) {
+                    if (!attr.type || element.data('layui-build')) {
+                        return;
+                    }
+                    switch (attr.type.toLowerCase()) {
+                        case 'checkbox':
+                            if ((attr.ngStyle || 'checked') === 'checked') {
+                                var styleChecked = 'layui-form-checked';
+                                var $tpl = $('<div class="layui-unselect layui-form-checkbox"><span>' + (element.attr('title') || '') + '</span><i class="layui-icon">&#xe618;</i></div>');
+                            } else {
+                                var styleChecked = 'layui-form-onswitch';
+                                var $tpl = $('<div class="layui-unselect layui-form-switch"><i></i></div>')
+                            }
+                            $tpl.on('click', function () {
+                                $(element).trigger('click');
+                            });
+                            element.on('change', function () {
+                                element.hasClass('ng-not-empty') ? $tpl.addClass(styleChecked) : $tpl.removeClass(styleChecked);
+                            }).data('layui-build', $tpl).after($tpl);
+                            $timeout(function () {
+                                element.triggerHandler('change');
+                            });
+                            break;
+                    }
                 }
-                var style = (attr.ngStyle || 'checked') === 'checked' ? 'layui-form-checkbox' : 'layui-form-switch';
-                var styleChecked = (attr.ngStyle || 'checked') === 'checked' ? 'layui-form-checked' : 'layui-form-onswitch';
-                switch (attr.type.toLowerCase()) {
-                    case 'checkbox':
-                        var $tpl = $('<div class="layui-unselect ' + style + '"><span>' + element.attr('title') + '</span><i class="layui-icon">&#xe618;</i></div>').on('click', function () {
-                            $(element).trigger('click');
-                        });
-                        element.on('change', function () {
-                            element[0].checked ? $tpl.addClass(styleChecked) : $tpl.removeClass(styleChecked);
-                        }).data('layui-build', $tpl).triggerHandler('change').after($tpl);
-                        break;
-                }
-            }
-        };
-    });
+            };
+        }]);
 
     // select 标签编译
     app.directive('select', function () {
@@ -161,6 +169,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                             e.stopPropagation();
                         });
                     }).on('click', function (e) {
+                        $('.layui-form-select.layui-form-selected').not(this).removeClass('layui-form-selected');
                         angular.element(this).triggerHandler(this.className.indexOf('layui-form-selected') > -1 ? 'layui.hide' : 'layui.show');
                         e.stopPropagation();
                     });
