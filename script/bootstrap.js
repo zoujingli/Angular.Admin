@@ -74,6 +74,8 @@ require(['angular', 'ngRoute', 'myView'], function (angular) {
     // 应用初始化动作
     app.run(['$location', '$view', '$rootScope', '$templateCache', function ($location, $view, $rootScope, $templateCache) {
 
+            $rootScope.$location = $location;
+
             // 页面全局属性定义
             $rootScope.app = {
                 layout: {

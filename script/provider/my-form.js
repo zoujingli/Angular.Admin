@@ -124,16 +124,15 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                 if (!attr.type || element.data('layui-build')) {
                     return;
                 }
-                console.log(element);
+                var style = (attr.ngStyle || 'checked') === 'checked' ? 'layui-form-checkbox' : 'layui-form-switch';
+                var styleChecked = (attr.ngStyle || 'checked') === 'checked' ? 'layui-form-checked' : 'layui-form-onswitch';
                 switch (attr.type.toLowerCase()) {
                     case 'checkbox':
-                        var $tpl = $('<div class="layui-unselect layui-form-checkbox"><span>' + element.attr('title') + '</span><i class="layui-icon">&#xe618;</i></div>').on('click', function () {
-                            console.log(element);
-                            element[0].checked = !element[0].checked;
-                            element.triggerHandler('change');
+                        var $tpl = $('<div class="layui-unselect ' + style + '"><span>' + element.attr('title') + '</span><i class="layui-icon">&#xe618;</i></div>').on('click', function () {
+                            $(element).trigger('click');
                         });
                         element.on('change', function () {
-                            element[0].checked ? $tpl.addClass('layui-form-checked') : $tpl.removeClass('layui-form-checked');
+                            element[0].checked ? $tpl.addClass(styleChecked) : $tpl.removeClass(styleChecked);
                         }).data('layui-build', $tpl).triggerHandler('change').after($tpl);
                         break;
                 }
@@ -215,47 +214,43 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                     var $submitbtn = $(element[0]).find('[type=submit]');
                     if (!$submitbtn.attr('data-ng-disabled') && !$submitbtn.attr('ng-disabled')) {
                         $submitbtn.attr("data-ng-disabled", attr.name + ".$invalid");
+                        $submitbtn.attr('data-ng-class', "{true:'layui-btn-disabled',false:''}[" + attr.name + ".$invalid" + "]");
                     }
                     // 移除表单H5默认验证
                     element.attr('novalidate', 'novalidate');
                     // 表单元素验证属性检测
                     var checkAttrs = ['$error-minlength', '$error-maxlength', '$error-required', '$invalid'];
-                    var checkStyle = 'right:0;animation-duration:.2s;padding-right:20px;color:#a94442;position:absolute;font-size:12px;z-index:2;display:block;text-align:center;pointer-events:none';
+                    var checkStyle = 'right:0;animation-duration:0.2s;color:#a94442;position:absolute;font-size:12px;z-index:2;display:block;text-align:left;width:100%;pointer-events:none';
                     $(element[0].elements).each(function () {
                         if (typeof this !== 'object' || !this.tagName || this.tagName.toLowerCase() === 'button') {
                             return true;
                         }
-                        var $this = $(this);
+                        var $input = angular.element(this);
                         // 自动验证标签解析
-                        var bindName = $this.attr('data-ng-model') || $this.attr('ng-model') || '';
+                        var bindName = $input.attr('data-ng-model') || $input.attr('ng-model') || '';
                         if (!this.name && !!bindName) {
-                            $this.attr('name', bindName.substring(bindName.indexOf('.') + 1) || getRandName('input'));
+                            $input.attr('name', bindName.substring(bindName.indexOf('.') + 1) || getRandName('input'));
                         }
                         // 未设置绑定数据源时，动态生成绑定
                         if (!bindName && !!this.name) {
-                            $this.attr('data-ng-model', (bindName = attr.name.replace(/Form$/, '') + '.' + this.name));
+                            $input.attr('data-ng-model', (bindName = attr.name.replace(/Form$/, '') + '.' + this.name));
                         }
                         var first = attr.name + '.' + this.name + '.';
                         for (var j in checkAttrs) {
                             var checkAttr = 'data-tips-' + checkAttrs[j].replace(/^\$/, '');
+                            var listenAttr = checkAttr + '-layui-build';
                             // 检查消息是否设置，并且未初始化验证标签
-                            if ($this.attr(checkAttr) && !$this.attr(checkAttr + '-listen')) {
-                                $this.attr(checkAttr + '-listen', true);
-                                var data = {attr: [first + checkAttrs[j].replace(/-/g, '.')], title: $this.attr(checkAttr)};
+                            if ($input.attr(checkAttr) && !$input.data(listenAttr)) {
+                                $input.attr(checkAttr + '-listen', true);
+                                var data = {attr: [first + checkAttrs[j].replace(/-/g, '.')], title: $input.attr(checkAttr)};
                                 //  优先显示空验证
-                                if ($this.attr('data-tips-error-required') && checkAttr !== 'data-tips-error-required') {
+                                if ($input.attr('data-tips-error-required') && checkAttr !== 'data-tips-error-required') {
                                     data.attr.push('!' + first + '$error.required');
                                 }
                                 // 当表单修改后再显示提示
                                 data.attr.push(first + '$dirty');
-                                var tpl = '<span class="form-error-tips" style="' + checkStyle + '" data-ng-show="' + data.attr.join(' && ') + '">' + data.title + '</span>';
-                                $this.after($(tpl).css({
-                                    top: $this.position().top + 'px',
-                                    marginTop: $this.css('marginTop'),
-                                    paddingBottom: $this.css('paddingBottom'),
-                                    lineHeight: $this.css('height'),
-                                    paddingRight: (parseFloat($this.css('marginRight')) + parseFloat($this.css('paddingRight')) + 30) + 'px'
-                                }));
+                                var $tpl = angular.element('<span class="form-error-tips" style="' + checkStyle + '" data-ng-show="' + data.attr.join(' && ') + '">' + data.title + '</span>');
+                                $input.after($tpl).data(listenAttr, $tpl);
                             }
                         }
                     });
