@@ -17,21 +17,22 @@
 
     <div class="logo"></div>
 
-    <form action="server/user/login.json" data-auto="true" method="get" class="content">
+    <form action="server/user/login.json" data-auto="true" method="get" class="content layui-form">
         <div class="people">
             <div class="tou"></div>
             <div class="initial_left_hand" data-ng-class="{false:'initial_left_hand', true:'left_hand'}[hideEye]"></div>
             <div class="initial_right_hand" data-ng-class="{false:'initial_right_hand', true:'right_hand'}[hideEye]"></div>
         </div>
-        <ul style="position:absolute">
+        <ul>
             <li>
                 <input required="required"
                        pattern="^\S{4,}$"
                        data-tips-error-required="登录账号不能为空"
                        data-tips-invalid="请输入4位及以上的字符"
                        type="text"
+                       ng-model="user.username"
                        name="username"
-                       class="username"
+                       class="layui-input"
                        autocomplete="off"
                        autofocus="autofocus"
                        placeholder="请输入用户名/手机号码" />
@@ -43,16 +44,15 @@
                        data-tips-invalid="请输入4位及以上的字符"
                        type="password"
                        name="password"
-                       class="password"
+                       class="layui-input"
                        autocomplete="off"
                        data-ng-focus="hideEye = !!1"
                        data-ng-blur="hideEye = !1"
                        placeholder="请输入密码"/>
             </li>
-            <li>
-                <button type="submit" class="layui-btn">登录</button>
-                <label><input name="remember" type="checkbox" value="" checked="checked" />记住密码</label>
-                <label><a href="javascript:void(0)">忘记密码？</a></label>
+            <li class="text-center">
+                <button type="submit" class="layui-btn layui-btn">立 即 登 入</button>
+                <a style="position:absolute;display:block;right:0" href="javascript:void(0)">忘记密码？</a>
             </li>
         </ul>
     </form>

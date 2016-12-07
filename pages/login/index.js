@@ -10,6 +10,10 @@ define(['angular', 'myView', 'myForm'], function (angular) {
         angular.module(module, ['myView', 'myForm']).controller(controller, ['$scope', '$location', '$view', function ($scope, $location, $view) {
                 $scope.app.layout.class.body = 'login';
                 $scope.hideEye = false;
+                $scope.user = {
+                    username: 'admin',
+                    password: 'admin'
+                };
             }
         ]);
     };
