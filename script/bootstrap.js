@@ -21,7 +21,7 @@ require.config({
         'pace': ['//cdn.bootcss.com/pace/1.0.2/pace.min'],
         'jquery': ['//cdn.bootcss.com/jquery/1.12.4/jquery.min'],
         'supersized': ['script/plugs/supersized/js/supersized.3.2.7'],
-        'angular': ['//cdn.bootcss.com/angular.js/1.5.8/angular.min'],
+        'angular': ['//cdn.bootcss.com/angular.js/1.5.9/angular.min'],
         'sweetalert': ['//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min'],
         'ngCookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min'],
         'ngSanitize': ['//cdn.bootcss.com/angular-sanitize/1.5.8/angular-sanitize.min'],
