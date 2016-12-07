@@ -201,6 +201,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                 compile: function (element, attr) {
                     // 表单名字重建
                     attr.name = attr.name || getFormBindName(element);
+                    console.log('build');
                     if (element.attr('name') !== attr.name) {
                         element.attr('name', attr.name);
                         $compile(element)(element.scope());
@@ -241,7 +242,6 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                             var listenAttr = checkAttr + '-layui-build';
                             // 检查消息是否设置，并且未初始化验证标签
                             if ($input.attr(checkAttr) && !$input.data(listenAttr)) {
-                                $input.attr(checkAttr + '-listen', true);
                                 var data = {attr: [first + checkAttrs[j].replace(/-/g, '.')], title: $input.attr(checkAttr)};
                                 //  优先显示空验证
                                 if ($input.attr('data-tips-error-required') && checkAttr !== 'data-tips-error-required') {
