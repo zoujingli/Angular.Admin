@@ -146,30 +146,40 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
             restrict: 'E',
             compile: function (element, attr) {
                 if (!element.data('layui-build')) {
-                    var $select = $('\n\
+                    var select = angular.element('\n\
                         <div class="layui-unselect layui-form-select">\
                             <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>\
                             <dl class="layui-anim layui-anim-upbit"></dl>\
-                        </div>'), $dl = $select.find('dl');
-                    $('body').on('click', function () {
-                        $select.removeClass('layui-form-selected');
-                    });
-                    $select.find('.layui-select-title').on('click', function (e) {
-                        $select.addClass('layui-form-selected');
-                        e.stopPropagation();
-                    });
-                    $(element).find('option').map(function () {
-                        var $option = $('<dd></dd>').attr('value', this.value).html(this.innerHTML);
-                        (element.val() === this.value) && $option.addClass('layui-this');
-                        $option.on('click', function (e) {
-                            element.val(this.value);
-                            $select.removeClass('layui-form-selected').find('input').attr('placeholder', this.innerHTML);
-                            $option.addClass('layui-this').siblings('dd').removeClass('layui-this');
+                        </div>').on('layui.hide', function () {
+                        var input = angular.element(this);
+                        input.removeClass('layui-form-selected');
+                    }).on('layui.show', function (e) {
+                        var input = angular.element(this);
+                        angular.element(this).addClass('layui-form-selected');
+                        angular.element(document).one('click', function (e) {
+                            input.triggerHandler('layui.hide');
                             e.stopPropagation();
                         });
-                        $dl.append($option);
+                    }).on('click', function (e) {
+                        angular.element(this).triggerHandler(this.className.indexOf('layui-form-selected') > -1 ? 'layui.hide' : 'layui.show');
+                        e.stopPropagation();
                     });
-                    element.after($select).data('layui-build', $select);
+                    var options = select.find('dl');
+                    element.on('change', function () {
+                        options.empty();
+                        angular.forEach(element.find('option'), function (option) {
+                            var $option = angular.element('<dd></dd>').attr('value', option.value).html(option.innerHTML);
+                            (element.val() === option.value) && $option.addClass('layui-this');
+                            options.append($option);
+                            $option.on('click', function () {
+                                element.val(this.value);
+                                select.find('input').attr('placeholder', this.innerHTML);
+                                select.find('dd').removeClass('layui-this');
+                                $option.addClass('layui-this');
+                            });
+                        });
+                    });
+                    element.after(select).data('layui-build', select).triggerHandler('change');
                 }
             }
         };
@@ -201,7 +211,6 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                 compile: function (element, attr) {
                     // 表单名字重建
                     attr.name = attr.name || getFormBindName(element);
-                    console.log('build');
                     if (element.attr('name') !== attr.name) {
                         element.attr('name', attr.name);
                         $compile(element)(element.scope());
