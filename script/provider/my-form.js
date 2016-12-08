@@ -244,8 +244,9 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
             };
         }]);
 
+
     // 创建表单加强指令
-    app.directive('form', ['$compile', '$form', function ($compile, $form) {
+    app.directive('form', ['$timeout', '$form', function ($timeout, $form) {
 
             function getRandName(type) {
                 return type + Math.ceil(Math.random() * 1000000000000);
@@ -284,7 +285,9 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                     }
                     // 表单元素验证属性检测
                     var checkAttrs = ['$error-minlength', '$error-maxlength', '$error-required', '$invalid'];
-                    var checkStyle = 'right:0;animation-duration:0.2s;color:#a94442;position:absolute;font-size:12px;z-index:2;display:block;text-align:left;width:100%;pointer-events:none';
+                    var checkStyle = 'right:0;animation-duration:0.2s;color:#a94442;position:absolute;font-size:12px;z-index:2;display:block;text-align:right;width:100%;pointer-events:none';
+                    var tips = [];
+                    // 生成表单元素验证错误提示
                     $(element[0].elements).each(function () {
                         if (typeof this !== 'object' || !this.tagName || this.tagName.toLowerCase() === 'button') {
                             return true;
@@ -320,12 +323,25 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                 // 当表单修改或提交时显示提示错误信息
                                 data.attr.push('(' + attr.name + '.$submitted||' + ruleFrist + '$dirty)');
                                 var $tpl = angular.element('<span class="form-error-tips" style="' + checkStyle + '" data-ng-show="' + data.attr.join(' && ') + '">' + data.title + '</span>');
-                                $input.after($tpl).data(listenAttr, $tpl);
+                                $input.after($tpl).data(listenAttr, $tpl.data('input', $input));
+                                tips.push($tpl);
                             }
                         }
                     });
+                    // 计算并重新定位表单元素验证错误提示
+                    $timeout(function () {
+                        for (var i in tips) {
+                            var tip = tips[i], input = tip.data('input');
+                            tip.css({
+                                top: $(input).position().top + 'px',
+                                marginTop: $(input).css('marginTop'),
+                                paddingBottom: $(input).css('paddingBottom'),
+                                lineHeight: $(input).css('height'),
+                                paddingRight: (parseFloat($(input).css('marginRight')) + parseFloat($(input).css('paddingRight')) + 20) + 'px'
+                            });
+                        }
+                    });
                 }
-            }
-            ;
+            };
         }]);
 });
