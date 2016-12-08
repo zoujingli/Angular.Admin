@@ -1,4 +1,4 @@
-#Angular.Admin --- 大道至简 重剑无锋
+Angular.Admin --- 大道至简 重剑无锋
 --
 
 [Angular.Admin](http://zoujingli.oschina.io/angular.admin) 是一个基于 `RequireJs`+`AngluarJs`+`Layui` 搭建的`Web`前端开发平台。
@@ -11,9 +11,8 @@
 
 参考文档：
 --
-* Angular：http://www.runoob.com/angularjs/angularjs-tutorial.html
-
-* Layui：http://www.layui.com/doc
+* [Angular](http://www.runoob.com/angularjs/angularjs-tutorial.html)
+* [Layui](http://www.layui.com/doc)
 
 更新日志
 --
