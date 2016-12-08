@@ -149,9 +149,12 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                     }
                                 } else if (newValue === true) {
                                     $tpl.addClass(styleChecked);
+                                    console.log(element.val());
+                                    var isAdd = true;
                                     for (var i in values) {
-                                        (values[i] === element.val()) && values.push(element.val());
+                                        (values[i] === element.val()) && (isAdd = false);
                                     }
+                                    isAdd && values.push(element.val());
                                 } else {
                                     $tpl.removeClass(styleChecked);
                                     for (var i in values) {
@@ -160,6 +163,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                         }
                                     }
                                 }
+                                console.log(values);
                             });
                             element.data('layui-build', $tpl.on('click', function () {
                                 $(element).trigger('click');
