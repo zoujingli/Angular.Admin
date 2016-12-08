@@ -96,24 +96,24 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
             };
             /**
              * 自动表单处理
-             * @param form
+             * @param element
              */
-            this.listen = function (form) {
+            this.listen = function (element) {
                 var self = this;
-                $(form).on('submit', function () {
+                element.on('submit', function () {
                     if (!$(this).hasClass('ng-valid')) {
                         return false;
                     }
                     var time = this.getAttribute('data-time');
-                    self.load(this.action, this, this.method || 'get', false, time);
+                    self.load(this.action, element.scope()[element.attr('bind')], this.method || 'get', false, time);
                     return false;
                 });
             };
 
             this.$get = function () {
                 return this;
-            }
-            ;
+            };
+
         }]);
 
     // input 标签编译
@@ -188,7 +188,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
         }]);
 
     // select 标签编译
-    app.directive('select', ['$timeout', function ($timeout) {
+    app.directive('select', [function () {
             return {
                 restrict: 'E',
                 compile: function (element, attr) {
@@ -320,8 +320,8 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                 if ($input.attr('data-tips-error-required') && checkAttr !== 'data-tips-error-required') {
                                     data.attr.push('!' + ruleFrist + '$error.required');
                                 }
-                                // 当表单修改后再显示提示
-                                data.attr.push(ruleFrist + '$dirty');
+                                // 当表单修改或提交时显示提示错误信息
+                                data.attr.push('(' + attr.name + '.$submitted||' + ruleFrist + '$dirty)');
                                 var $tpl = angular.element('<span class="form-error-tips" style="' + checkStyle + '" data-ng-show="' + data.attr.join(' && ') + '">' + data.title + '</span>');
                                 $input.after($tpl).data(listenAttr, $tpl);
                             }
