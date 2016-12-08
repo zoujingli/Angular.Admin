@@ -133,8 +133,41 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                 var styleChecked = 'layui-form-onswitch';
                                 var $tpl = $('<div class="layui-unselect layui-form-switch"><i></i></div>')
                             }
-                            element.scope().$watch(attr.ngModel, function (newValue) {
-                                newValue ? $tpl.addClass(styleChecked) : $tpl.removeClass(styleChecked);
+                            var $scope = element.scope();
+                            $scope.$watch(attr.ngModel, function (newValue) {
+                                var split = attr.ngModel.split('.'), key = split.pop(), name = split.pop(), bind = element.data('bind'), values = [];
+                                if ($scope[bind][name]) {
+                                    for (var i in $scope[bind][name]) {
+                                        values[i] = $scope[bind][name][i];
+                                    }
+                                }
+                                $scope[bind][name] = values;
+                                switch (newValue) {
+                                    case undefined: // 初始化时
+                                        for (var i in values) {
+                                            (values[i] === element.val()) && (values['_' + element.val()] = true);
+                                        }
+                                        break;
+                                    case true: // 选中时
+                                        $tpl.addClass(styleChecked);
+                                        var is_find = false;
+                                        for (var i in values) {
+                                            if (values[i] === element.val()) {
+                                                is_find = true;
+                                                break;
+                                            }
+                                        }
+                                        !is_find && values.push(element.val());
+                                        break;
+                                    case false: // 取消选中时
+                                        $tpl.removeClass(styleChecked)
+                                        for (var i in values) {
+                                            if (values[i] === element.val()) {
+                                                delete values[i];
+                                            }
+                                        }
+                                        break;
+                                }
                             });
                             element.data('layui-build', $tpl.on('click', function () {
                                 $(element).trigger('click');
@@ -143,9 +176,6 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                         case 'radio':
                             var styleChecked = 'layui-form-radioed';
                             var $tpl = angular.element('<div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><span>' + (element.attr('title') || '') + '</span></div>');
-                            $tpl.on('click', function () {
-                                $(element).trigger('click');
-                            });
                             element.scope().$watch(attr.ngModel, function (newValue) {
                                 if (newValue === element.val()) {
                                     $tpl.addClass(styleChecked).find('i').html('&#xe643;');
@@ -153,7 +183,9 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                     $tpl.removeClass(styleChecked).find('i').html('&#xe63f;');
                                 }
                             });
-                            element.data('layui-build', $tpl).after($tpl);
+                            element.data('layui-build', $tpl.on('click', function () {
+                                $(element).trigger('click');
+                            })).after($tpl);
                             break;
                     }
                 }
@@ -262,9 +294,15 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                         }
                         // 未设置绑定数据源时，动态生成绑定
                         if (!modelFirst && !!this.name) {
+                            var name = this.name.replace(/\W/g, '');
                             modelFirst = attr.bind;
-                            $input.attr('data-ng-model', (attr.bind + '.' + this.name));
+                            if (($input.attr('type') || '') === 'checkbox') {
+                                $input.attr('data-ng-model', attr.bind + '.' + name + '._' + $input.val());
+                            } else {
+                                $input.attr('data-ng-model', attr.bind + '.' + name);
+                            }
                         }
+                        $input.data('bind', attr.bind);
                         var ruleFrist = attr.name + '.' + this.name + '.';
                         for (var j in checkAttrs) {
                             var checkAttr = 'data-tips-' + checkAttrs[j].replace(/^\$/, '');
