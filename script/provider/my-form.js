@@ -149,7 +149,6 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                     }
                                 } else if (newValue === true) {
                                     $tpl.addClass(styleChecked);
-                                    console.log(element.val());
                                     var isAdd = true;
                                     for (var i in values) {
                                         (values[i] === element.val()) && (isAdd = false);
