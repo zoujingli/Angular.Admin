@@ -183,33 +183,32 @@
             <div class="layui-input-block">
                 <input type="checkbox" name="open" value="1" data-ng-style="switch">
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">单选框</label>
-            <div class="layui-input-block">
-                <input type="radio" name="sex" value="男" title="男">
-                <input type="radio" name="sex" value="女" title="女">
-                <input type="radio" name="sex" value="禁" title="禁用" disabled="disabled">
+            <div class="layui-form-item">
+                <label class="layui-form-label">单选框 ({{form.sex}})</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="男" title="男">
+                    <input type="radio" name="sex" value="女" title="女">
+                    <input type="radio" name="sex" value="禁" title="禁用" disabled="disabled">
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">普通文本域</label>
-            <div class="layui-input-block">
-                <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">普通文本域</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">编辑器</label>
-            <div class="layui-input-block">
-                <textarea class="layui-textarea layui-hide" name="content" id="LAY_demo_editor"></textarea>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">编辑器</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-textarea layui-hide" name="content" id="LAY_demo_editor"></textarea>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
             </div>
-        </div>
     </form>
 
 </div>
