@@ -1,20 +1,29 @@
 #Angular.Admin
 
+**大道至简 重剑无锋**
+---
 [Angular.Admin](http://zoujingli.oschina.io/angular.admin) 是一个基于 `RequireJs`+`AngluarJs`+`Layui` 搭建的`Web`前端开发平台。
 
-**大道至简，重剑无锋。**
+模块清晰简洁，易于上手使用，让高端`WEB`搭建起步变得更简单。
 
-[Angular.Admin](http://zoujingli.oschina.io/angular.admin) 清晰简洁的模块构建，让高端`WEB`搭建起步变得更简单。
+项目对`Layui`组件部分进行了重新封装，基于`Angular`方式实现。
 
-**重构**：项目于2016年11月18日基于新架构进行重构，旧版本已经切换到 [old-master](https://git.oschina.net/zoujingli/Angular.Admin/tree/old-master/) 分支
+---
+**关于重构**：项目基于新架构进行重构，旧版本已经切换到 [old-master](https://git.oschina.net/zoujingli/Angular.Admin/tree/old-master/) 分支。
 
 更新日志
 --
 ```
+2016-12-08
+-------------------------------------------------
+1. 整合 Layui
+ 
+2. 封装 select checkbox radio 组件
+
 2016-11-23
 -------------------------------------------------
 
-1. 合并模块，移除模块 css 加载
+1. 合并模块
 
 2. 分离 provider与 plugs ，优化页面依赖
 
