@@ -1,5 +1,7 @@
 define(['require', 'angular', 'jquery', 'myView', 'myForm'], function (require, angular, $) {
 
+    layui.use('laydate');
+
     /**
      * 定义模块函数
      * @param {string} module 默认模块名
