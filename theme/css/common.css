@@ -1,3 +1,14 @@
 .layui-nav a:hover,.layui-nav a:focus,.layui-nav a:active{text-decoration:none!important}
 
 .text-center{text-align:center}
+.footer {
+    padding: 30px 0;
+    line-height: 30px;
+    text-align: center;
+    background-color: #eee;
+    color: #666;
+    font-weight: 300;
+    margin-top:40px;
+    border-top:1px solid #ccc;
+}
+.footer a{margin:auto 10px}
