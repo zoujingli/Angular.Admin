@@ -1,6 +1,6 @@
 #Angular.Admin
 
-[Angular.Admin](http://zoujingli.oschina.io/angular.admin) 是一个基于 `RequireJs`+`AngluarJs`+`Bootstrap` 搭建的`Web`前端开发平台。
+[Angular.Admin](http://zoujingli.oschina.io/angular.admin) 是一个基于 `RequireJs`+`AngluarJs`+`Layui` 搭建的`Web`前端开发平台。
 
 **大道至简，重剑无锋。**
 
