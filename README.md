@@ -8,7 +8,6 @@
 
 项目对`Layui`组件部分进行了重新封装，基于`Angular`方式实现。
 
----
 **关于重构**：项目基于新架构进行重构，旧版本已经切换到 [old-master](https://git.oschina.net/zoujingli/Angular.Admin/tree/old-master/) 分支。
 
 更新日志
