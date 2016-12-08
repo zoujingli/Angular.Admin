@@ -137,8 +137,12 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                             $scope.$watch(attr.ngModel, function (newValue) {
                                 var split = attr.ngModel.split('.'), key = split.pop(), name = split.pop(), bind = element.data('bind'), values = [];
                                 if ($scope[bind][name]) {
-                                    for (var i in $scope[bind][name]) {
-                                        values[i] = $scope[bind][name][i];
+                                    if (typeof $scope[bind][name] === 'object') {
+                                        for (var i in $scope[bind][name]) {
+                                            values[i] = $scope[bind][name][i];
+                                        }
+                                    } else {
+                                        values.push('' + $scope[bind][name]);
                                     }
                                 }
                                 $scope[bind][name] = values;
