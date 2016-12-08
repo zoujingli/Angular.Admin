@@ -17,6 +17,7 @@ define(['require', 'angular', 'jquery', 'myView', 'myForm'], function (require, 
                 $scope.form.mode = ['read', 'write'];
                 $scope.form.open = 1;
                 $scope.form.sex = '男';
+                $scope.form.quiz2 = '温州';
             }
         ]);
     };

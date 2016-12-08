@@ -131,7 +131,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                 var $tpl = $('<div class="layui-unselect layui-form-checkbox"><span>' + (element.attr('title') || '') + '</span><i class="layui-icon">&#xe618;</i></div>');
                             } else {
                                 var styleChecked = 'layui-form-onswitch';
-                                var $tpl = $('<div class="layui-unselect layui-form-switch"><i></i></div>')
+                                var $tpl = $('<div class="layui-unselect layui-form-switch"><i></i></div>');
                             }
                             var $scope = element.scope();
                             $scope.$watch(attr.ngModel, function (newValue) {
@@ -146,31 +146,22 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                     }
                                 }
                                 $scope[bind][name] = values;
-                                switch (newValue) {
-                                    case undefined: // 初始化时
-                                        for (var i in values) {
-                                            (values[i] === element.val()) && (values['_' + element.val()] = true);
+                                if (newValue === undefined) {
+                                    for (var i in values) {
+                                        (values[i] === element.val()) && (values['_' + element.val()] = true);
+                                    }
+                                } else if (newValue === true) {
+                                    $tpl.addClass(styleChecked);
+                                    for (var i in values) {
+                                        (values[i] === element.val()) && values.push(element.val());
+                                    }
+                                } else {
+                                    $tpl.removeClass(styleChecked);
+                                    for (var i in values) {
+                                        if (values[i] === element.val()) {
+                                            delete values[i];
                                         }
-                                        break;
-                                    case true: // 选中时
-                                        $tpl.addClass(styleChecked);
-                                        var is_find = false;
-                                        for (var i in values) {
-                                            if (values[i] === element.val()) {
-                                                is_find = true;
-                                                break;
-                                            }
-                                        }
-                                        !is_find && values.push(element.val());
-                                        break;
-                                    case false: // 取消选中时
-                                        $tpl.removeClass(styleChecked)
-                                        for (var i in values) {
-                                            if (values[i] === element.val()) {
-                                                delete values[i];
-                                            }
-                                        }
-                                        break;
+                                    }
                                 }
                             });
                             element.data('layui-build', $tpl.on('click', function () {
@@ -202,14 +193,43 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                 restrict: 'E',
                 compile: function (element, attr) {
                     if (!element.data('layui-build')) {
+                        var placeholder = attr.placeholder || '请选择';
                         var select = angular.element('\n\
                         <div class="layui-unselect layui-form-select">\
-                            <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>\
+                            <div class="layui-select-title"><input type="text" placeholder="' + placeholder + '" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>\
                             <dl class="layui-anim layui-anim-upbit"></dl>\
-                        </div>').on('layui.hide', function () {
+                        </div>');
+                        var $scope = element.scope(), options = select.find('dl');
+                        $scope.$watch(attr.ngModel, function (newValue) {
+                            var split = attr.ngModel.split('.'), name = split.pop(), bind = element.data('bind');
+                            $scope[bind][name] = $scope[bind][name] || '';
+                            options.empty();
+                            angular.forEach(element.find('option'), function (option) {
+                                var $option = angular.element('<dd></dd>').attr('value', option.value).html(option.innerHTML);
+                                if (angular.element(option).prop('disabled')) {
+                                    $option.addClass('layui-disabled');
+                                } else if ($scope[bind][name] === option.value) {
+                                    $option.addClass('layui-this');
+                                    select.find('input').attr('placeholder', option.innerHTML);
+                                }
+                                options.append($option);
+                                $option.on('click', function (e) {
+                                    if (angular.element(this).hasClass('layui-disabled')) {
+                                        e.stopPropagation();
+                                        return false;
+                                    }
+                                    element.val(option.value);
+                                    $scope[bind][name] = option.value;
+                                    select.find('input').attr('placeholder', option.innerHTML);
+                                    select.find('dd').removeClass('layui-this');
+                                    $option.addClass('layui-this');
+                                });
+                            });
+                        });
+                        select.on('layui.hide', function () {
                             var input = angular.element(this);
                             input.removeClass('layui-form-selected');
-                        }).on('layui.show', function (e) {
+                        }).on('layui.show', function () {
                             var input = angular.element(this);
                             angular.element(this).addClass('layui-form-selected');
                             angular.element(document).one('click', function (e) {
@@ -218,28 +238,10 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                             });
                         }).on('click', function (e) {
                             $('.layui-form-select.layui-form-selected').not(this).removeClass('layui-form-selected');
-                            angular.element(this).triggerHandler(this.className.indexOf('layui-form-selected') > -1 ? 'layui.hide' : 'layui.show');
+                            select.triggerHandler(this.className.indexOf('layui-form-selected') > -1 ? 'layui.hide' : 'layui.show');
                             e.stopPropagation();
                         });
-                        var options = select.find('dl');
-                        element.on('change', function () {
-                            options.empty();
-                            angular.forEach(element.find('option'), function (option) {
-                                var $option = angular.element('<dd></dd>').attr('value', option.value).html(option.innerHTML);
-                                (element.val() === option.value) && $option.addClass('layui-this');
-                                options.append($option);
-                                $option.on('click', function () {
-                                    element.val(this.value);
-                                    select.find('input').attr('placeholder', this.innerHTML);
-                                    select.find('dd').removeClass('layui-this');
-                                    $option.addClass('layui-this');
-                                });
-                            });
-                        });
                         element.after(select).data('layui-build', select);
-                        $timeout(function () {
-                            element.triggerHandler('change');
-                        });
                     }
                 }
             };
