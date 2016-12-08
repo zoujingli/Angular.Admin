@@ -133,15 +133,27 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                 var styleChecked = 'layui-form-onswitch';
                                 var $tpl = $('<div class="layui-unselect layui-form-switch"><i></i></div>')
                             }
+                            element.scope().$watch(attr.ngModel, function (newValue) {
+                                newValue ? $tpl.addClass(styleChecked) : $tpl.removeClass(styleChecked);
+                            });
+                            element.data('layui-build', $tpl.on('click', function () {
+                                $(element).trigger('click');
+                            })).after($tpl);
+                            break;
+                        case 'radio':
+                            var styleChecked = 'layui-form-radioed';
+                            var $tpl = angular.element('<div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><span>' + (element.attr('title') || '') + '</span></div>');
                             $tpl.on('click', function () {
                                 $(element).trigger('click');
                             });
-                            element.on('change', function () {
-                                element.hasClass('ng-not-empty') ? $tpl.addClass(styleChecked) : $tpl.removeClass(styleChecked);
-                            }).data('layui-build', $tpl).after($tpl);
-                            $timeout(function () {
-                                element.triggerHandler('change');
+                            element.scope().$watch(attr.ngModel, function (newValue) {
+                                if (newValue === element.val()) {
+                                    $tpl.addClass(styleChecked).find('i').html('&#xe643;');
+                                } else {
+                                    $tpl.removeClass(styleChecked).find('i').html('&#xe63f;');
+                                }
                             });
+                            element.data('layui-build', $tpl).after($tpl);
                             break;
                     }
                 }
@@ -149,50 +161,53 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
         }]);
 
     // select 标签编译
-    app.directive('select', function () {
-        return {
-            restrict: 'E',
-            compile: function (element, attr) {
-                if (!element.data('layui-build')) {
-                    var select = angular.element('\n\
+    app.directive('select', ['$timeout', function ($timeout) {
+            return {
+                restrict: 'E',
+                compile: function (element, attr) {
+                    if (!element.data('layui-build')) {
+                        var select = angular.element('\n\
                         <div class="layui-unselect layui-form-select">\
                             <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>\
                             <dl class="layui-anim layui-anim-upbit"></dl>\
                         </div>').on('layui.hide', function () {
-                        var input = angular.element(this);
-                        input.removeClass('layui-form-selected');
-                    }).on('layui.show', function (e) {
-                        var input = angular.element(this);
-                        angular.element(this).addClass('layui-form-selected');
-                        angular.element(document).one('click', function (e) {
-                            input.triggerHandler('layui.hide');
+                            var input = angular.element(this);
+                            input.removeClass('layui-form-selected');
+                        }).on('layui.show', function (e) {
+                            var input = angular.element(this);
+                            angular.element(this).addClass('layui-form-selected');
+                            angular.element(document).one('click', function (e) {
+                                input.triggerHandler('layui.hide');
+                                e.stopPropagation();
+                            });
+                        }).on('click', function (e) {
+                            $('.layui-form-select.layui-form-selected').not(this).removeClass('layui-form-selected');
+                            angular.element(this).triggerHandler(this.className.indexOf('layui-form-selected') > -1 ? 'layui.hide' : 'layui.show');
                             e.stopPropagation();
                         });
-                    }).on('click', function (e) {
-                        $('.layui-form-select.layui-form-selected').not(this).removeClass('layui-form-selected');
-                        angular.element(this).triggerHandler(this.className.indexOf('layui-form-selected') > -1 ? 'layui.hide' : 'layui.show');
-                        e.stopPropagation();
-                    });
-                    var options = select.find('dl');
-                    element.on('change', function () {
-                        options.empty();
-                        angular.forEach(element.find('option'), function (option) {
-                            var $option = angular.element('<dd></dd>').attr('value', option.value).html(option.innerHTML);
-                            (element.val() === option.value) && $option.addClass('layui-this');
-                            options.append($option);
-                            $option.on('click', function () {
-                                element.val(this.value);
-                                select.find('input').attr('placeholder', this.innerHTML);
-                                select.find('dd').removeClass('layui-this');
-                                $option.addClass('layui-this');
+                        var options = select.find('dl');
+                        element.on('change', function () {
+                            options.empty();
+                            angular.forEach(element.find('option'), function (option) {
+                                var $option = angular.element('<dd></dd>').attr('value', option.value).html(option.innerHTML);
+                                (element.val() === option.value) && $option.addClass('layui-this');
+                                options.append($option);
+                                $option.on('click', function () {
+                                    element.val(this.value);
+                                    select.find('input').attr('placeholder', this.innerHTML);
+                                    select.find('dd').removeClass('layui-this');
+                                    $option.addClass('layui-this');
+                                });
                             });
                         });
-                    });
-                    element.after(select).data('layui-build', select).triggerHandler('change');
+                        element.after(select).data('layui-build', select);
+                        $timeout(function () {
+                            element.triggerHandler('change');
+                        });
+                    }
                 }
-            }
-        };
-    });
+            };
+        }]);
 
     // 创建表单加强指令
     app.directive('form', ['$compile', '$form', function ($compile, $form) {

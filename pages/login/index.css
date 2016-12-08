@@ -23,7 +23,7 @@ body.login .clouds-fast {
     animation: cloudmove 30s linear infinite;
 }
 body.login .clouds-footer {
-    background: url("img/login/cloud_one.png") repeat-x left 100%;
+    background: url("img/login/cloud_one.png") no-repeat left 100% ;
     animation:none
 }
 @-webkit-keyframes cloudmove {
