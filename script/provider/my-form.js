@@ -176,7 +176,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                                 }
                             });
                             element.data('layui-build', $tpl.on('click', function () {
-                                $(element).trigger('click');
+                                $(element).trigger('click').trigger('click').trigger('click');
                             })).after($tpl);
                             break;
                     }
