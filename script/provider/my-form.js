@@ -179,12 +179,12 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                             break;
                         case 'radio':
                             var styleChecked = 'layui-form-radioed';
-                            var $tpl = angular.element('<div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><span>' + (element.attr('title') || '') + '</span></div>');
+                            var $tpl = angular.element('<div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>' + (element.attr('title') || '') + '</span></div>');
                             element.scope().$watch(attr.ngModel, function (newValue) {
                                 if (newValue === element.val()) {
-                                    $tpl.addClass(styleChecked).find('i').html('&#xe643;');
+                                    $tpl.addClass(styleChecked).find('i').addClass('layui-anim-scaleSpring').html('&#xe643;');
                                 } else {
-                                    $tpl.removeClass(styleChecked).find('i').html('&#xe63f;');
+                                    $tpl.removeClass(styleChecked).find('i').removeClass('layui-anim-scaleSpring').html('&#xe63f;');
                                 }
                             });
                             element.data('layui-build', $tpl.on('click', function () {
