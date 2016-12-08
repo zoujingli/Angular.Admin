@@ -9,6 +9,12 @@
 
 **关于重构**：项目基于新架构进行重构，旧版本已经切换到 [old-master](https://git.oschina.net/zoujingli/Angular.Admin/tree/old-master/) 分支。
 
+参考文档：
+--
+* Angular：http://www.runoob.com/angularjs/angularjs-tutorial.html
+
+* Layui：http://www.layui.com/doc
+
 更新日志
 --
 ```
