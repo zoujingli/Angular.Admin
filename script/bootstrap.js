@@ -44,7 +44,7 @@ require.config({
         'ngSanitize': {deps: ['angular']},
     },
     deps: ['angular', 'css!script/plugs/layui/css/layui.css', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
-    urlArgs: "v=" + (new Date()).getTime()
+//    urlArgs: "v=" + (new Date()).getTime()
 });
 
 /**
@@ -60,7 +60,7 @@ require(['pace'], function (pace) {
  * @param {type} angular
  * @returns {undefined}
  */
-require(['angular', 'ngRoute', 'myView'], function (angular) {
+require(['angular', 'ngRoute', 'myView', 'layui'], function (angular) {
 
     // 创建APP应用
     var app = angular.module('app', ['ngRoute', 'myView']);
@@ -114,11 +114,8 @@ require(['angular', 'ngRoute', 'myView'], function (angular) {
             });
 
         }]);
-    require(['layui'], function () {
-        layui.config({dir: baseUrl + '/plugs/layui/'});
-        angular.bootstrap(document, [app.name]);
-    });
     // 启动应用
-//    angular.bootstrap(document, [app.name]);
+    layui.config({dir: baseUrl + '/plugs/layui/'});
+    angular.bootstrap(document, [app.name]);
 
 });
