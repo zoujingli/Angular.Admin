@@ -13,10 +13,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
     var app = angular.module('myForm', ['myDialog']);
 
     // 定义表单数据通信Provider
-    app.provider('$form', [
-        '$dialogProvider',
-        '$rootScopeProvider',
-        function ($dialog) {
+    app.provider('$form', ['$dialogProvider', '$rootScopeProvider', function ($dialog) {
 
             /**
              * 异步加载的数据
@@ -100,7 +97,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
              */
             this.listen = function (element) {
                 var self = this;
-                element.on('submit', function () {
+                $(element).on('submit', function (e) {
                     if (!$(this).hasClass('ng-valid')) {
                         return false;
                     }
@@ -196,11 +193,11 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                         var placeholder = attr.placeholder || '请选择';
                         var select = angular.element('\n\
                         <div class="layui-unselect layui-form-select">\
-                            <div class="layui-select-title"><input type="text" placeholder="' + placeholder + '" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>\
+                            <div class="layui-select-title"><input type="text" placeholder="' + placeholder + '" readonly="readonly" class="layui-input layui-unselect"><i class="layui-edge"></i></div>\
                             <dl class="layui-anim layui-anim-upbit"></dl>\
                         </div>');
                         var $scope = element.scope(), options = select.find('dl');
-                        $scope.$watch(attr.ngModel, function (newValue) {
+                        $scope.$watch(attr.ngModel, function () {
                             var split = attr.ngModel.split('.'), name = split.pop(), bind = element.data('bind');
                             $scope[bind][name] = $scope[bind][name] || '';
                             options.empty();
