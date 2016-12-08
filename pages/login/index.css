@@ -53,12 +53,9 @@ body.login .logo{background:url(http://static.cdn.cuci.cc/2016/0414/af3c5d9fcf94
 body.login .content{width:692px; height:336px; background:url(img/login/logininfo.png) no-repeat; margin:30px auto auto auto;position:relative;display:block;}
 body.login .content ul{margin-left:285px;margin-right:60px;}
 body.login .content ul li{margin-bottom:25px;position:relative}
-/*body.login input.username,body.login input.password{height:48px;line-height:48px; padding-left:44px; font-size:14px; color:#90a2bc;}*/
-/*body.login input.username:focus,body.login input.password:focus{outline: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}*/
-/*body.login .username{background:url(img/login/loginuser.png) no-repeat;}*/
-/*body.login .password{background:url(img/login/loginpassword.png) no-repeat;}*/
-/*body.login button.submit{width:111px;height:35px; background:url(img/login/buttonbg.png) repeat-x; font-size:14px; font-weight:bold; color:#fff;cursor:pointer;line-height:35px;border:none}*/
-/*body.login button.submit[disabled]{color:#ccc}*/
+body.login .content ul li input{margin-bottom:25px;position:relative;background:url(img/icon.png) no-repeat;background-size:20px;padding-left:38px}
+body.login .content ul li input.username{background-position: 8px 7px}
+body.login .content ul li input.password{background-position: 8px -20px}
 
 /* 头像 */
 body.login .people{width:165px; height:96px;position:relative;top:8px;left:-70px}
