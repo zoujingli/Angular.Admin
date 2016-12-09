@@ -1,4 +1,4 @@
-/* global swal */
+/* global layui */
 
 /**
  * 消息提示自定义插件
@@ -7,127 +7,65 @@
 define(['angular', 'sweetalert'], function (angular) {
 
     angular.module('myDialog', []).provider('$dialog', function () {
+        var self = this;
 
-        /**
-         * 关闭消息框
-         * @returns {void|*}
-         */
+        // 记录需要关闭的提示框
+        this.needCloseIndex = [];
+
+        // 关闭指定的窗口
         this.close = function () {
-            return swal.close();
-        };
-
-        /**
-         * 弹出警告消息框
-         * @param {string} msg
-         * @param {function} callback
-         * @returns {*}
-         */
-        this.alert = function (msg, callback) {
-            return swal({
-                title: msg,
-                type: "warning",
-                animation: "slide-from-top",
-                showCancelButton: false,
-                confirmButtonColor: "#32c5d2",
-                confirmButtonText: "确定",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, callback);
-        };
-
-        /**
-         * 确认对话框
-         * @param {string} msg 提示消息内容
-         * @param {function} ok 确认的回调函数
-         * @param {function} no 取消的回调函数
-         * @returns {*}
-         */
-        this.confirm = function (msg, ok, no) {
-            return swal({
-                title: msg,
-                type: "info",
-                animation: "slide-from-top",
-                showCancelButton: true,
-                cancelButtonText: "取消",
-                confirmButtonColor: "#32c5d2",
-                confirmButtonText: "确定",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function (isok) {
-                isok ? (typeof ok === 'function') && ok.call() : (typeof no === 'function') && no.call();
-                swal.close();
+            layui.use('layer', function () {
+                for (var i in self.needCloseIndex) {
+                    layui.layer.close(self.needCloseIndex[i]);
+                    delete self.needCloseIndex[i];
+                }
             });
         };
 
-        /**
-         * 显示成功类型的消息
-         * @param {string} msg 消息内容
-         * @param {int} time  延迟关闭时间
-         * @param {function} callback 回调函数
-         * @return {*}
-         */
-        this.success = function (msg, time, callback) {
-            return swal({
-                title: msg,
-                type: "success",
-                timer: (time || 2) * 1000,
-                animation: "slide-from-top",
-                showCancelButton: false,
-                cancelButtonText: "取消",
-                confirmButtonColor: "#32c5d2",
-                confirmButtonText: "确定",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function () {
-                (typeof callback === 'function') && callback.call();
-                swal.close();
+        // Tips 提示框
+        this.tips = function (content, time, callback) {
+            layui.use('layer', function () {
+                layui.layer.msg(content, {time: (time || 3) * 1000, shadeClose: true}, callback);
             });
         };
 
-        /**
-         * 显示失败类型的消息
-         * @param {string} msg 消息内容
-         * @param {int} time 延迟关闭时间
-         * @param {function} callback 回调函数
-         * @return {*}
-         */
-
-        this.error = function (msg, time, callback) {
-            return swal({
-                title: msg,
-                type: "error",
-                timer: (time || 2) * 1000,
-                animation: "slide-from-top",
-                showCancelButton: false,
-                cancelButtonText: "取消",
-                confirmButtonColor: "#32c5d2",
-                confirmButtonText: "确定",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function () {
-                (typeof callback === 'function') && callback.call();
-                swal.close();
+        // Loading 消息提示
+        this.loading = function (callback) {
+            layui.use('layer', function () {
+                var index = layui.layer.load(1, {shade: [0.1, '#fff'], end: callback});
+                self.needCloseIndex.push(index);
             });
         };
 
-        /**
-         * 状态消息提示
-         * @param {string} msg
-         * @param {int} time
-         * @param {function} callback
-         * @returns {*}
-         */
-        this.tips = function (msg, time, callback) {
-            return swal({
-                title: msg,
-                text: (time || 3) + ' 秒钟自动关闭',
-                timer: (time || 3) * 1000,
-                showConfirmButton: false
+        // 成功提示框
+        this.success = function (content, time, callback) {
+            layui.use('layer', function () {
+                layui.layer.msg(content, {time: (time || 3) * 1000, shadeClose: true, icon: 1}, callback);
+            });
+        };
+
+        // 错误提示框
+        this.error = function (content, time, callback) {
+            layui.use('layer', function () {
+                layui.layer.msg(content, {time: (time || 3) * 1000, shadeClose: true, icon: 2}, callback);
+            });
+        };
+
+        // 询问提示框
+        this.confirm = function (content, success, cancel) {
+            layui.use('layer', function () {
+                var index = layui.layer.confirm(content, {btn: ['确定', '取消']}, function () {
+                    typeof success === 'function' && success.call();
+                    layui.layer.close(index);
+                }, function () {
+                    layui.layer.close(index);
+                    typeof cancel === 'function' && cancel.call();
+                });
             });
         };
 
         this.$get = function () {
-            return this;
+            return self;
         };
     });
 });

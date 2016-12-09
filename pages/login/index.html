@@ -17,7 +17,7 @@
 
     <div class="logo"></div>
 
-    <form action="server/user/login.json" data-auto="true" method="get" class="content layui-form" name="user">
+    <form onsubmit="return false;" data-ng-submit="submit()" class="content layui-form" name="user">
         <div class="people">
             <div class="tou"></div>
             <div class="initial_left_hand" data-ng-class="{false:'initial_left_hand', true:'left_hand'}[hideEye]"></div>

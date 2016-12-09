@@ -1,3 +1,5 @@
+/* global API_URL */
+
 /**
  * 表单H5自定义验插件
  * @param {type} angular
@@ -13,81 +15,74 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
     var app = angular.module('myForm', ['myDialog']);
 
     // 定义表单数据通信Provider
-    app.provider('$form', ['$dialogProvider', '$rootScopeProvider', function ($dialog) {
+    app.provider('$form', ['$dialogProvider', function ($dialog) {
+            var self = this;
 
-            /**
-             * 异步加载的数据
-             * @param {type} url Ajax请求地址
-             * @param {type} data Ajax请求数据
-             * @param {type} type Ajax请求类型
-             * @param {type} callback 请求成功后的回调函数
-             * @param {type} time 自动提示等待时间
-             * @returns {undefined}
-             */
-            this.load = function (url, data, type, callback, time) {
-                this.errMsg = '{status}服务器繁忙，请稍候再试！';
-                var self = this;
-                var send_data = (typeof data === 'object' && data.tagName === 'FORM') ? $(data).serialize() : data;
+            /*! Request 通用请求 */
+            this.request = function (url, data, type, callback) {
+                var headers = {"content-type": "application/x-www-form-urlencoded"};
+                if (angular.$cookies.get('token')) {
+                    headers.token = angular.$cookies.get('token');
+                }
+                url = (url.indexOf('://') > -1 ? '' : API_URL || '') + url;
                 pace.track(function () {
-                    $.ajax({
-                        url: url,
-                        type: type || 'GET',
-                        data: send_data || {},
-                        statusCode: {
-                            404: function () {
-                                $dialog.error(self.errMsg.replace('{status}', 'E404 - '));
-                            },
-                            500: function () {
-                                $dialog.error(self.errMsg.replace('{status}', 'E500 - '));
+                    angular.$http({method: type || 'get', data: angular.$httpParamSerializerJQLike(data), url: url, headers: headers}).success(function (ret, status) {
+                        if (parseInt(status) === 200) {
+                            // 授权失败
+                            if (ret.code && ret.code === 'AUTH_TOKEN_FAILD') {
+                                return $dialog.error('服务器授权失败，请重新授权！', 3, function () {
+                                    angular.$view.goto('login.html');
+                                });
                             }
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            $dialog.error(self.errMsg.replace('{status}', 'E' + textStatus + ' - '));
-                        },
-                        success: function (ret) {
                             if (typeof callback === 'function' && callback.call(self, ret) === false) {
                                 return false;
                             }
-                            if (typeof ret === 'string') {
-                                try {
-                                    var t = JSON.parse(ret);
-                                    !!t && (ret = t);
-                                } catch (e) {
-                                }
-                            }
-                            console.log(typeof ret);
                             if (typeof (ret) === 'object') {
-                                return self.autoResult(ret, time);
+                                return self.autoResult(ret);
                             }
-                            if (ret.indexOf('A PHP Error was encountered') !== -1) {
-                                return $dialog.error(self.errMsg.replace('{status}', 'E505 - '));
-                            }
+                            return true;
                         }
+                        $dialog.error('E{status}-服务器繁忙，请稍候再试！'.replace('{status}', status));
+                    }).error(function () {
+                        $dialog.tips('服务器繁忙，请稍候再试！');
                     });
-                }
-                );
+                });
+            };
+
+            /*! POST 请求 */
+            this.post = function (url, data, callback) {
+                self.request(url, data, 'post', callback);
+            };
+
+            /*! GET 请求 */
+            this.get = function (url, data, callback) {
+                self.request(url, data, 'get', callback);
             };
 
             /**
              * 自动处理显示Think返回的Json数据
              * @param {type} data JSON数据对象
              * @param {type} time 延迟关闭时间
+             * @param {type} success 回调函数
+             * @param {type} error 回调函数
              */
-            this.autoResult = function (data, time) {
+            this.autoResult = function (data, time, success, error) {
                 console.log('====== 服务器返回的数据 ======');
                 console.log(data);
                 if (data.code === 'SUCCESS') {
                     $dialog.success(data.info, time, function () {
-                        if (data.referer) {
-                            window.location.href = data.referer;
-                        } else {
-                            window.location.reload();
+                        if (!(typeof success === 'function' && false === success.call(this, data))) {
+                            if (data.referer) {
+                                window.location.href = data.referer;
+                            } else {
+                                window.location.reload();
+                            }
                         }
                     });
                 } else {
                     $dialog.error(data.info, 3, function () {
-                        if (data.referer) {
-                            window.location.href = data.referer;
+                        if (!(typeof error === 'function' && false === error.call(this, data))) {
+                            !data.referer && (window.location.href = data.referer);
                         }
                     });
                 }
@@ -102,16 +97,39 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                     if (!$(this).hasClass('ng-valid')) {
                         return false;
                     }
-                    var time = this.getAttribute('data-time');
-                    self.load(this.action, element.scope()[element.attr('bind')], this.method || 'get', false, time);
+                    // 表单数据
+                    var data = element.scope()[element.attr('bind')] || {};
+                    // 请求URL
+                    var action = element.attr('action') || '', url = (action.indexOf('://') > -1 ? '' : (API_URL || '')) + action;
+                    // 成功等待成功、成功回跳地址
+                    var time = element.attr('data-time') || 2, success = element.attr('data-success') || false;
+                    // 执行Ajax请求，并设置回头回调
+                    self.load(url, data, this.method || 'get', function (ret) {
+                        // Ajax结果处理，使用自动解析机制
+                        self.autoResult(ret, time, function () {
+                            // 接口调用成功，判断表单是否需要自动跳转
+                            if (success) {
+                                window.location.href = success;
+                                return false;
+                            }
+                        });
+                        return false;
+                    }, time);
                     return false;
                 });
             };
+            var self = this;
 
             this.$get = function () {
-                return this;
+                return {
+                    listen: self.listen,
+                    request: self.request,
+                    post: self.post,
+                    get: self.get,
+                    autoResult: self.autoResult,
+                    $dialog: $dialog
+                };
             };
-
         }]);
 
     // input 标签编译
@@ -274,6 +292,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
 
                     // 表单自动提交，表单需要给属性 data-auto=true
                     if (attr.auto && !element.attr('data-auto-listen')) {
+                        element.attr('onsubmit', 'return false');
                         element.attr('data-auto-listen', true);
                         $form.listen(element);
                     }

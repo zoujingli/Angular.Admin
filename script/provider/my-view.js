@@ -90,13 +90,25 @@ define(['angular'], function (angular) {
                     }
                 });
             };
+
+
+            /*! 跳转页面 */
+            this.goto = function (uri) {
+                angular.$location.path(uri);
+                console.log("Go : " + angular.$location.$$path);
+                if (!angular.$rootScope.$$phase) {
+                    angular.$rootScope.$apply();
+                }
+
+            };
             this.$get = function () {
                 return {
                     views: self.views,
                     useModule: self.registerModule,
                     registerModule: self.registerModule,
                     useView: self.registerView,
-                    registerView: self.registerView
+                    registerView: self.registerView,
+                    goto: self.goto
                 };
             };
         }
