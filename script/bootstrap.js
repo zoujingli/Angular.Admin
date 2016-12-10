@@ -82,7 +82,6 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
     // 应用初始化动作
     app.run(['$location', '$view', '$rootScope', '$templateCache', '$cookies', '$http', '$httpParamSerializerJQLike', '$dialog',
         function ($location, $view, $rootScope, $templateCache, $cookies, $http, $httpParamSerializerJQLike, $dialog) {
-
             // 模块初始化赋值
             angular.$view = $view;
             angular.$http = $http;

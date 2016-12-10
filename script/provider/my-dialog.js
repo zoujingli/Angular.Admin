@@ -7,6 +7,7 @@
 define(['angular'], function (angular) {
 
     angular.module('myDialog', []).provider('$dialog', function () {
+
         var self = this;
 
         // 记录需要关闭的提示框

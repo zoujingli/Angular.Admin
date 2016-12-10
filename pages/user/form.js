@@ -1,3 +1,5 @@
+/* global layui */
+
 define(['require', 'angular', 'jquery', 'myView', 'myForm'], function (require, angular, $) {
 
     layui.use('laydate');

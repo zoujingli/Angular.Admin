@@ -7,21 +7,15 @@
  * @date 2016/11/20 01:23
  */
 define(['angular'], function (angular) {
-    angular.module('myView', []).provider('$view', [
-        '$controllerProvider',
-        '$compileProvider',
-        '$filterProvider',
-        '$provide',
-        '$injector',
-        '$routeProvider',
+    angular.module('myView', []).provider('$view', ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$injector', '$routeProvider',
         function ($controllerProvider, $compileProvider, $filterProvider, $provide, $injector, $routeProvider) {
             this.views = {};
             var self = this, ngProviders = {
                 $controllerProvider: $controllerProvider,
                 $compileProvider: $compileProvider,
                 $filterProvider: $filterProvider,
-                $provide: $provide,
-                $injector: $injector
+                $injector: $injector,
+                $provide: $provide
             };
             /*! 动态注入模块 */
             this.registerModule = function (name) {
@@ -86,20 +80,16 @@ define(['angular'], function (angular) {
                                     });
                                 });
                                 return deferred.promise;
-                            }]
+                            }
+                        ]
                     }
                 });
             };
-
-
             /*! 跳转页面 */
             this.goto = function (uri) {
                 angular.$location.path(uri);
                 console.log("Go : " + angular.$location.$$path);
-                if (!angular.$rootScope.$$phase) {
-                    angular.$rootScope.$apply();
-                }
-
+                !angular.$rootScope.$$phase && angular.$rootScope.$apply();
             };
             this.$get = function () {
                 return {
