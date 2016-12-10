@@ -1,8 +1,8 @@
 /* global require, layui */
 
-//const API_URL = 'http://localhost/service/public/index.php/';
-const API_URL = 'https://service.cuci.cc/';
-const API_AUTH = 'user/api/token.html';
+//var API_URL = 'http://localhost/service/public/index.php/';
+var API_URL = 'https://service.cuci.cc/';
+var API_AUTH = 'user/api/token.html';
 
 var script = document.scripts[document.scripts.length - 1].src, baseUrl = script.substring(0, script.lastIndexOf("/"));
 
@@ -27,7 +27,6 @@ require.config({
         'jquery': ['//cdn.bootcss.com/jquery/1.12.4/jquery.min'],
         'supersized': ['script/plugs/supersized/js/supersized.3.2.7'],
         'angular': ['//cdn.bootcss.com/angular.js/1.5.9/angular.min'],
-        'sweetalert': ['//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min'],
         'ngCookies': ['//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.min'],
         'ngSanitize': ['//cdn.bootcss.com/angular-sanitize/1.5.8/angular-sanitize.min'],
         'ngRoute': ['//cdn.bootcss.com/angular.js/1.5.8/angular-route.min'],
@@ -35,7 +34,6 @@ require.config({
     },
     shim: {
         'angular': {exports: 'angular'},
-        'sweetalert': {deps: ['css!//cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css']},
         'supersized': {deps: ['jquery', 'css!script/plugs/supersized/css/supersized.css']},
         'ui.bootstrap': {deps: ['angular', 'css!//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css']},
         'pace': {deps: ['css!//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-flash.min.css']},
@@ -118,7 +116,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
 
             // 页面跳转前的处理
             $rootScope.$on("$locationChangeStart", function () {
-                console.log('Start : ' + $location.$$path);
+                console.log('Start Location : ' + $location.$$path);
                 if ($location.$$path.length > 0) {
                     // 动态注册路由
                     $view.registerView($location.$$path);
@@ -148,7 +146,6 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
                 });
                 document.body.appendChild(iframe);
             });
-
         }
     ]);
     // 启动应用

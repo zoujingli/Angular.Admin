@@ -4,7 +4,7 @@
  * 消息提示自定义插件
  * @param {type} angular
  */
-define(['angular', 'sweetalert'], function (angular) {
+define(['angular'], function (angular) {
 
     angular.module('myDialog', []).provider('$dialog', function () {
         var self = this;
