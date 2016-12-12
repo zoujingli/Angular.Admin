@@ -20,11 +20,11 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
 
             /*! Request 通用请求 */
             this.request = function (url, data, type, callback) {
-                var headers = {"content-type": "application/x-www-form-urlencoded"};
+                var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+                url = (url.indexOf('://') > -1 ? '' : API_URL || '') + url;
                 if (angular.$cookies.get('token')) {
                     headers.token = angular.$cookies.get('token');
                 }
-                url = (url.indexOf('://') > -1 ? '' : API_URL || '') + url;
                 pace.track(function () {
                     angular.$http({method: type || 'get', data: angular.$httpParamSerializerJQLike(data), url: url, headers: headers}).success(function (ret, status) {
                         if (parseInt(status) === 200) {
