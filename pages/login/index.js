@@ -15,8 +15,11 @@ define(['angular', 'myView', 'myForm'], function (angular) {
                 $scope.hideEye = false;
 
                 if (angular.$cookies.get('token')) {
+                    $form.post('user/api/check.html', {}, function (ret) {
+                        console.log(ret);
+                    });
                     $form.$dialog.tips('已经登录过了！');
-                    return $view.goto('user/index.html'), false;
+//                    return $view.goto('user/index.html'), false;
                 }
                 // 表单默认值
                 $scope.user = {username: 'admin', password: 'admin'};
