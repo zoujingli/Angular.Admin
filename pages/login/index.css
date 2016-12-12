@@ -66,6 +66,6 @@ body.login .people .initial_left_hand{background: url("img/login/hand.png") no-r
 body.login .people .initial_right_hand{background: url("img/login/hand.png") no-repeat;width: 30px;height: 20px;position: absolute;top: -12px;right: -112px;}
 
 /* 底部版权 */
-body.login .footer{height:50px; line-height:50px; text-align:center; background:url(img/login/loginbg2.png) repeat-x;position:fixed;_position:absolute;*position:absolute;bottom:0;width:100%; color:#0b3a58;}
+body.login .footer{height:50px; line-height:50px; text-align:center; background:url(img/login/loginbg2.png) repeat-x;position:fixed;_position:absolute;*position:absolute;bottom:0;width:100%; color:#0b3a58;color:#fff}
 body.login .footer a{font-weight:bold;color:#0b3a58;}
-body.login .footer a:hover{color:#fff;}
+body.login .footer a:hover{color:#fff;color:#fff}

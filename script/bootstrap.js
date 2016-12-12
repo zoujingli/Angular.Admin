@@ -100,7 +100,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
                 site: {
                     title: 'Angular.Admin',
                     icon: 'http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico',
-                    copyright: '©版权所有 2016 楚才科技 | 粤ICP备14082924号',
+                    copyright: '©版权所有 ' + new Date().getFullYear() + ' 楚才科技 | 粤ICP备14082924号',
                     company: '广州楚才信息科技有限公司'
                 }
             };
