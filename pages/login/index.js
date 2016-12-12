@@ -10,16 +10,17 @@ define(['angular', 'myView', 'myForm'], function (angular) {
     return function (module, controller) {
         /*! 创建默认模块及默认控制器 */
         angular.module(module, ['myView', 'myForm']).controller(controller, ['$scope', '$form', '$view', function ($scope, $form, $view) {
-
                 $scope.app.layout.class.body = 'login';
                 $scope.hideEye = false;
-
+                // 登录状态检查
                 if (angular.$cookies.get('token')) {
+                    $form.$dialog.tips('检测到登录信息，正在验证...');
                     $form.post('user/api/check.html', {}, function (ret) {
-                        console.log(ret);
+                        if (ret.code === 'SUCCESS') {
+                            angular.$dialog.tips('自动登录成功');
+                            return $view.goto('user/index.html'), false;
+                        }
                     });
-                    $form.$dialog.tips('已经登录过了！');
-//                    return $view.goto('user/index.html'), false;
                 }
                 // 表单默认值
                 $scope.user = {username: 'admin', password: 'admin'};
