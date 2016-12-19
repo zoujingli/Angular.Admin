@@ -5,3 +5,4 @@
 
 .body .footer {padding: 30px 0;line-height: 30px;text-align: center;background-color: #eee;color: #666;font-weight: 300;margin-top:40px;border-top:1px solid #ccc;}
 .body .footer a{margin:auto 10px}
+.body .layui-main{width:auto;max-width:1140px;min-width:512px}
