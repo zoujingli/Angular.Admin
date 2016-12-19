@@ -20,6 +20,7 @@ define(['angular', 'myView', 'myForm'], function (angular) {
                             angular.$dialog.tips('自动登录成功');
                             return $view.goto('user/index.html'), false;
                         }
+                        angular.$dialog.tips(ret.info||'验证登录失败，请重新登录！');
                         return angular.$cookies.remove('token'),false;
                     });
                 }
