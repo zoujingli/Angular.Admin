@@ -20,8 +20,7 @@ define(['angular', 'myView', 'myForm'], function (angular) {
                             angular.$dialog.tips('自动登录成功');
                             return $view.goto('user/index.html'), false;
                         }
-                        angular.$cookies.remove('token');
-                        return angular.$dialog.tips(ret.msg),false;
+                        return angular.$cookies.remove('token'),false;
                     });
                 }
                 // 表单默认值
