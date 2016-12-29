@@ -10,7 +10,6 @@ define(['angular', 'myView', 'myForm'], function (angular) {
     return function (module, controller) {
         /*! 创建默认模块及默认控制器 */
         angular.module(module, ['myView', 'myForm']).controller(controller, ['$scope', '$form', '$view', function ($scope, $form, $view) {
-                $scope.app.layout.class.body = 'login';
                 $scope.hideEye = false;
                 // 登录状态检查
                 if (angular.$cookies.get('token')) {
