@@ -75,19 +75,19 @@
                             <dl class="layui-nav-child">
                                 <dd>
                                     <a href="javascript:;" data-url="personInfo.html">
-                                        <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
+                                        <i class="fa fa-user" data-icon='icon-geren1'></i>
                                         <span>个人信息</span>
                                     </a>
                                 </dd>
                                 <dd>
                                     <a href="javascript:;" data-url="changepwd.html">
-                                        <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
+                                        <i class="fa fa-lock" data-icon='icon-iconfuzhi01'></i>
                                         <span>修改密码</span>
                                     </a>
                                 </dd>
                                 <dd>
                                     <a href="javascript:;" data-url="myloginfo.html">
-                                        <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
+                                        <i class="fa fa-info" data-icon='icon-piliangicon'></i>
                                         <span>日志信息</span>
                                     </a>
                                 </dd>
@@ -299,13 +299,12 @@
 
             <!-- 右侧主体内容 -->
             <div class="layui-body" id="larry-body" style="bottom: 0;border-left: solid 2px #1AA094;">
-                <div class="layui-tab layui-tab-card larry-tab-box" id="larry-tab" lay-filter="demo" lay-allowclose="true">
+                <div class="layui-tab layui-tab-card larry-tab-box" id="larry-tab" lay-filter="demo" lay-allowclose="true" style="height:93%">
                     <ul class="layui-tab-title">
                         <li class="layui-this" id="admin-home"><i class="iconfont icon-diannao1"></i><em>后台首页</em></li>
                     </ul>
-                    <div class="layui-tab-content" style="min-height: 150px; ">
-                        <div class="layui-tab-item layui-show">
-                            <iframe class="larry-iframe" data-id='0' src="main.html"></iframe>
+                    <div class="layui-tab-content" style="position:relative;bottom:0;height:100%;overflow:auto">
+                        <div class="layui-tab-item layui-show" style="position:relative" data-ng-view="">
                         </div>
                     </div>
                 </div>
