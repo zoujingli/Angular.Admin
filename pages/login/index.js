@@ -18,10 +18,10 @@ define(['angular', 'myView', 'myForm'], function (angular) {
                     $form.post('user/api/check.html', {}, function (ret) {
                         if (ret.code === 'SUCCESS') {
                             angular.$dialog.tips('自动登录成功');
-                            return $view.goto('user/index.html'), false;
+                            return window.location.href = 'admin.html';
                         }
-                        angular.$dialog.tips(ret.info||'验证登录失败，请重新登录！');
-                        return angular.$cookies.remove('token'),false;
+                        angular.$dialog.tips(ret.info || '验证登录失败，请重新登录！');
+                        return angular.$cookies.remove('token'), false;
                     });
                 }
                 // 表单默认值
@@ -35,7 +35,7 @@ define(['angular', 'myView', 'myForm'], function (angular) {
                         if (ret.code === 'SUCCESS' && ret.data.token) {
                             $form.$dialog.tips(ret.info, 2);
                             angular.$cookies.put('token', ret.data.token);
-                            return $view.goto('user/index.html'), false;
+                            return window.location.href = 'admin.html';
                         }
                         $form.$dialog.tips(ret.info);
                         return false;

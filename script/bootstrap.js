@@ -67,7 +67,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
 
     // Layui 初始化
     layui.config({dir: baseUrl + '/plugs/layui/'});
-    layui.use(['layer', 'laydate','element']);
+    layui.use(['layer', 'laydate', 'element']);
 
     // 创建APP应用
     var app = angular.module('app', ['ngRoute', 'myView', 'myDialog', 'ngCookies']);
@@ -105,12 +105,11 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
                     company: '广州楚才信息科技有限公司'
                 },
                 topMenu: [
-                    {icon: '', 'title': '内容管理', 'href': 'javascript:void(0);'},
-                    {icon: '', 'title': '微信公众', 'href': 'javascript:void(0);'},
-                    {icon: '', 'title': '扩展模块', 'href': 'javascript:void(0);'},
-                    {icon: '', 'title': '退出登录', 'click': 'logout()'},
+                    {icon: '', 'title': '内容管理', 'href': 'javascript:void(0);', active: true},
+                    {icon: '', 'title': '微信公众', 'href': 'javascript:void(0);', active: false},
+                    {icon: '', 'title': '扩展模块', 'href': 'javascript:void(0);', active: false},
                 ],
-                topRight: [
+                leftMenu: [
                     {icon: '', 'title': '退出', 'click': 'logout()'},
                 ]
             };
@@ -119,7 +118,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
             $rootScope.logout = function () {
                 $dialog.confirm('确定要退出登录吗？', function () {
                     $cookies.remove('token');
-                    $view.goto('login.html');
+                    window.location.href = 'index.html';
                 });
             };
 
