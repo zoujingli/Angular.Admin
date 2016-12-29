@@ -46,7 +46,7 @@ require.config({
         'ngCookies': {deps: ['angular']},
         'ngSanitize': {deps: ['angular']},
     },
-    deps: ['angular', 'css!script/plugs/layui/css/layui.css', 'css!theme/css/animate.css', 'css!theme/css/common.css'],
+    deps: ['angular'],
     urlArgs: "v=" + (new Date()).getTime()
 });
 
@@ -67,7 +67,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
 
     // Layui 初始化
     layui.config({dir: baseUrl + '/plugs/layui/'});
-    layui.use(['layer', 'laydate']);
+    layui.use(['layer', 'laydate','element']);
 
     // 创建APP应用
     var app = angular.module('app', ['ngRoute', 'myView', 'myDialog', 'ngCookies']);
@@ -98,11 +98,21 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
                     class: {body: 'body'}
                 },
                 site: {
+                    url: "http://www.cuci.cc ",
                     title: 'Angular.Admin',
                     icon: 'http://static.cdn.cuci.cc/2016/0421/3586e898350c0890cf41a4828175d468.ico',
                     copyright: '©版权所有 ' + new Date().getFullYear() + ' 楚才科技 | 粤ICP备14082924号',
                     company: '广州楚才信息科技有限公司'
-                }
+                },
+                topMenu: [
+                    {icon: '', 'title': '内容管理', 'href': 'javascript:void(0);'},
+                    {icon: '', 'title': '微信公众', 'href': 'javascript:void(0);'},
+                    {icon: '', 'title': '扩展模块', 'href': 'javascript:void(0);'},
+                    {icon: '', 'title': '退出登录', 'click': 'logout()'},
+                ],
+                topRight: [
+                    {icon: '', 'title': '退出', 'click': 'logout()'},
+                ]
             };
 
             // 全局退出登录

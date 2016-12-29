@@ -5,9 +5,12 @@
         <title data-ng-bind="app.site.title">loading...</title>
         <link rel="shortcut icon" data-ng-href="{{app.site.icon}}" />
         <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+        <link href="script/plugs/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+        <link href="theme/css/common.css" rel="stylesheet" type="text/css"/>
+        <link href="theme/css/animate.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body class="" data-ng-class="app.layout.class.body">
-        <div data-ng-view=""></div>
+    <body>
+        <div class="view-container" data-ng-view=""></div>
         <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
         <script src="script/bootstrap.js"></script>
     </body>
