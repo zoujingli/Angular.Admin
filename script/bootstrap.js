@@ -1,7 +1,7 @@
 /* global require, layui */
 
-//var API_URL = 'http://localhost/service/public/index.php/';
-var API_URL = 'https://service.cuci.cc/';
+var API_URL = 'http://localhost/service/public/index.php/';
+//var API_URL = 'https://service.cuci.cc/';
 var API_AUTH = 'user/api/token.html';
 
 var script = document.scripts[document.scripts.length - 1].src, baseUrl = script.substring(0, script.lastIndexOf("/"));
@@ -63,14 +63,14 @@ require(['pace'], function (pace) {
  * @param {type} angular
  * @returns {undefined}
  */
-require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], function (angular) {
+require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'layui'], function (angular) {
 
     // Layui 初始化
     layui.config({dir: baseUrl + '/plugs/layui/'});
     layui.use(['layer', 'laydate', 'element']);
 
     // 创建APP应用
-    var app = angular.module('app', ['ngRoute', 'myView', 'myDialog', 'ngCookies']);
+    var app = angular.module('app', ['ngRoute', 'myView', 'myDialog', 'myForm', 'ngCookies']);
 
     // 应用启动配置
     app.config(['$routeProvider', '$viewProvider', '$locationProvider', function ($routeProvider, $viewProvider, $locationProvider) {
@@ -80,8 +80,8 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
         }]);
 
     // 应用初始化动作
-    app.run(['$location', '$view', '$rootScope', '$templateCache', '$cookies', '$http', '$httpParamSerializerJQLike', '$dialog',
-        function ($location, $view, $rootScope, $templateCache, $cookies, $http, $httpParamSerializerJQLike, $dialog) {
+    app.run(['$location', '$view', '$form', '$rootScope', '$templateCache', '$cookies', '$http', '$httpParamSerializerJQLike', '$dialog',
+        function ($location, $view, $form, $rootScope, $templateCache, $cookies, $http, $httpParamSerializerJQLike, $dialog) {
             // 模块初始化赋值
             angular.$view = $view;
             angular.$http = $http;
@@ -89,6 +89,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
             angular.$location = $location;
             angular.$cookies = $cookies;
             angular.$rootScope = $rootScope;
+            angular.$form = $form;
             $rootScope.$location = $location;
             angular.$httpParamSerializerJQLike = $httpParamSerializerJQLike;
 
@@ -132,6 +133,21 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myDialog', 'layui'], func
                     if ($location.$$path !== '/login.html' && !angular.$cookies.get('token')) {
                         $dialog.tips('抱歉，需要登录后才能进入！');
                         $view.goto('login.html');
+                    } else if (angular.$cookies.get('token')) {
+                        angular.$form.post('user/api/token/check.html', {}, function (ret) {
+                            if (ret.code === 'SUCCESS') {
+                                if ($location.$$path === '/login.html') {
+                                    angular.$dialog.tips('自动登录成功');
+                                    angular.$view.goto('user/form.html');
+                                }
+                                return  false;
+                            }
+                            angular.$dialog.tips(ret.info || '验证登录失败，请重新登录！', function () {
+                                angular.$cookies.remove('token');
+                                window.location.href = 'login.html';
+                            });
+                            return  false;
+                        });
                     }
                 }
             });

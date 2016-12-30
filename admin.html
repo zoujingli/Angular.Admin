@@ -60,7 +60,7 @@
                     <!-- 左侧菜单 -->
                     <ul class="layui-nav layui-nav-tree">
                         <li class="layui-nav-item layui-this">
-                            <a href="javascript:;" data-url="main.html">
+                            <a href="javascript:;" ng-href='#/user/index.html'>
                                 <i class="iconfont icon-home1" data-icon='icon-home1'></i>
                                 <span>后台首页</span>
                             </a>
@@ -303,9 +303,8 @@
                     <ul class="layui-tab-title">
                         <li class="layui-this" id="admin-home"><i class="iconfont icon-diannao1"></i><em>后台首页</em></li>
                     </ul>
-                    <div class="layui-tab-content" style="position:relative;bottom:0;height:100%;overflow:auto">
-                        <div class="layui-tab-item layui-show" style="position:relative" data-ng-view="">
-                        </div>
+                    <div class="layui-tab-content admin-conent">
+                        <div class="layui-tab-item layui-show admin-page" data-ng-view=''></div>
                     </div>
                 </div>
             </div>

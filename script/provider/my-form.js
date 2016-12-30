@@ -23,7 +23,7 @@ define(['angular', 'jquery', 'debug', 'pace', 'myDialog'], function (angular, $,
                 var headers = {"content-type": "application/x-www-form-urlencoded"};
                 url = (url.indexOf('://') > -1 ? '' : API_URL || '') + url;
                 if (angular.$cookies.get('token')) {
-                    data.token = angular.$cookies.get('token');
+                    headers.token = angular.$cookies.get('token');
                 }
                 pace.track(function () {
                     angular.$http({method: type || 'get', data: angular.$httpParamSerializerJQLike(data), url: url, headers: headers}).success(function (ret, status) {
