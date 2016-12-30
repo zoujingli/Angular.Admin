@@ -138,7 +138,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                             if (ret.code === 'SUCCESS') {
                                 if ($location.$$path === '/login.html') {
                                     angular.$dialog.tips('自动登录成功');
-                                    angular.$view.goto('user/form.html');
+                                    window.location.href = 'admin.html';
                                 }
                                 return  false;
                             }
