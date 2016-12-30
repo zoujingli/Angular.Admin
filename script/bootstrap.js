@@ -137,7 +137,6 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                         angular.$form.post('user/api/token/check.html', {}, function (ret) {
                             if (ret.code === 'SUCCESS') {
                                 if ($location.$$path === '/login.html') {
-                                    angular.$dialog.tips('自动登录成功');
                                     if (window.location.href.indexOf('admin.html') > 0) {
                                         angular.$view.goto('user/index.html');
                                     } else {
