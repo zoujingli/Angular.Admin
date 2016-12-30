@@ -132,25 +132,13 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                     // 需要登录的场景
                     if ($location.$$path !== '/login.html' && !angular.$cookies.get('token')) {
                         $dialog.tips('抱歉，需要登录后才能进入！');
-                        $view.goto('login.html');
-                    } else if (angular.$cookies.get('token')) {
-                        angular.$form.post('user/api/token/check.html', {}, function (ret) {
-                            if (ret.code === 'SUCCESS') {
-                                if ($location.$$path === '/login.html') {
-                                    if (window.location.href.indexOf('admin.html') > 0) {
-                                        angular.$view.goto('user/index.html');
-                                    } else {
-                                        window.location.href = 'admin.html';
-                                    }
-                                }
-                                return  false;
-                            }
-                            angular.$dialog.tips(ret.info || '验证登录失败，请重新登录！', function () {
-                                angular.$cookies.remove('token');
-                                window.location.href = 'login.html';
-                            });
-                            return  false;
-                        });
+                        window.location.href = 'index.html';
+                    } else if (angular.$cookies.get('token') && $location.$$path === '/login.html') {
+                        if (window.location.href.indexOf('admin.html') > 0) {
+                            angular.$view.goto('user/index.html');
+                        } else {
+                            window.location.href = 'admin.html';
+                        }
                     }
                 }
             });
