@@ -105,13 +105,29 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                     copyright: '©版权所有 ' + new Date().getFullYear() + ' 楚才科技 | 粤ICP备14082924号',
                     company: '广州楚才信息科技有限公司'
                 },
-                topMenu: [
-                    {icon: '', 'title': '内容管理', 'href': 'javascript:void(0);', active: true},
-                    {icon: '', 'title': '微信公众', 'href': 'javascript:void(0);', active: false},
-                    {icon: '', 'title': '扩展模块', 'href': 'javascript:void(0);', active: false},
-                ],
-                leftMenu: [
-                    {icon: '', 'title': '退出', 'click': 'logout()'},
+                menu: [
+                    {icon: '', 'title': '系统信息', 'href': 'javascript:void(0);', active: true, sub: [
+                            {icon: '', 'title': '后台首页', 'href': 'javascript:void(0);', active: true},
+                            {icon: '', 'title': '系统配置', 'href': 'javascript:void(0);', active: false, sub: [
+                                    {icon: '', 'title': '网站信息', 'href': 'javascript:void(0);', active: false},
+                                    {icon: '', 'title': '网站配置', 'href': 'javascript:void(0);', active: false},
+                                ]
+                            },
+                            {icon: '', 'title': '二级菜单12', 'href': 'javascript:void(0);', active: false},
+                            {icon: '', 'title': '二级菜单13', 'href': 'javascript:void(0);', active: false},
+                        ]
+                    },
+                    {icon: '', 'title': '一级菜单2', 'href': 'javascript:void(0);', active: false},
+                    {icon: '', 'title': '一级菜单3', 'href': 'javascript:void(0);', active: false, sub: [
+                            {icon: '', 'title': '二级菜单31', 'href': 'javascript:void(0);', active: true, sub: [
+                                    {icon: '', 'title': '三级菜单311', 'href': 'javascript:void(0);', active: false},
+                                    {icon: '', 'title': '三级菜单312', 'href': 'javascript:void(0);', active: false},
+                                ]
+                            },
+                            {icon: '', 'title': '二级菜单32', 'href': 'javascript:void(0);', active: false},
+                            {icon: '', 'title': '二级菜单33', 'href': 'javascript:void(0);', active: false},
+                        ]
+                    },
                 ]
             };
 
@@ -121,6 +137,17 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                     $cookies.remove('token');
                     window.location.href = 'index.html';
                 });
+            };
+
+            // 顶部菜单点击
+            $rootScope.topMenuOnClick = function (menu) {
+                var index = parseInt(menu.$index);
+                if ($rootScope.app.menu[index].href && $rootScope.app.menu[index].href.indexOf('java') < 0) {
+                    return window.location.href = $rootScope.app.menu[index].href;
+                }
+                for (var i in $rootScope.app.menu) {
+                    $rootScope.app.menu[i].active = (parseInt(i) === parseInt(index));
+                }
             };
 
             // 页面跳转前的处理
