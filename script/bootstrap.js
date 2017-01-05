@@ -105,6 +105,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                     copyright: '©版权所有 ' + new Date().getFullYear() + ' 楚才科技 | 粤ICP备14082924号',
                     company: '广州楚才信息科技有限公司'
                 },
+                menuLeft: false,
                 menu: [
                     {icon: '', 'title': '系统信息', 'href': 'javascript:void(0);', active: true, sub: [
                             {icon: '', 'title': '后台首页', 'href': 'javascript:void(0);', active: true},
@@ -117,7 +118,7 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                             {icon: '', 'title': '二级菜单13', 'href': 'javascript:void(0);', active: false},
                         ]
                     },
-                    {icon: '', 'title': '一级菜单2', 'href': 'javascript:void(0);', active: false},
+                    {icon: '', 'title': '一级菜单2', 'href': '#user/form.html', active: false},
                     {icon: '', 'title': '一级菜单3', 'href': 'javascript:void(0);', active: false, sub: [
                             {icon: '', 'title': '二级菜单31', 'href': 'javascript:void(0);', active: true, sub: [
                                     {icon: '', 'title': '三级菜单311', 'href': 'javascript:void(0);', active: false},

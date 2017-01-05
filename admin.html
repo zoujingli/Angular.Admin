@@ -50,7 +50,7 @@
                 </div>
             </div>
             <!-- 左侧侧边导航开始 -->
-            <div class="layui-side layui-side-bg layui-larry-side" id="larry-side">
+            <div class="layui-side layui-side-bg layui-larry-side" style="display:none;" id="larry-side"  ng-if="app.menuLeft">
                 <div class="layui-side-scroll" id="larry-nav-side" lay-filter="side">
                     <div class="user-photo">
                         <a class="img" title="我的头像" >
@@ -87,8 +87,8 @@
             <!-- 左侧侧边导航结束 -->
 
             <!-- 右侧主体内容 -->
-            <div class="layui-body" id="larry-body" style="bottom: 0;border-left: solid 2px #1AA094;">
-                <div class="layui-tab layui-tab-card larry-tab-box" id="larry-tab" lay-filter="demo" lay-allowclose="true" style="height:93%">
+            <div class="layui-body" id="larry-body" style="bottom:0;border-left:solid 2px #1AA094;left:0;{{app.menuLeft?'left:200px':'left:0;'}}">
+                <div class="layui-tab layui-tab-card larry-tab-box admin-container" id="larry-tab" lay-filter="demo" lay-allowclose="true">
                     <!--                    
                     <ul class="layui-tab-title">
                         <li class="layui-this" id="admin-home"><i class="iconfont icon-diannao1"></i><em>后台首页</em></li>
