@@ -105,31 +105,62 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                     copyright: '©版权所有 ' + new Date().getFullYear() + ' 楚才科技 | 粤ICP备14082924号',
                     company: '广州楚才信息科技有限公司'
                 },
-                menuLeft: false,
+                menuLeft: true,
                 menu: [
-                    {icon: '', 'title': '系统信息', 'href': 'javascript:void(0);', active: true, sub: [
-                            {icon: '', 'title': '后台首页', 'href': 'javascript:void(0);', active: true},
-                            {icon: '', 'title': '系统配置', 'href': 'javascript:void(0);', active: false, sub: [
-                                    {icon: '', 'title': '网站信息', 'href': 'javascript:void(0);', active: false},
-                                    {icon: '', 'title': '网站配置', 'href': 'javascript:void(0);', active: false},
+                    {id: 1, icon: '', 'title': '系统信息', 'href': 'javascript:void(0);', active: true, sub: [
+                            {id: 10, icon: '', 'title': '后台首页', 'href': '#user/index.html', active: true},
+                            {id: 11, icon: '', 'title': '系统配置', 'href': 'javascript:void(0);', active: false, sub: [
+                                    {id: 110, icon: '', 'title': '网站信息', 'href': 'javascript:void(0);', active: false},
+                                    {id: 111, icon: '', 'title': '网站配置', 'href': 'javascript:void(0);', active: false},
                                 ]
                             },
-                            {icon: '', 'title': '二级菜单12', 'href': 'javascript:void(0);', active: false},
-                            {icon: '', 'title': '二级菜单13', 'href': 'javascript:void(0);', active: false},
+                            {id: 12, icon: '', 'title': '二级菜单12', 'href': 'javascript:void(0);', active: false},
+                            {id: 13, icon: '', 'title': '二级菜单13', 'href': 'javascript:void(0);', active: false},
                         ]
                     },
-                    {icon: '', 'title': '一级菜单2', 'href': '#user/form.html', active: false},
-                    {icon: '', 'title': '一级菜单3', 'href': 'javascript:void(0);', active: false, sub: [
-                            {icon: '', 'title': '二级菜单31', 'href': 'javascript:void(0);', active: true, sub: [
-                                    {icon: '', 'title': '三级菜单311', 'href': 'javascript:void(0);', active: false},
-                                    {icon: '', 'title': '三级菜单312', 'href': 'javascript:void(0);', active: false},
+                    {id: 2, icon: '', 'title': '单页表单演示', 'href': '#user/form.html', active: false},
+                    {id: 3, icon: '', 'title': '一级菜单3', 'href': 'javascript:void(0);', active: false, sub: [
+                            {id: 30, icon: '', 'title': '二级菜单31', 'href': 'javascript:void(0);', active: true, sub: [
+                                    {id: 301, icon: '', 'title': '三级菜单311', 'href': 'javascript:void(0);', active: false},
+                                    {id: 301, icon: '', 'title': '三级菜单312', 'href': 'javascript:void(0);', active: false},
                                 ]
                             },
-                            {icon: '', 'title': '二级菜单32', 'href': 'javascript:void(0);', active: false},
-                            {icon: '', 'title': '二级菜单33', 'href': 'javascript:void(0);', active: false},
+                            {id: 31, icon: '', 'title': '二级菜单32', 'href': 'javascript:void(0);', active: false},
+                            {id: 32, icon: '', 'title': '二级菜单33', 'href': 'javascript:void(0);', active: false},
                         ]
                     },
                 ]
+            };
+
+            // 顶部菜单点击
+            $rootScope.topMenuOnClick = function (menu) {
+                var index = parseInt(menu.$index);
+                if ($rootScope.app.menu[index].href && $rootScope.app.menu[index].href.indexOf('javascript') < 0) {
+                    $rootScope.app.menuLeft = false;
+                    return window.location.href = $rootScope.app.menu[index].href;
+                }
+                $rootScope.app.menuLeft = true;
+                for (var i in $rootScope.app.menu) {
+                    $rootScope.app.menu[i].active = (parseInt(i) === parseInt(index));
+                    if ($rootScope.app.menu[i].sub) {
+                        for (var m in $rootScope.app.menu[i].sub) {
+                            console.log($rootScope.app.menu[i].sub[m].href);
+                            if ($rootScope.app.menu[i].sub[m].href && $rootScope.app.menu[i].sub[m].href.indexOf('javascript') < 0) {
+                                window.location.href = $rootScope.app.menu[i].sub[m].href;
+                                break;
+                            }
+                            if ($rootScope.app.menu[i].sub[m].sub) {
+                                for (var n in $rootScope.app.menu[i].sub[m].sub) {
+                                    if ($rootScope.app.menu[i].sub[m].sub[n].href && $rootScope.app.menu[i].sub[m].sub[n].href.indexOf('javascript') < 0) {
+                                        window.location.href = $rootScope.app.menu[i].sub[m].sub[n].href;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
             };
 
             // 全局退出登录
@@ -138,17 +169,6 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
                     $cookies.remove('token');
                     window.location.href = 'index.html';
                 });
-            };
-
-            // 顶部菜单点击
-            $rootScope.topMenuOnClick = function (menu) {
-                var index = parseInt(menu.$index);
-                if ($rootScope.app.menu[index].href && $rootScope.app.menu[index].href.indexOf('java') < 0) {
-                    return window.location.href = $rootScope.app.menu[index].href;
-                }
-                for (var i in $rootScope.app.menu) {
-                    $rootScope.app.menu[i].active = (parseInt(i) === parseInt(index));
-                }
             };
 
             // 页面跳转前的处理
@@ -174,6 +194,9 @@ require(['angular', 'ngRoute', 'ngCookies', 'myView', 'myForm', 'myDialog', 'lay
             // 页面跳转成功后清除缓存
             $rootScope.$on('$locationChangeSuccess', function () {
                 $templateCache.removeAll();
+                layui.use(['element'], function (element) {
+                    element().init();
+                });
             });
 
             // 页面标题修正，兼容苹果设备

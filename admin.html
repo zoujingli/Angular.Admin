@@ -27,7 +27,7 @@
                     <div class="layui-larry-menu">
                         <ul class="layui-nav clearfix">
                             <li class="layui-nav-item {{x.active ? 'layui-this' : ''}}" ng-repeat="x in app.menu">
-                                <a ng-href="{{x.href}}" ng-click="topMenuOnClick(this)" data-index="{{x.index}}"><i class="{{x.icon}}"></i><span ng-bind="x.title"></span></a>
+                                <a data-menu-id="{{x.id}}" ng-href="{{x.href}}" ng-click="topMenuOnClick(this)" data-index="{{x.index}}"><i class="{{x.icon}}"></i><span ng-bind="x.title"></span></a>
                             </li>
                         </ul>
                     </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <!-- 左侧侧边导航开始 -->
-            <div class="layui-side layui-side-bg layui-larry-side" style="display:none;" id="larry-side"  ng-if="app.menuLeft">
+            <div class="layui-side layui-side-bg layui-larry-side" style="display:none;{{app.menuLeft?'display:block':''}}" id="larry-side"  ng-if="app.menuLeft">
                 <div class="layui-side-scroll" id="larry-nav-side" lay-filter="side">
                     <div class="user-photo">
                         <a class="img" title="我的头像" >
@@ -62,19 +62,19 @@
                         <!-- 有二级菜单时 -->
                         <li class="layui-nav-item {{menu.active?menu.sub?'layui-nav-itemed':'layui-this':''}}" ng-if='pmenu.sub' ng-repeat="menu in pmenu.sub">
                             <!-- 无第三级菜单时 -->
-                            <a href="javascript:;" ng-href='#/user/index.html' ng-if="!menu.sub">
+                            <a href="javascript:;" data-menu-id="{{pmenu.id}}" ng-if="!menu.sub">
                                 <i class="iconfont icon-home1" data-icon='icon-home1'></i>
                                 <span ng-bind='menu.title'></span>
                             </a>
                             <!-- 有第三级菜单时 -->
-                            <a href="javascript:;" ng-if="menu.sub">
+                            <a data-menu-id="{{pmenu.id}}-{{menu.id}}" href="javascript:;" ng-if="menu.sub">
                                 <i class="iconfont icon-jiaoseguanli" ></i>
                                 <span ng-bind="menu.title"></span>
                                 <em class="layui-nav-more"></em>
                             </a>
                             <dl class="layui-nav-child" ng-if="menu.sub">
                                 <dd ng-repeat="m in menu.sub" class="{{m.active?'layui-this':''}}">
-                                    <a href="javascript:;" data-url="personInfo.html">
+                                    <a data-menu-id="{{pmenu.id}}-{{menu.id}}-{{m.id}}" href="javascript:;" data-url="personInfo.html">
                                         <i class="fa fa-user"></i>
                                         <span ng-bind="m.title"></span>
                                     </a>
@@ -101,7 +101,7 @@
             </div>
 
             <!-- 底部区域 开始 -->
-            <div class="layui-footer layui-larry-foot" id="larry-footer">
+            <div class="layui-footer layui-larry-foot" id="larry-footer" style="left:0;{{app.menuLeft?'left:200px':'left:0;'}}">
                 <div class="layui-mian" ng-bind="app.site.copyright"></div>
             </div>
         </div>
