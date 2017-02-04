@@ -1,7 +1,7 @@
 /* global require, layui */
 
 var API_URL = 'http://localhost/service/public/index.php/';
-//var API_URL = 'https://service.cuci.cc/';
+var API_URL = 'https://service.cuci.cc/';
 var API_AUTH = 'user/api/token.html';
 
 var script = document.scripts[document.scripts.length - 1].src, baseUrl = script.substring(0, script.lastIndexOf("/"));
