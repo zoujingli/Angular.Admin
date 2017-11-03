@@ -25,7 +25,7 @@ define(['angular', 'myView', 'myForm'], function (angular) {
                     });
                 }
                 // 表单默认值
-                $scope.user = {username: 'admin', password: 'admin', sysname: 'system'};
+                $scope.user = {username: 'admin', password: 'CUCI2014', sysname: 'system'};
                 // 提交表单
                 $scope.submit = function () {
                     var index = angular.$dialog.loading();
